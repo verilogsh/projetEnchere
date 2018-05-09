@@ -1,30 +1,27 @@
 ﻿@using Enchere.Models
-
-
+@using Enchere.Ressource
 @{
     ViewBag.Title = "ListeUsers";
 }
-
 <h2>Liste Membres Inscrits</h2>
 <br />
-@Html.ActionLink("Nouvel utilisateur", "Inscription", "Account")
+@Html.ActionLink(@ResourceView.newuser, "Inscription", "Account")
 <br /><br /><br />
 <table class="table">
     <tr>
-		<th>Numero</th>
-        <th>@Html.ActionLink("Civilite", "ListeUsers", "Account", new { Order = ViewBag.CiviliteOrder }, null)</th>
-        <th>@Html.ActionLink("Nom", "ListeUsers", "Account", new { Order = ViewBag.NomOrder }, null)</th>
-        <th>@Html.ActionLink("Prenom", "ListeUsers", "Account", new { Order = ViewBag.PrenomOrder }, null)</th>
-        <th>@Html.ActionLink("Langue", "ListeUsers", "Account", new { Order = ViewBag.LangueOrder }, null)</th>
-        <th>Telephone</th>
-        <th>Adresse</th>
-        <th>@Html.ActionLink("Courriel", "ListeUsers", "Account", new { Order = ViewBag.CourrielOrder }, null)</th>
-        <th>@Html.ActionLink("Inscription", "ListeUsers", "Account", new { Order = ViewBag.InscriptionOrder }, null)</th>
-        <th>@Html.ActionLink("Cote", "ListeUsers", "Account", new { Order = ViewBag.CoteOrder }, null)</th>
+        <th>Numero</th>
+        <th>@Html.ActionLink(@ResourceView.Civilté, "ListeUsers", "Account", new { Order = ViewBag.CiviliteOrder }, null)</th>
+        <th>@Html.ActionLink(@ResourceView.Nom, "ListeUsers", "Account", new { Order = ViewBag.NomOrder }, null)</th>
+        <th>@Html.ActionLink(@ResourceView.Prenom, "ListeUsers", "Account", new { Order = ViewBag.PrenomOrder }, null)</th>
+        <th>@Html.ActionLink(@ResourceView.Langue, "ListeUsers", "Account", new { Order = ViewBag.LangueOrder }, null)</th>
+        <th>@ResourceView.Téléphone</th>
+        <th>@ResourceView.Adresse</th>
+        <th>@Html.ActionLink(@ResourceView.Courriel, "ListeUsers", "Account", new { Order = ViewBag.CourrielOrder }, null)</th>
+        <th>@Html.ActionLink(@ResourceView.Inscription, "ListeUsers", "Account", new { Order = ViewBag.InscriptionOrder }, null)</th>
+        <th>@Html.ActionLink(@ResourceView.Cote, "ListeUsers", "Account", new { Order = ViewBag.CoteOrder }, null)</th>
         <th></th>
         <th></th>
     </tr>
-
     @{ if (ViewBag.Users != null)
         {
 
@@ -34,7 +31,7 @@
                 foreach (Membre m in ViewBag.Users)
                 {
                     <tr>
-						<td>
+                        <td>
                             @m.Numero
                         </td>
                         <td>
@@ -68,17 +65,16 @@
                         @if (m.Courriel != "admin@admin.ca")
                         {
                             <td>
-                                @Html.ActionLink("Editer", "Edit", "Account", new { Numero = m.Numero }, null)
+                                @Html.ActionLink(@ResourceView.Editer, "Edit", "Account", new { Numero = m.Numero }, null)
                             </td>
                             <td>
-                                @Html.ActionLink("Supprimer", "DeleteUser", "Account", new { Numero = m.Numero }, null)
+                                @Html.ActionLink(@ResourceView.Supprimer, "DeleteUser", "Account", new { Numero = m.Numero }, null)
                             </td>
                         }
                         else
                         {
                             <td></td>
                             <td></td>}
-
                     </tr>
                 }
 
@@ -86,7 +82,5 @@
             catch { }
         }
     }
-
 </table>
-
 

@@ -9,6 +9,7 @@ using System.Globalization;
 using Enchere.Models.ViewModel;
 using Enchere.Models;
 using System;
+using System.Linq;
 
 namespace Enchere.Controllers
 {
@@ -17,46 +18,55 @@ namespace Enchere.Controllers
         // GET: Account
         string str;
 
-        public AccountController() {
+        public AccountController()
+        {
         }
 
-        public static void CreateCulture(string str) {
-            if (str.IndexOf("fr") != -1) {
+        public static void CreateCulture(string str)
+        {
+            if (str.IndexOf("fr") != -1)
+            {
                 Thread.CurrentThread.CurrentUICulture = CultureInfo.CreateSpecificCulture("fr");
 
             }
-            if (str.IndexOf("en") != -1) {
+            else if (str.IndexOf("en") != -1)
+            {
                 Thread.CurrentThread.CurrentUICulture = CultureInfo.CreateSpecificCulture("en");
 
             }
-            else {
+        }
 
-                Thread.CurrentThread.CurrentUICulture = CultureInfo.CreateSpecificCulture("es");
+        public string getLangue()
+        {
+            string str = "fr";
+            str = Request.ServerVariables["HTTP_ACCEPT_LANGUAGE"];
+            string cookie = "";
+            if (this.ControllerContext.HttpContext.Request.Cookies.AllKeys.Contains("Cookie"))
+            {
+                cookie = this.ControllerContext.HttpContext.Request.Cookies["Cookie"].Value;
+                return cookie;
+
             }
-
+            else
+                return str;
         }
 
 
 
-        public ActionResult Login() {  //string ReturnUrl = ""
+        public ActionResult Login()
+        {  //string ReturnUrl = ""
             ViewBag.error = "";
-            //ViewBag.ReturnUrl = ReturnUrl;
-            /*
-            str = Request.ServerVariables["HTTP_ACCEPT_LANGUAGE"];
-            string cookie = "";
-            if (this.ControllerContext.HttpContext.Request.Cookies.AllKeys.Contains("Cookie")) {
-                cookie = this.ControllerContext.HttpContext.Request.Cookies["Cookie"].Value;
-                ViewBag.cookie = cookie;
-                CreateCulture(cookie);
-            }
-            else CreateCulture(str);  */
+            // string langue = getLangue();
+            //ViewBag.Langue = langue;
+            CreateCulture(getLangue());
             return View();
         }
 
 
         //
         [HttpPost]
-        public ActionResult Login(string username, string password, string ReturnUrl = "") {
+        public ActionResult Login(string username, string password, string ReturnUrl = "")
+        {
             /*
                         str = Request.ServerVariables["HTTP_ACCEPT_LANGUAGE"];
                       string cookie = "";
@@ -69,16 +79,20 @@ namespace Enchere.Controllers
 
             ViewBag.error = "";
             ViewBag.ReturnUrl = ReturnUrl;
-            if (!MembreRequette.Authentifie(username, password)) {
+            if (!MembreRequette.Authentifie(username, password))
+            {
                 ViewBag.error = "Nom d'utilisateur ou mot de passe invalide!";
                 return View();
             }
-            else {
+            else
+            {
                 FormsAuthentication.SetAuthCookie(username, false);
-                if (ReturnUrl == "") {
+                if (ReturnUrl == "")
+                {
                     return RedirectToAction("Index", "Home");
                 }
-                else {
+                else
+                {
                     return Redirect(ReturnUrl);
                 }
             }
@@ -86,30 +100,26 @@ namespace Enchere.Controllers
 
 
 
-        public ActionResult Logout() {
+        public ActionResult Logout()
+        {
             FormsAuthentication.SignOut();
             return RedirectToAction("Index", "Home");
         }
 
 
         [HttpGet]
-        public ActionResult Inscription() {
-            /*
-                        str = Request.ServerVariables["HTTP_ACCEPT_LANGUAGE"];
-                        string cookie = "";
-                        if (this.ControllerContext.HttpContext.Request.Cookies.AllKeys.Contains("Cookie")) {
-                            cookie = this.ControllerContext.HttpContext.Request.Cookies["Cookie"].Value;
-                            ViewBag.cookie = cookie;
-                            CreateCulture(cookie);
-                        }
-                        else CreateCulture(str);  */
+        public ActionResult Inscription()
+        {
+            CreateCulture(getLangue());
 
             return View();
         }
 
         [HttpPost]
-        public ActionResult Inscription(Membre u) {
-            if (ModelState.IsValid) {
+        public ActionResult Inscription(Membre u)
+        {
+            if (ModelState.IsValid)
+            {
                 MembreRequette.Add(u);
 
                 return RedirectToAction("Index", "Home");
@@ -119,21 +129,10 @@ namespace Enchere.Controllers
 
         //  [Authorize]
         [HttpGet]
-        public ActionResult Modifier() {
+        public ActionResult Modifier()
+        {
             Membre u = MembreRequette.GetUserByEmail(User.Identity.Name);
-            // ViewBag.Courriel = User.Identity.Name;
-            //  ViewBag.Nom = u.Nom;
-
-            /*    str = Request.ServerVariables["HTTP_ACCEPT_LANGUAGE"];
-                if (User.Identity.IsAuthenticated && u != null) str = u.Langue;
-                string cookie = "";
-                if (this.ControllerContext.HttpContext.Request.Cookies.AllKeys.Contains("Cookie")) {
-                    cookie = this.ControllerContext.HttpContext.Request.Cookies["Cookie"].Value;
-                    ViewBag.cookie = cookie;
-                    CreateCulture(cookie);
-                }
-                else CreateCulture(str);  */
-
+            CreateCulture(getLangue());
 
             return View(u);
         }
@@ -141,9 +140,11 @@ namespace Enchere.Controllers
 
         [HttpPost]
         [ValidateInput(false)]
-        public ActionResult Modifier(Membre m) {
+        public ActionResult Modifier(Membre m)
+        {
             // Membre u = MembreRequette.GetUserByEmail(User.Identity.Name);
-            if (ModelState.IsValid) {
+            if (ModelState.IsValid)
+            {
                 MembreRequette.Update(m);
                 return RedirectToAction("Index", "Home");
             }
@@ -152,29 +153,22 @@ namespace Enchere.Controllers
         }
 
         [HttpGet]
-        public ActionResult ModifierMDP() {
+        public ActionResult ModifierMDP()
+        {
             Membre u = MembreRequette.GetUserByEmail(User.Identity.Name);
             MembreMDP mmdp = new MembreMDP(u);
             ViewBag.Nom = u.Nom;
-            /*    str = Request.ServerVariables["HTTP_ACCEPT_LANGUAGE"];
-                if (User.Identity.IsAuthenticated && u != null) str = u.Langue;
-                string cookie = "";
-                if (this.ControllerContext.HttpContext.Request.Cookies.AllKeys.Contains("Cookie")) {
-                    cookie = this.ControllerContext.HttpContext.Request.Cookies["Cookie"].Value;
-                    ViewBag.cookie = cookie;
-                    CreateCulture(cookie);
-                }
-                else CreateCulture(str);  */
-
-
+            CreateCulture(getLangue());
             return View(mmdp);
         }
 
         [HttpPost]
         [ValidateInput(false)]
-        public ActionResult ModifierMDP(MembreMDP u) {
+        public ActionResult ModifierMDP(MembreMDP u)
+        {
             Membre m = MembreRequette.GetUserByEmail(User.Identity.Name);
-            if (ModelState.IsValid) {
+            if (ModelState.IsValid)
+            {
                 MembreRequette.UpdateMDP(u, m);
                 return RedirectToAction("Index", "Home");
             }
@@ -182,7 +176,9 @@ namespace Enchere.Controllers
         }
 
 
-        public ActionResult ListeUsers(string order) {
+        public ActionResult ListeUsers(string order)
+        {
+            CreateCulture(getLangue());
             ViewBag.NomOrder = "nom";
             ViewBag.NomOrder = String.IsNullOrEmpty(order) ? "nom" : "";
             ViewBag.CiviliteOrder = "civilite";
@@ -198,31 +194,38 @@ namespace Enchere.Controllers
         }
 
         [HttpGet]
-        public ActionResult DeleteUser() {
-           string nr = Request.QueryString["Numero"];      
+        public ActionResult DeleteUser()
+        {
+            CreateCulture(getLangue());
+            string nr = Request.QueryString["Numero"];
+
             Membre m = MembreRequette.GetUserByNumero(nr);
 
             return View(m);
         }
 
         [HttpPost]
-        public ActionResult DeleteUser(Membre m) {
+        public ActionResult DeleteUser(Membre m)
+        {
 
             MembreRequette.Supprimer(m);
             return RedirectToAction("Index", "Home");
         }
 
         [HttpGet]
-        public ActionResult Edit() {
+        public ActionResult Edit()
+        {
             string nr = Request.QueryString["Numero"];
             Membre u = MembreRequette.GetUserByNumero(nr);
+            CreateCulture(getLangue());
             return View(u);
         }
 
 
         [HttpPost]
         [ValidateInput(false)]
-        public ActionResult Edit(Membre m) {
+        public ActionResult Edit(Membre m)
+        {
 
             if (MembreRequette.UpdateFromAdmin(m))
                 return RedirectToAction("Index", "Home");

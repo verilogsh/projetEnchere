@@ -1,108 +1,96 @@
 ﻿@model Enchere.Models.Membre
-
+@using Enchere.Ressource
 @{
     ViewBag.Title = "DeleteUser";
 }
-
 <h2>Effacer un Membre</h2>
-
 <h3>Are you sure you want to delete this?</h3>
 <div>
-    
+
     <hr />
     <dl class="dl-horizontal">
         @Html.HiddenFor(model => model.Numero)
         <dt>
-            @Html.DisplayNameFor(model => model.Civilite)
+            @ResourceView.Civilté
+            @*@Html.DisplayNameFor(model => model.Civilite)*@
         </dt>
-
         <dd>
             @Html.DisplayFor(model => model.Civilite)
         </dd>
-
         <dt>
-            @Html.DisplayNameFor(model => model.Nom)
+            @ResourceView.Nom
+            @*@Html.DisplayNameFor(model => model.Nom)*@
         </dt>
-
         <dd>
             @Html.DisplayFor(model => model.Nom)
         </dd>
-
         <dt>
-            @Html.DisplayNameFor(model => model.Prenom)
+            @ResourceView.Prenom
+            @*@Html.DisplayNameFor(model => model.Prenom)*@
         </dt>
-
         <dd>
             @Html.DisplayFor(model => model.Prenom)
         </dd>
-
         <dt>
-            @Html.DisplayNameFor(model => model.Langue)
+            @ResourceView.Langue
+            @*@Html.DisplayNameFor(model => model.Langue)*@
         </dt>
-
         <dd>
             @Html.DisplayFor(model => model.Langue)
         </dd>
-
         <dt>
-            @Html.DisplayNameFor(model => model.Telephone)
+            @ResourceView.Téléphone
+            @*@Html.DisplayNameFor(model => model.Telephone)*@
         </dt>
-
         <dd>
             @Html.DisplayFor(model => model.Telephone)
         </dd>
-
         <dt>
+            @ResourceView.Adresse
             @Html.DisplayNameFor(model => model.Adresse)
         </dt>
-
         <dd>
             @Html.DisplayFor(model => model.Adresse)
         </dd>
-
         <dt>
-            @Html.DisplayNameFor(model => model.Courriel)
+            @ResourceView.Courriel
+            @* @Html.DisplayNameFor(model => model.Courriel)*@
         </dt>
-
         <dd>
             @Html.DisplayFor(model => model.Courriel)
         </dd>
-
         <dt>
-            @Html.DisplayNameFor(model => model.DateInscri)
+            @ResourceView.Inscription
+            @*@Html.DisplayNameFor(model => model.DateInscri)*@
         </dt>
-
         <dd>
             @Html.DisplayFor(model => model.DateInscri)
         </dd>
-
         <dt>
-            @Html.DisplayNameFor(model => model.Cote)
+            @ResourceView.Cote
+            @*@Html.DisplayNameFor(model => model.Cote)*@
         </dt>
-
         <dd>
             @Html.DisplayFor(model => model.Cote)
         </dd>
-
         @*<dt>
-            @Html.DisplayNameFor(model => model.MotDePasse)
-        </dt>
+                @Html.DisplayNameFor(model => model.MotDePasse)
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.MotDePasse)
-        </dd>
+            <dd>
+                @Html.DisplayFor(model => model.MotDePasse)
+            </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Confirmation)
-        </dt>
+            <dt>
+                @Html.DisplayNameFor(model => model.Confirmation)
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Confirmation)
-        </dd>*@
-
+            <dd>
+                @Html.DisplayFor(model => model.Confirmation)
+            </dd>*@
     </dl>
-
-    @using (Html.BeginForm()) {
+    @using (Html.BeginForm())
+    {
         @Html.AntiForgeryToken()
 
         <div class="form-actions no-color">
