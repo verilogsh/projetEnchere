@@ -1,0 +1,19 @@
+﻿@{
+    ViewBag.Title = "Contactez nous";
+}
+@if(ViewBag.Error != null)
+{
+    <h2>@ViewBag.Error</h2>
+}
+<h2>Contactez nous</h2>
+<div  class="container">
+    <form method="post" action="SendEmail">
+        <span class="form-control-static">Email:</span>
+        <input class="form-control" type="Email" name="emetteur" />
+        <span class="form-control-static">Sujet:</span>
+        <input class="form-control" type="text" name="subject" />
+        <span class="form-control-static">Message:</span>
+        <textarea class="form-control" type="text" name="message" ></textarea><br />
+        <button class="btn btn-primary" type="submit">Envoyer</button>
+    </form>
+</div>

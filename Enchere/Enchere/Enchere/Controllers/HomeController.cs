@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Mail;
 using System.Web;
 using System.Web.Mvc;
 
@@ -52,6 +53,54 @@ namespace Enchere.Controllers
             }
             else
                 return str;
+        }
+
+        [HttpGet]
+        public ActionResult SendEmail()
+        {
+            ViewBag.Message = "Your contact page.";
+
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult SendEmail(String message, String subject, String emetteur)
+        {
+            try
+            {
+                var senderemail = new MailAddress("hasnimed07@gmail.com", "Demo test");
+                var receiverEmail = new MailAddress(emetteur, "recepteur");
+
+                var password = "younnesse92";
+                var sub = subject;
+                var body = message;
+
+                var smtp = new SmtpClient
+                {
+                    Host = "smtp.gmail.com",
+                    Port = 587,
+                    EnableSsl = true,
+                    DeliveryMethod = SmtpDeliveryMethod.Network,
+                    UseDefaultCredentials = false,
+                    Credentials = new System.Net.NetworkCredential(senderemail.Address, password)
+                };
+                using (var mess = new MailMessage(senderemail, receiverEmail)
+                {
+                    Subject = subject,
+                    Body = body
+                })
+                {
+                    smtp.Send(mess);
+                }
+            }
+            catch (Exception ex)
+            {
+                // Status.Text = ex.Message;
+                //ViewBag.Error = "Probleme d'envoie d'email";
+                ViewBag.Error = ex.ToString();
+            }
+
+            return RedirectToAction("Index", "Home");
         }
     }
 }
