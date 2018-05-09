@@ -1,0 +1,88 @@
+﻿@model IEnumerable<Enchere.Models.Objet>
+
+@{
+    ViewBag.Title = "gestionObjetMembre";
+}
+
+<h2>gestionObjetMembre</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table table-striped">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Nom)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Description)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DateInscri)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.IdCategorie)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Photo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Piece)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Nouveau)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.EnVent)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PrixDepart)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Nom)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Description)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DateInscri)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.IdCategorie)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Photo)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Piece)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Nouveau)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.EnVent)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PrixDepart)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.Id }) |
+            @{
+                if (item.EnVent) {
+                    @Html.ActionLink("Retirer de vente", "vente", new { id = item.Id })
+                } else {
+                    @Html.ActionLink("Mettre en vente", "retire", new { id = item.Id })
+                }
+            }
+            
+        </td>
+    </tr>
+}
+
+</table>
