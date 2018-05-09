@@ -1,0 +1,122 @@
+﻿@using System.Threading;
+@using System.Globalization;
+@using Enchere.Models
+@using Enchere.Dal
+
+@{
+    string str;
+    try
+    {
+        str = Request.ServerVariables["HTTP_ACCEPT_LANGUAGE"];
+        Membre u = MembreRequette.GetUserByEmail(User.Identity.Name);
+        if (User.Identity.IsAuthenticated && u != null) { str = u.Langue; }
+        if (ViewBag.cookie != null && ViewBag.cookie != "") { str = ViewBag.cookie; }
+
+
+        if (str.IndexOf("fr") != -1)
+        {
+            Thread.CurrentThread.CurrentUICulture = CultureInfo.CreateSpecificCulture("fr");
+
+        }
+        if (str.IndexOf("en") != -1)
+        {
+            Thread.CurrentThread.CurrentUICulture = CultureInfo.CreateSpecificCulture("en");
+
+        }
+    }
+    catch { str = "fr"; Thread.CurrentThread.CurrentUICulture = CultureInfo.CreateSpecificCulture("fr"); }
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - Application Enchere</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+
+</head>
+<body>
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                @Html.ActionLink("Maisonneuve", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
+                    <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+                    <li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</li>
+                    <li>
+                        <form action="/Home/Langue" method="post">
+                            <input type="hidden" value="en" name="choixLangue" />
+                            <input type="submit" value="EN" />
+                        </form>
+                    </li>
+                    <li>&nbsp;&nbsp;&nbsp;&nbsp;</li>
+                    <li>
+                        <form action="/Home/Langue" method="post">
+                            <input type="hidden" value="fr" name="choixLangue" />
+                            <input type="submit" value="FR" />
+                        </form>
+                    </li>
+
+                    @if (User.Identity.IsAuthenticated && User.Identity.Name == "admin@admin.ca")
+                    {
+                        <li>@Html.ActionLink("Liste utilisateurs", "ListeUsers", "Account")</li>
+                    }
+                    else if (User.Identity.IsAuthenticated)
+                    {
+                        <li>@Html.ActionLink("Gestion des objets", "gestionObjetMembre", "Objet")</li>
+                    }
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    @if (!User.Identity.IsAuthenticated)
+                    {
+                        <li>@Html.ActionLink("Inscription", "Inscription", "Account")</li>
+                        <li>@Html.ActionLink("Connection", "Login", "Account")</li>
+                    }
+                    else if (User.Identity.IsAuthenticated)
+                    {
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown"
+                               role="button" ariaexpanded="
+                               false">
+                                Bonjour : @User.Identity.Name
+                                <span class="caret"></span>
+                            </a>
+                            <ul class="dropdown-menu" role="menu">
+                                <li>@Html.ActionLink("Modifier profil", "Modifier", "Account")</li>
+                                <li class="divider"></li>
+                                <li>@Html.ActionLink("Modifier mot de passe", "ModifierMDP", "Account")</li>
+                                <li class="divider"></li>
+                                <li>@Html.ActionLink("Deconnexion", "Logout", "Account")</li>
+                            </ul>
+                        </li>
+                    }
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="container body-content">
+        @if (User.Identity.IsAuthenticated)
+        {
+            <h2>Bonjour @User.Identity.Name!</h2>
+        }
+        @RenderBody()
+        <hr />
+        <footer>
+            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
+        </footer>
+    </div>
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+</body>
+</html>
