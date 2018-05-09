@@ -1,0 +1,100 @@
+﻿@using System.Globalization;
+@using System.Linq;
+@using System.Threading;
+
+@{
+    Layout = null;
+
+    string str = "";
+    string erreur = "Erreur d'authentification";
+    string error = "Nom d'utilisateur ou mot de passe invalide!";
+    string accueil = "Accueil";
+    string courriel = "Adresse de courriel";
+    string mdp = "Mot de passe";
+
+    try
+    {
+        str = Request.ServerVariables["HTTP_ACCEPT_LANGUAGE"];
+        //Utilisateur u = Utilisateurs.FindByCourriel(User.Identity.Name);
+        //if (User.Identity.IsAuthenticated && u != null) { str = u.accederLangue; }
+        if (ViewBag.cookie != null && ViewBag.cookie != "") { str = ViewBag.cookie; }
+
+
+        if (str.IndexOf("fr") != -1)
+        {
+            Thread.CurrentThread.CurrentUICulture = CultureInfo.CreateSpecificCulture("fr");
+
+        }
+        if (str.IndexOf("en") != -1)
+        {
+            Thread.CurrentThread.CurrentUICulture = CultureInfo.CreateSpecificCulture("en");
+
+        }
+        else if (str.IndexOf("es") != -1)
+        {
+
+            Thread.CurrentThread.CurrentUICulture = CultureInfo.CreateSpecificCulture("es");
+        }
+
+    }
+    catch { str = "fr"; }
+
+    if (str.IndexOf("en") != -1)
+    {
+        erreur = "Authentification error";
+        error = "Invalid password or username!";
+        accueil = "Home";
+        courriel = "Email address";
+        mdp = "Password";
+    }
+    if (str.IndexOf("es") != -1)
+    {
+        erreur = "Error de autenticación";
+        error = "Contraseña o nombre de usuario no válido!";
+        accueil = "Recepción";
+        courriel = "Correo electrónico";
+        mdp = "Contraseña";
+    }
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <link rel="stylesheet" type="text/css" href="~/Content/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="~/Content/Site.css">
+    <title>Login</title>
+</head>
+<body>
+    <div>
+        @if (ViewBag.error != "")
+        {
+            <div class="alert alert-danger" role="alert">
+                <b>@erreur</b> @error
+            </div>
+        }
+        <br /> <br />
+        @using (Html.BeginForm("Login", "Account"))
+        {
+            <div class="form-group">
+                @*@Html.Label("Nom d'utilisateur")*@
+                @*@wikiPr.Ressource.ResourceView.Courriel*@
+                @Html.Label(@courriel)
+                @Html.TextBox("username")
+               
+            </div>
+            <div class="form-group">
+                @*@Html.Label("Mot de passe")*@
+                @*@wikiPr.Ressource.ResourceView.MDP*@
+                @Html.Label(@mdp) &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                @Html.Password("password")
+
+            </div>
+            <input type="hidden" name="ReturnUrl" value="@ViewBag.ReturnUrl" />
+            <input type="submit" value="Connexion" />
+        }
+    </div>
+    <br /><br />
+    @Html.ActionLink("Accueil", "Index", "Home")
+</body>
+</html>
+
