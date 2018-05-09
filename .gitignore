@@ -1,0 +1,7 @@
+﻿################################################################################
+# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
+################################################################################
+
+/Enchere/Enchere/.vs/Enchere/v15/Server/sqlite3/db.lock
+/Enchere/Enchere/.vs/Enchere/v15/Server/sqlite3/storage.ide-shm
+/Enchere/Enchere/.vs/Enchere/v15/Server/sqlite3/storage.ide-wal
