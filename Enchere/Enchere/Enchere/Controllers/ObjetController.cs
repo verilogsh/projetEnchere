@@ -30,12 +30,12 @@ namespace Enchere.Controllers
         }
 
         [HttpGet]
-        public ActionResult gestionObjetMembre()
+        public ActionResult gestionObjetMembre(string ordre = "none")
         {
             string currentUser = @User.Identity.Name;
-            List<Objet> list = new List<Objet>();
-            list = ObjetRequtte.getObjetMembre("aa@aa.com", "none");
+            List<Objet> list = new List<Objet>();            
             Membre mb = MembreRequette.GetUserByEmail(currentUser);
+            list = ObjetRequtte.getObjetMembre(mb.Courriel, ordre);
             return View(list);
         }
 
@@ -53,13 +53,12 @@ namespace Enchere.Controllers
             if (ModelState.IsValid)
             {
                 string currentUser = @User.Identity.Name;
-                //Membre mb = MembreRequette.GetUserByEmail(currentUser);
-                Membre mb = new Membre();
-                mb.Numero = "AAAA";
+                Membre mb = MembreRequette.GetUserByEmail(currentUser);
                 ObjetRequtte.SavePhoto(model.Photo);
                 ObjetRequtte.SavePiece(model.Piece);
                 Objet obj = new Objet(IdGenerator.getObjetId(), model.Nom.Trim(), model.Description.Trim(), DateTime.Now, model.Categorie.Trim(), model.Photo.FileName.Trim(), model.Piece.FileName.Trim(), mb.Numero.Trim(), true, false, model.PrixDepart);
                 ObjetRequtte.insertObjet(obj);
+                return RedirectToAction("gestionObjetMembre");
             }
             return View();
         }
