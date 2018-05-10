@@ -167,13 +167,13 @@
     <Compile Include="Models\ViewModel\MembreMDP.cs" />
     <Compile Include="Models\ViewModel\ObjetViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Ressource\ResourceView.en.Designer.cs">
-      <DependentUpon>ResourceView.en.resx</DependentUpon>
+    <Compile Include="Ressource\ResourceView.fr.Designer.cs">
+      <DependentUpon>ResourceView.fr.resx</DependentUpon>
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
-    <Compile Include="Ressource\ResourceView.fr.Designer.cs">
-      <DependentUpon>ResourceView.fr.resx</DependentUpon>
+    <Compile Include="Ressource\ResourceView.en.Designer.cs">
+      <DependentUpon>ResourceView.en.resx</DependentUpon>
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
@@ -288,13 +288,13 @@
     <Content Include="Views\Home\SendEmail.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Ressource\ResourceView.en.resx">
-      <Generator>PublicResXFileCodeGenerator</Generator>
-      <LastGenOutput>ResourceView.en.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
     <EmbeddedResource Include="Ressource\ResourceView.fr.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>ResourceView.fr.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Ressource\ResourceView.en.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>ResourceView.en.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Ressource\ResourceView.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>

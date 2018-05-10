@@ -201,4 +201,22 @@
   <data name="Téléphone" xml:space="preserve">
     <value>Téléphone</value>
   </data>
+  <data name="Connection" xml:space="preserve">
+    <value>Connection</value>
+  </data>
+  <data name="Deconnexion" xml:space="preserve">
+    <value>Deconnexion</value>
+  </data>
+  <data name="gestobj" xml:space="preserve">
+    <value>Gestion des objets</value>
+  </data>
+  <data name="ListeUsers" xml:space="preserve">
+    <value>Liste utilisateurs</value>
+  </data>
+  <data name="mdfprofil" xml:space="preserve">
+    <value>Modifier profil</value>
+  </data>
+  <data name="ModifierMDP" xml:space="preserve">
+    <value>Modifier mot de passe</value>
+  </data>
 </root>

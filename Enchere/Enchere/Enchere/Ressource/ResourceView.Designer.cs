@@ -124,6 +124,15 @@ namespace Enchere.Ressource {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Connection.
+        /// </summary>
+        public static string Connection {
+            get {
+                return ResourceManager.GetString("Connection", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Connexion.
         /// </summary>
         public static string Connexion {
@@ -160,6 +169,15 @@ namespace Enchere.Ressource {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Deconnexion.
+        /// </summary>
+        public static string Deconnexion {
+            get {
+                return ResourceManager.GetString("Deconnexion", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Editer.
         /// </summary>
         public static string Editer {
@@ -187,6 +205,15 @@ namespace Enchere.Ressource {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Gestion des objets.
+        /// </summary>
+        public static string gestobj {
+            get {
+                return ResourceManager.GetString("gestobj", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Date d&apos;inscription.
         /// </summary>
         public static string Inscription {
@@ -205,11 +232,29 @@ namespace Enchere.Ressource {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Liste utilisateurs.
+        /// </summary>
+        public static string ListeUsers {
+            get {
+                return ResourceManager.GetString("ListeUsers", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Ce n&apos;est pas le bon format de telephone!.
         /// </summary>
         public static string mauvaisformattel {
             get {
                 return ResourceManager.GetString("mauvaisformattel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Modifier profil.
+        /// </summary>
+        public static string mdfprofil {
+            get {
+                return ResourceManager.GetString("mdfprofil", resourceCulture);
             }
         }
         
@@ -246,6 +291,15 @@ namespace Enchere.Ressource {
         public static string MDPrequis {
             get {
                 return ResourceManager.GetString("MDPrequis", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Modifier mot de passe.
+        /// </summary>
+        public static string ModifierMDP {
+            get {
+                return ResourceManager.GetString("ModifierMDP", resourceCulture);
             }
         }
         
