@@ -58,17 +58,19 @@
                     <li>
                         <form action="/Home/Langue" method="post">
                             <input type="hidden" value="en" name="choixLangue" />
-                            <input type="submit" value="EN" />
+                            <input type="image" src="/flags/United_Kingdom.png" alt="Submit Form" width="30" height="20" />
+                            @*<input type="submit" value="" style="background:url(/flags/gbflag.png) no-repeat;" />*@
                         </form>
                     </li>
                     <li>&nbsp;&nbsp;&nbsp;&nbsp;</li>
                     <li>
                         <form action="/Home/Langue" method="post">
                             <input type="hidden" value="fr" name="choixLangue" />
-                            <input type="submit" value="FR" />
+                            <input type="image" src="/flags/franc.png" alt="Submit Form" width="30" height="20" />
+                            @*<input type="submit" value="" style="background:url(/flags/france.jpg) no-repeat;" />*@
                         </form>
                     </li>
-
+                    <li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</li>
                     @if (User.Identity.IsAuthenticated && User.Identity.Name == "admin@admin.ca")
                     {
                         <li class="dropdown">
