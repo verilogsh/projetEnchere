@@ -322,6 +322,15 @@ namespace Enchere.Ressource {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Nom.
+        /// </summary>
+        public static string nom2 {
+            get {
+                return ResourceManager.GetString("nom2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Numéro.
         /// </summary>
         public static string Numéro {

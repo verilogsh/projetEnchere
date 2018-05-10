@@ -11,7 +11,7 @@
 <table class="table">
     <tr>
         <th>@Html.ActionLink(@ResourceView.Numéro, "ListeCategories", "Categories", new { Order = ViewBag.IdOrder }, null)</th>
-        <th>@Html.ActionLink(@ResourceView.Nom, "ListeCategories", "Categories", new { Order = ViewBag.NomOrder }, null)</th>
+        <th>@Html.ActionLink("Nom", "ListeCategories", "Categories", new { Order = ViewBag.NomOrder }, null)</th>
         <th>Description</th>
        
     </tr>
@@ -23,18 +23,24 @@
 
                 foreach (Categorie c in ViewBag.Cat)
                 {
-                    <tr>
-                        <td>
-                            @c.Id
-                        </td>
-                        <td>
-                            @c.Nom
-                        </td>
-                        <td>
-                            @c.Description
-                        </td>                      
-                       
-                    </tr>
+    <tr>
+        <td>
+            @c.Id
+        </td>
+        <td>
+            @c.Nom
+        </td>
+        <td>
+            @c.Description
+        </td>
+        <td>
+            @Html.ActionLink(@ResourceView.Editer, "ModifierCateg", "Categories", new { Id = c.Id }, null)
+        </td>
+        <td>
+            @Html.ActionLink(@ResourceView.Supprimer, "DeleteCateg", "Categories", new { Id = c.Id }, null)
+        </td>
+
+    </tr>
                 }
 
             }

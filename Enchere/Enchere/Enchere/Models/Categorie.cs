@@ -11,7 +11,7 @@ namespace Enchere.Models {
         [Display(Name = "Numéro", ResourceType = typeof(ResourceView))]
         public string Id { get; set; }
 
-        [Display(Name = "Nom", ResourceType = typeof(ResourceView))]
+        [Display(Name = "nom2", ResourceType = typeof(ResourceView))]
         public string Nom { get; set; }
 
         public string Description { get; set; }

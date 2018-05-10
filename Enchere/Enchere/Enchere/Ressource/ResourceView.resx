@@ -219,4 +219,7 @@
   <data name="ModifierMDP" xml:space="preserve">
     <value>Modifier mot de passe</value>
   </data>
+  <data name="nom2" xml:space="preserve">
+    <value>Nom</value>
+  </data>
 </root>

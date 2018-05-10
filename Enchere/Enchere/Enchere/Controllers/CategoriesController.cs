@@ -79,7 +79,8 @@ namespace Enchere.Controllers
         public ActionResult ModifierCateg()
         {
             CreateCulture(getLangue());
-            string nr = Request.QueryString["Id"];
+            // string nr = Request.QueryString["Id"];
+            string nr = Request.Url.AbsolutePath.Split('/').Last();
             Categorie c = CategoriesRequette.GetCategorieById(nr);
             return View(c);
         }
@@ -102,7 +103,8 @@ namespace Enchere.Controllers
         public ActionResult DeleteCateg()
         {
             CreateCulture(getLangue());
-            string nr = Request.QueryString["Id"];
+            //string nr = Request.QueryString["Id"];
+            string nr = Request.Url.AbsolutePath.Split('/').Last();
             Categorie c = CategoriesRequette.GetCategorieById(nr);
             return View(c);
         }

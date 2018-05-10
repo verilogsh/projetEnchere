@@ -201,4 +201,7 @@
   <data name="Téléphone" xml:space="preserve">
     <value>Phone</value>
   </data>
+  <data name="nom2" xml:space="preserve">
+    <value>Name</value>
+  </data>
 </root>
