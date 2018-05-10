@@ -290,6 +290,10 @@
     <Content Include="Views\Home\SendEmail.cshtml" />
     <Content Include="Views\Home\PageRapports.cshtml" />
     <Content Include="Views\Home\PageCommission.cshtml" />
+    <Content Include="Views\Categories\AjouterCateg.cshtml" />
+    <Content Include="Views\Categories\ModifierCateg.cshtml" />
+    <Content Include="Views\Categories\DeleteCateg.cshtml" />
+    <Content Include="Views\Categories\ListeCategories.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Ressource\ResourceView.fr.resx">
@@ -312,9 +316,7 @@
     <Content Include="packages.config" />
     <None Include="Project_Readme.html" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Views\Categories\" />
-  </ItemGroup>
+  <ItemGroup />
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>

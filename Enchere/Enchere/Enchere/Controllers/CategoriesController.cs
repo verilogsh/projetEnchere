@@ -50,7 +50,8 @@ namespace Enchere.Controllers
             ViewBag.IdOrder = "Id";
             ViewBag.NomOrder = "Nom";
             ViewBag.NomOrder = String.IsNullOrEmpty(order) ? "Nom" : "";
-
+            if (order == null) order = "Nom";
+            ViewBag.Cat = CategoriesRequette.lesCategories(order);
             return View();
         }
 

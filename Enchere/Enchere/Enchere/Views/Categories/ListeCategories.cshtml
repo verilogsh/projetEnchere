@@ -1,0 +1,47 @@
+﻿@using Enchere.Models
+@using Enchere.Ressource
+@{
+    ViewBag.Title = "ListeCategories";
+}
+
+<h2>Liste Categories</h2>
+<br />
+@Html.ActionLink("Nouvelle categorie", "AjouterCateg", "Categories")
+<br /><br /><br />
+<table class="table">
+    <tr>
+        <th>@Html.ActionLink(@ResourceView.Numéro, "ListeCategories", "Categories", new { Order = ViewBag.IdOrder }, null)</th>
+        <th>@Html.ActionLink(@ResourceView.Nom, "ListeCategories", "Categories", new { Order = ViewBag.NomOrder }, null)</th>
+        <th>Description</th>
+       
+    </tr>
+    @{ if (ViewBag.Cat != null)
+        {
+
+            try
+            {
+
+                foreach (Categorie c in ViewBag.Cat)
+                {
+                    <tr>
+                        <td>
+                            @c.Id
+                        </td>
+                        <td>
+                            @c.Nom
+                        </td>
+                        <td>
+                            @c.Description
+                        </td>                      
+                       
+                    </tr>
+                }
+
+            }
+            catch { }
+        }
+    }
+</table>
+
+
+
