@@ -150,8 +150,10 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\CategoriesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ObjetController.cs" />
+    <Compile Include="Dal\CategoriesRequette.cs" />
     <Compile Include="Dal\MembreRequette.cs" />
     <Compile Include="Dal\ObjetRequette.cs" />
     <Compile Include="Global.asax.cs">
@@ -286,6 +288,8 @@
     <Content Include="Views\Objet\gestionObjetMembre.cshtml" />
     <Content Include="Views\Objet\MettreEnVente.cshtml" />
     <Content Include="Views\Home\SendEmail.cshtml" />
+    <Content Include="Views\Home\PageRapports.cshtml" />
+    <Content Include="Views\Home\PageCommission.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Ressource\ResourceView.fr.resx">
@@ -307,6 +311,9 @@
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <Content Include="packages.config" />
     <None Include="Project_Readme.html" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Views\Categories\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

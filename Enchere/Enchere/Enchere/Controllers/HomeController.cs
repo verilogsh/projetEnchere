@@ -102,5 +102,19 @@ namespace Enchere.Controllers
 
             return RedirectToAction("Index", "Home");
         }
+
+        public ActionResult PageRapports()
+        {
+            ViewBag.Rapports = "Rapports";
+
+            return View();
+        }
+
+        public ActionResult PageCommission()
+        {
+            ViewBag.PageCommission = "PageCommission";
+
+            return View();
+        }
     }
 }
