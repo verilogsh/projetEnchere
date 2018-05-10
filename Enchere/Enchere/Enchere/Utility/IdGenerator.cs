@@ -6,6 +6,17 @@ using System.Web;
 namespace Enchere.Utility {
     public class IdGenerator {
 
+        public static string getCategId()
+        {
+            List<int> list = new List<int>();
+            Random random = new Random();
+            for (int i = 0; i < 2; i++)
+            {
+                list.Add(random.Next(10));
+            }
+            return "c" + String.Join("", list);
+        }
+
         public static string getUserId() {
             List<int> list = new List<int>();
             Random random = new Random();
