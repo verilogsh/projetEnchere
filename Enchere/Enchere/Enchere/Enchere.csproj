@@ -154,12 +154,14 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ObjetController.cs" />
     <Compile Include="Dal\CategoriesRequette.cs" />
+    <Compile Include="Dal\CommissionRequette.cs" />
     <Compile Include="Dal\MembreRequette.cs" />
     <Compile Include="Dal\ObjetRequette.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\Categorie.cs" />
+    <Compile Include="Models\Commission.cs" />
     <Compile Include="Models\Encher.cs" />
     <Compile Include="Models\Evaluation.cs" />
     <Compile Include="Models\Membre.cs" />

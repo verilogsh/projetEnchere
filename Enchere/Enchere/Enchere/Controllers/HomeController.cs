@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Enchere.Dal;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Mail;
@@ -112,9 +113,16 @@ namespace Enchere.Controllers
 
         public ActionResult PageCommission()
         {
-            ViewBag.PageCommission = "PageCommission";
-
+            ViewBag.Commission = CommissionRequette.ChercherCommission();
             return View();
+        }
+
+        [HttpPost]
+        public ActionResult ModifierCommission()
+        {
+            string commission = Request.Form["Taux"];
+            CommissionRequette.ChangerCommission(commission);
+            return new RedirectResult(Request.UrlReferrer.AbsoluteUri);
         }
     }
 }
