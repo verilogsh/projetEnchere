@@ -54,10 +54,8 @@ namespace Enchere.Controllers
 
 
         public ActionResult Login()
-        {  //string ReturnUrl = ""
+        {  
             ViewBag.error = "";
-            // string langue = getLangue();
-            //ViewBag.Langue = langue;
             CreateCulture(getLangue());
             return View();
         }
@@ -67,16 +65,6 @@ namespace Enchere.Controllers
         [HttpPost]
         public ActionResult Login(string username, string password, string ReturnUrl = "")
         {
-            /*
-                        str = Request.ServerVariables["HTTP_ACCEPT_LANGUAGE"];
-                      string cookie = "";
-                        if (this.ControllerContext.HttpContext.Request.Cookies.AllKeys.Contains("Cookie")) {
-                            cookie = this.ControllerContext.HttpContext.Request.Cookies["Cookie"].Value;
-                            ViewBag.cookie = cookie;
-                            CreateCulture(cookie);
-                        }
-                        else CreateCulture(str);  */
-
             ViewBag.error = "";
             ViewBag.ReturnUrl = ReturnUrl;
             if (!MembreRequette.Authentifie(username, password))
@@ -142,7 +130,6 @@ namespace Enchere.Controllers
         [ValidateInput(false)]
         public ActionResult Modifier(Membre m)
         {
-            // Membre u = MembreRequette.GetUserByEmail(User.Identity.Name);
             if (ModelState.IsValid)
             {
                 MembreRequette.Update(m);
