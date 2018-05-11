@@ -321,7 +321,7 @@ namespace Enchere.Dal {
             string chConnexion = ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
             SqlConnection connexion = new SqlConnection(chConnexion);
 
-            string requete = "SELECT * FROM Membre WHERE DateInscri>=" + DateTime.Now.Date.AddDays(-1) + " ORDER BY " + order;
+            string requete = "SELECT * FROM Membre WHERE DateInscri>='" + DateTime.Now.AddDays(-1).ToString("yyyy-MM-dd") + "' ORDER BY " + order;
             SqlCommand commande = new SqlCommand(requete, connexion);
             commande.CommandType = System.Data.CommandType.Text;
             List<Membre> maListe = new List<Membre>();
