@@ -113,16 +113,20 @@ namespace Enchere.Controllers
         public ActionResult DerniersProduits(string order)
         {
             CreateCulture(getLangue());
-            ViewBag.NomOrder = "nom";
-            ViewBag.NomOrder = String.IsNullOrEmpty(order) ? "nom" : "";
-            ViewBag.CiviliteOrder = "civilite";
-            ViewBag.PrenomOrder = "prenom";
-            ViewBag.LangueOrder = "Langage";
-            ViewBag.CourrielOrder = "courriel";
-            ViewBag.InscriptionOrder = "DateInscri";
-            ViewBag.CoteOrder = "cote";
-            if (order == null) order = "nom";
-            ViewBag.Users = ObjetRequette.lesProduitsRecemmentInscrits(order);
+            ViewBag.Numero = "Id";
+            ViewBag.NomOrder = "Nom";
+            ViewBag.NomOrder = String.IsNullOrEmpty(order) ? "Nom" : "";
+            ViewBag.Description = "Description";
+            ViewBag.Date = "DateInscri";
+            ViewBag.Categorie = "IdCategorie";
+            ViewBag.Photo = "Photo";
+            ViewBag.Piece = "Piece";
+            ViewBag.Idmembre = "IdMembre";
+            ViewBag.Nouveau = "Nouveau";
+            ViewBag.EnVente = "EnVente";
+                ViewBag.PrixDepart = "PrixDepart";
+            if (order == null) order = "Nom";
+            ViewBag.Objets = ObjetRequette.lesProduitsRecemmentInscrits(order);
             return View();
 
         }

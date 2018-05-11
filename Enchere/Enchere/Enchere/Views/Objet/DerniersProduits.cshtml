@@ -13,71 +13,68 @@
 <table class="table">
     <tr>
         <th>Numero</th>
-        <th>@Html.ActionLink(@ResourceView.Civilté, "DerniersProduits", "Account", new { Order = ViewBag.CiviliteOrder }, null)</th>
+        <th>@Html.ActionLink("Numero", "DerniersProduits", "Account", new { Order = ViewBag.Numero }, null)</th>
         <th>@Html.ActionLink(@ResourceView.Nom, "DerniersProduits", "Account", new { Order = ViewBag.NomOrder }, null)</th>
-        <th>@Html.ActionLink(@ResourceView.Prenom, "DerniersProduits", "Account", new { Order = ViewBag.PrenomOrder }, null)</th>
-        <th>@Html.ActionLink(@ResourceView.Langue, "DerniersProduits", "Account", new { Order = ViewBag.LangueOrder }, null)</th>
-        <th>@ResourceView.Téléphone</th>
-        <th>@ResourceView.Adresse</th>
-        <th>@Html.ActionLink(@ResourceView.Courriel, "DerniersProduits", "Account", new { Order = ViewBag.CourrielOrder }, null)</th>
-        <th>@Html.ActionLink(@ResourceView.Inscription, "DerniersProduits", "Account", new { Order = ViewBag.InscriptionOrder }, null)</th>
-        <th>@Html.ActionLink(@ResourceView.Cote, "DerniersProduits", "Account", new { Order = ViewBag.CoteOrder }, null)</th>
-        <th></th>
-        <th></th>
+        <th>@Html.ActionLink("Description", "DerniersProduits", "Account", new { Order = ViewBag.Description }, null)</th>
+        <th>@Html.ActionLink("Date d'inscription", "DerniersProduits", "Account", new { Order = ViewBag.Date }, null)</th>
+        <th>@Html.ActionLink("Categorie", "DerniersProduits", "Account", new { Order = ViewBag.Categorie }, null)</th>
+        <th>@Html.ActionLink("Photo", "DerniersProduits", "Account", new { Order = ViewBag.Photo }, null)</th>
+        <th>@Html.ActionLink("Piece", "DerniersProduits", "Account", new { Order = ViewBag.Piece }, null)</th>
+        <th>@Html.ActionLink("Id membre", "DerniersProduits", "Account", new { Order = ViewBag.Idmembre }, null)</th>
+        <th>@Html.ActionLink("Nouveau", "DerniersProduits", "Account", new { Order = ViewBag.Nouveau }, null)</th>
+        <th>@Html.ActionLink("En Vente", "DerniersProduits", "Account", new { Order = ViewBag.EnVente }, null)/th>
+        <th>@Html.ActionLink("Prix Depart", "DerniersProduits", "Account", new { Order = ViewBag.PrixDepart }, null)</th>
     </tr>
-    @{ if (ViewBag.Users != null)
+    @{ if (ViewBag.Objets != null)
         {
 
             try
             {
 
-                foreach (Membre m in ViewBag.Users)
+                foreach (Objet m in ViewBag.Objets)
                 {
                     <tr>
                         <td>
-                            @m.Numero
-                        </td>
-                        <td>
-                            @m.Civilite
+                            @m.Id
                         </td>
                         <td>
                             @m.Nom
                         </td>
                         <td>
-                            @m.Prenom
-                        </td>
-                        <td>
-                            @m.Langue
-                        </td>
-                        <td>
-                            @m.Telephone
-                        </td>
-                        <td>
-                            @m.Adresse
-                        </td>
-                        <td>
-                            @m.Courriel
+                            @m.Description
                         </td>
                         <td>
                             @String.Format("{0:d/M/yyyy}", @m.DateInscri);
-
                         </td>
                         <td>
-                            @m.Cote
+                            @m.IdCategorie
                         </td>
-                        @if (m.Courriel != "admin@admin.ca")
-                        {
+                        <td>
+                            @m.Photo
+                        </td>
+                        <td>
+                            @m.Piece
+                        </td>
+                        <td>
+                            @m.IdMembre
+                        </td>
+                        <td>
+                            @m.Nouveau
+                        </td>
+                        <td>
+                            @m.EnVent
+                        </td>
+                        <td>
+                            @m.PrixDepart
+                        </td>
+                      
                             <td>
-                                @Html.ActionLink(@ResourceView.Editer, "Edit", "Account", new { Numero = m.Numero }, null)
+                                @Html.ActionLink(@ResourceView.Editer, "Edit", "Account", new { Id = m.Id }, null)
                             </td>
                             <td>
-                                @Html.ActionLink(@ResourceView.Supprimer, "DeleteUser", "Account", new { Numero = m.Numero }, null)
+                                @Html.ActionLink(@ResourceView.Supprimer, "DeleteUser", "Account", new { Id = m.Id }, null)
                             </td>
-                        }
-                        else
-                        {
-                            <td></td>
-                            <td></td>}
+                       
                     </tr>
                 }
 
