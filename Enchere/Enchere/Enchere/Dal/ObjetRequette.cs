@@ -300,5 +300,52 @@ namespace Enchere.Dal {
                 file.SaveAs(fullPath);
             }
         }
+
+        public static List<Objet> lesProduitsRecemmentInscrits(string order)
+        {
+            string chConnexion = ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
+            SqlConnection connexion = new SqlConnection(chConnexion);
+
+            string requete = "SELECT * FROM Objet WHERE DateInscri>='" + DateTime.Now.AddDays(-1).ToString("yyyy-MM-dd") + "' ORDER BY " + order;
+            SqlCommand commande = new SqlCommand(requete, connexion);
+            commande.CommandType = System.Data.CommandType.Text;
+            List<Objet> maListe = new List<Objet>();
+            try
+            {
+                connexion.Open();
+                SqlDataReader dr = commande.ExecuteReader();
+                while (dr.Read())
+                {
+                    Objet o = new Objet
+                    {
+                        Id = (string)dr["Id"],
+                        Nom = (string)dr["Nom"],
+                        Description = (string)dr["Description"],
+                        DateInscri = (DateTime)dr["DateInscri"],
+                        IdCategorie = (string)dr["IdCategorie"],
+                        Photo = (string)dr["Photo"],
+                        Piece = (string)dr["Piece"],
+                        IdMembre = (string)dr["IdMembre"],
+                        Nouveau = (bool)dr["Nouveau"],
+                        EnVent = (bool)dr["EnVente"],
+                        PrixDepart = (decimal)dr["PrixDepart"]
+
+                    };
+                    maListe.Add(o);
+                }
+
+                dr.Close();
+                return maListe;
+            }
+            catch (Exception e)
+            {
+                System.Console.WriteLine(e.Message);
+            }
+            finally
+            {
+                connexion.Close();
+            }
+            return null;
+        }
     }
 }

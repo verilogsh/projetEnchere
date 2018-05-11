@@ -7,6 +7,8 @@ using Enchere.Models;
 using Enchere.Models.ViewModel;
 using Enchere.Dal;
 using Enchere.Utility;
+using System.Threading;
+using System.Globalization;
 
 namespace Enchere.Controllers
 {
@@ -106,6 +108,52 @@ namespace Enchere.Controllers
         public ActionResult MettreEnVente(Encher encher) {
             ObjetRequette.insertEncher(encher);
             return RedirectToAction("gestionObjetMembre", "Objet");
+        }
+
+        public ActionResult DerniersProduits(string order)
+        {
+            CreateCulture(getLangue());
+            ViewBag.NomOrder = "nom";
+            ViewBag.NomOrder = String.IsNullOrEmpty(order) ? "nom" : "";
+            ViewBag.CiviliteOrder = "civilite";
+            ViewBag.PrenomOrder = "prenom";
+            ViewBag.LangueOrder = "Langage";
+            ViewBag.CourrielOrder = "courriel";
+            ViewBag.InscriptionOrder = "DateInscri";
+            ViewBag.CoteOrder = "cote";
+            if (order == null) order = "nom";
+            ViewBag.Users = ObjetRequette.lesProduitsRecemmentInscrits(order);
+            return View();
+
+        }
+
+        public static void CreateCulture(string str)
+        {
+            if (str.IndexOf("fr") != -1)
+            {
+                Thread.CurrentThread.CurrentUICulture = CultureInfo.CreateSpecificCulture("fr");
+
+            }
+            else if (str.IndexOf("en") != -1)
+            {
+                Thread.CurrentThread.CurrentUICulture = CultureInfo.CreateSpecificCulture("en");
+
+            }
+        }
+
+        public string getLangue()
+        {
+            string str = "fr";
+            str = Request.ServerVariables["HTTP_ACCEPT_LANGUAGE"];
+            string cookie = "";
+            if (this.ControllerContext.HttpContext.Request.Cookies.AllKeys.Contains("Cookie"))
+            {
+                cookie = this.ControllerContext.HttpContext.Request.Cookies["Cookie"].Value;
+                return cookie;
+
+            }
+            else
+                return str;
         }
     }
 }
