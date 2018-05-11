@@ -174,8 +174,26 @@ namespace Enchere.Controllers
             ViewBag.CourrielOrder = "courriel";
             ViewBag.InscriptionOrder = "DateInscri";
             ViewBag.CoteOrder = "cote";
+           // ViewBag.Derniers = "derniers";
             if (order == null) order = "nom";
             ViewBag.Users = MembreRequette.lesMembres(order);
+            return View();
+
+        }
+
+        public ActionResult ListeUsersDerniers(string order)
+        {
+            CreateCulture(getLangue());
+            ViewBag.NomOrder = "nom";
+            ViewBag.NomOrder = String.IsNullOrEmpty(order) ? "nom" : "";
+            ViewBag.CiviliteOrder = "civilite";
+            ViewBag.PrenomOrder = "prenom";
+            ViewBag.LangueOrder = "Langage";
+            ViewBag.CourrielOrder = "courriel";
+            ViewBag.InscriptionOrder = "DateInscri";
+            ViewBag.CoteOrder = "cote";
+            if (order == null) order = "nom";
+            ViewBag.Users = MembreRequette.lesMembresRecemmentInscrits(order);
             return View();
 
         }

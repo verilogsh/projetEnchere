@@ -298,6 +298,7 @@
     <Content Include="Views\Categories\ModifierCateg.cshtml" />
     <Content Include="Views\Categories\DeleteCateg.cshtml" />
     <Content Include="Views\Categories\ListeCategories.cshtml" />
+    <Content Include="Views\Account\ListeUsersDerniers.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Ressource\ResourceView.fr.resx">

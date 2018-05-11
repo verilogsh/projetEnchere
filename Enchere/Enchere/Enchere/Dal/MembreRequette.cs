@@ -315,5 +315,52 @@ namespace Enchere.Dal {
             }
             catch { }
         }
+
+        public static List<Membre> lesMembresRecemmentInscrits(string order)
+        {
+            string chConnexion = ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
+            SqlConnection connexion = new SqlConnection(chConnexion);
+
+            string requete = "SELECT * FROM Membre WHERE DateInscri>=" + DateTime.Now.Date.AddDays(-1) + " ORDER BY " + order;
+            SqlCommand commande = new SqlCommand(requete, connexion);
+            commande.CommandType = System.Data.CommandType.Text;
+            List<Membre> maListe = new List<Membre>();
+            try
+            {
+                connexion.Open();
+                SqlDataReader dr = commande.ExecuteReader();
+                while (dr.Read())
+                {
+                    Membre a = new Membre
+                    {
+                        Numero = (string)dr["Numero"],
+                        Civilite = (string)dr["Civilite"],
+                        Nom = (string)dr["Nom"],
+                        Prenom = (string)dr["Prenom"],
+                        Langue = (string)dr["Langage"],
+                        Telephone = (string)dr["Telephone"],
+                        Adresse = (string)dr["Adresse"],
+                        Courriel = (string)dr["Courriel"],
+                        DateInscri = (DateTime)dr["DateInscri"],
+                        Cote = (int)dr["Cote"],
+                        MotDePasse = (string)dr["MDP"]
+
+                    };
+                    maListe.Add(a);
+                }
+
+                dr.Close();
+                return maListe;
+            }
+            catch (Exception e)
+            {
+                System.Console.WriteLine(e.Message);
+            }
+            finally
+            {
+                connexion.Close();
+            }
+            return null;
+        }
     }
 }
