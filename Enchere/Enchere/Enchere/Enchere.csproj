@@ -300,6 +300,7 @@
     <Content Include="Views\Categories\ListeCategories.cshtml" />
     <Content Include="Views\Account\ListeUsersDerniers.cshtml" />
     <Content Include="Views\Objet\DerniersProduits.cshtml" />
+    <Content Include="Views\Objet\lireObjetIntersse.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Ressource\ResourceView.fr.resx">

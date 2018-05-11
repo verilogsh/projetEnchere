@@ -24,12 +24,14 @@ namespace Enchere.Controllers
         }
 
         [HttpGet]
-        public ActionResult lireObjetEnVente(int idCategorie)
+        public ActionResult lireObjetEnVente(string idCategorie)
         {
             List<ObjetEnchereAff> list = new List<ObjetEnchereAff>();
             list = ObjetRequette.getObjetEnVente(idCategorie);
             return Json(ObjetRequette.getObjetEnVente(idCategorie), JsonRequestBehavior.AllowGet);
         }
+
+       
 
         [HttpGet]
         public ActionResult gestionObjetMembre(string ordre = "none")
@@ -129,6 +131,14 @@ namespace Enchere.Controllers
             ViewBag.Objets = ObjetRequette.lesProduitsRecemmentInscrits(order);
             return View();
 
+        }
+
+        [HttpGet]
+        public ActionResult lireObjetIntersse(int idCategorie = 1)
+        {
+            var list = ObjetRequette.getObjetEnVente("2");
+            ViewBag.list = list;
+            return View();
         }
 
         public static void CreateCulture(string str)

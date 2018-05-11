@@ -5,7 +5,7 @@ using System.Web;
 
 namespace Enchere.Models {
     public class ObjetEnchereAff {
-        public ObjetEnchereAff(string id, string idEnchere, string nom, string description, string idCategorie, string photo, string piece, string idVendeur, string idAcheteur, decimal prixDepart, decimal prixActuel, DateTime dateDepart, int dureeVente, decimal pasDePrix) {
+        public ObjetEnchereAff(string id, string idEnchere, string nom, string description, string idCategorie, string photo, string piece, string idVendeur, string idAcheteur, decimal prixDepart, decimal prixActuel, DateTime dateDepart, DateTime dateFin, decimal pasDePrix) {
             Id = id;
             IdEchere = idEnchere;
             Nom = nom;
@@ -18,7 +18,7 @@ namespace Enchere.Models {
             PrixDepart = prixDepart;
             PrixActuel = prixActuel;
             DateDepart = dateDepart;
-            DureeVente = dureeVente;
+            DateFin = dateFin;
             PasDePrix = pasDePrix;
         }
 
@@ -34,7 +34,7 @@ namespace Enchere.Models {
         public decimal PrixDepart { get; set; }
         public decimal PrixActuel { get; set; }
         public DateTime DateDepart { get; set; }
-        public int DureeVente { get; set; }
+        public DateTime DateFin { get; set; }
         public decimal PasDePrix { get; set; }
     }
 }
