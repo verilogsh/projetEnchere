@@ -301,6 +301,7 @@
     <Content Include="Views\Account\ListeUsersDerniers.cshtml" />
     <Content Include="Views\Objet\DerniersProduits.cshtml" />
     <Content Include="Views\Objet\lireObjetIntersse.cshtml" />
+    <Content Include="Views\Home\SendNewPass.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Ressource\ResourceView.fr.resx">

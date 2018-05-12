@@ -25,35 +25,37 @@
     <div class="container">
         @using (Html.BeginForm("Login", "Account"))
         {
-        <table class="table table-hover" style="width:200px;" border="0">
-            <tr>
-                <td>
-                    @Html.Label(@ResourceView.Courriel)
-                </td>
-                <td>@Html.TextBox("username")</td>
-            </tr>
-            
-            <tr>
-                <td> @Html.Label(@ResourceView.MDP) </td>
-                <td>@Html.Password("password")</td>
-            </tr>
-           
-            <tr>
-                <td>
-                    <input type="hidden" name="ReturnUrl" value="@ViewBag.ReturnUrl" />
-                    <input type="submit" value=@ResourceView.Connexion />
-                </td>
-                <td></td>
-            </tr>
-           
-        </table>
-            }
-       
-        </div>
+            <table class="table table-hover" style="width:200px;" border="0">
+                <tr>
+                    <td>
+                        @Html.Label(@ResourceView.Courriel)
+                    </td>
+                    <td>@Html.TextBox("username")</td>
+                </tr>
 
-        <br /><br />
-        @Html.ActionLink(@ResourceView.Accueil, "Index", "Home")
-    </body>
+                <tr>
+                    <td> @Html.Label(@ResourceView.MDP) </td>
+                    <td>@Html.Password("password")</td>
+                </tr>
+
+                <tr>
+                    <td>
+                        <input type="hidden" name="ReturnUrl" value="@ViewBag.ReturnUrl" />
+                        <input type="submit" value=@ResourceView.Connexion />
+                    </td>
+                    <td></td>
+                </tr>
+
+            </table>
+        }
+
+    </div>
+    <br /><br />
+    @Html.ActionLink("Mot de passe oublié? Envoyer nouveau mot de passe vers mon adresse courriel", "SendNewPass", "Home")
+
+    <br /><br />
+    @Html.ActionLink(@ResourceView.Accueil, "Index", "Home")
+</body>
 </html>
 
 
