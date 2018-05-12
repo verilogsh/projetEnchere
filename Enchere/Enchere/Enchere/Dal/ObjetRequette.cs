@@ -269,7 +269,7 @@ namespace Enchere.Dal {
             string connectionString = ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
             SqlConnection connection = new SqlConnection(connectionString);
   
-            string request = "INSERT INTO Enchere VALUES ('" + encher.Id.Trim() + "','" + encher.IdObjet.Trim() + "', '" + encher.IdVendeur.Trim() + "', '" + encher.IdAcheteur.Trim() + "', '" + encher.PrixAchat + "', '" + encher.PasDePrix + "', '" + encher.DateDepart.ToString("yyyy-MM-dd") + "', '" + encher.DateFin.ToString("yyyy-MM-dd")  + "')";
+            string request = "INSERT INTO Enchere VALUES ('" + encher.Id.Trim() + "','" + encher.IdObjet.Trim() + "', '" + encher.IdVendeur.Trim() + "', '" + encher.IdAcheteur.Trim() + "', '" + encher.PrixAchat + "', '" + encher.PasDePrix + "', '" + encher.DateDepart.ToString("yyyy-MM-dd") + "', '" + encher.DateFin.ToString("yyyy-MM-dd")  + "', '" + encher.Etat + "')";
             SqlCommand command = new SqlCommand(request, connection);
 
             try {

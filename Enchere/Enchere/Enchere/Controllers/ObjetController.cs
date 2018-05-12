@@ -102,13 +102,14 @@ namespace Enchere.Controllers
 
         [HttpGet]
         public ActionResult MettreEnVente(string idObjet, string idVendeur, bool vente) {
-            Encher en = new Encher("0", idObjet, idVendeur, idVendeur, 0, 0, DateTime.Now, DateTime.Now);
+            Encher en = new Encher("0", idObjet, idVendeur, idVendeur, 0, 0, DateTime.Now, DateTime.Now, 0);
             return View(en);
         }
 
         [HttpPost]
         public ActionResult MettreEnVente(Encher encher) {
             encher.Id = Utility.IdGenerator.getEncherenId();
+            encher.Etat = 0;
             ObjetRequette.insertEncher(encher);
             return RedirectToAction("gestionObjetMembre", "Objet");
         }

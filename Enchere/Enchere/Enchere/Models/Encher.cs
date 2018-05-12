@@ -20,12 +20,14 @@ namespace Enchere.Models {
         [Required]
         [DisplayFormat(DataFormatString = "{0:yyyy/MM/dd}")]
         public DateTime DateFin { get; set; }
+        [Required]
+        public int Etat { get; set; }
 
 
 
         public Encher() {}
 
-        public Encher(string id, string idObjet, string idVendeur, string idAcheteur, decimal prixAchat, decimal pasDePrix, DateTime dateDepart, DateTime dateFin) {
+        public Encher(string id, string idObjet, string idVendeur, string idAcheteur, decimal prixAchat, decimal pasDePrix, DateTime dateDepart, DateTime dateFin, int etat) {
             Id = id;
             IdObjet = idObjet;
             IdVendeur = idVendeur;
@@ -34,6 +36,7 @@ namespace Enchere.Models {
             PasDePrix = pasDePrix;
             DateDepart = dateDepart;
             DateFin = dateFin;
+            Etat = etat;
         }
 
         public IEnumerable<ValidationResult> Validate(ValidationContext validationContext) {
