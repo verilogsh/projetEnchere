@@ -8,7 +8,8 @@ namespace Enchere.Models {
     public class Encher {
         public string Id { get; set; }
         public string IdObjet { get; set; }
-        public string IdMembre { get; set; }
+        public string IdVendeur { get; set; }
+        public string IdAcheteur { get; set; }
         [Required]
         public decimal PrixAchat { get; set; }
         [Required]
@@ -20,17 +21,20 @@ namespace Enchere.Models {
         [DisplayFormat(DataFormatString = "{0:yyyy/MM/dd}")]
         public DateTime DateFin { get; set; }
 
-        public Encher(string id, string idObjet, string idMembre, decimal prixAchat, decimal prixDePrix, DateTime dateDepart, DateTime dateFin) {
+
+
+        public Encher() {}
+
+        public Encher(string id, string idObjet, string idVendeur, string idAcheteur, decimal prixAchat, decimal pasDePrix, DateTime dateDepart, DateTime dateFin) {
             Id = id;
-            IdMembre = idMembre;
             IdObjet = idObjet;
+            IdVendeur = idVendeur;
+            IdAcheteur = idAcheteur;
             PrixAchat = prixAchat;
-            PasDePrix = PasDePrix;
+            PasDePrix = pasDePrix;
             DateDepart = dateDepart;
             DateFin = dateFin;
         }
-
-        public Encher() {}
 
         public IEnumerable<ValidationResult> Validate(ValidationContext validationContext) {
             if (DateDepart >= DateFin) {

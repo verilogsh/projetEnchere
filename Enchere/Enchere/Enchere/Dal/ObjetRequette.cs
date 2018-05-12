@@ -48,11 +48,11 @@ namespace Enchere.Dal {
             string request;
             if (idCategorie == "0")
             {
-                request = "SELECT o.Id, e.Id IdEnchere, o.Nom, o.Description, o.IdCategorie, o.Photo, o.Piece, o.IdMembre IdVendeur, e.IdMembre IdAcheteur, o.PrixDepart, e.PrixAchat, e.DateDepart, e.DateFin, e.PasDePrix FROM Enchere e INNER JOIN Objet o ON o.Id = e.IdObjet";
+                request = "SELECT o.Id, e.Id IdEnchere, o.Nom, o.Description, o.IdCategorie, o.Photo, o.Piece, o.IdMembre IdVendeur, e.IdAcheteur, o.PrixDepart, e.PrixAchat, e.DateDepart, e.DateFin, e.PasDePrix FROM Enchere e INNER JOIN Objet o ON o.Id = e.IdObjet";
             }
             else
             {
-                request = "SELECT o.Id, e.Id IdEnchere, o.Nom, o.Description, o.IdCategorie, o.Photo, o.Piece, o.IdMembre IdVendeur, e.IdMembre IdAcheteur, o.PrixDepart, e.PrixAchat, e.DateDepart, e.DateFin, e.PasDePrix FROM Enchere e INNER JOIN Objet o ON o.Id = e.IdObjet WHERE o.IdCategorie = '" + idCategorie + "'";
+                request = "SELECT o.Id, e.Id IdEnchere, o.Nom, o.Description, o.IdCategorie, o.Photo, o.Piece, o.IdMembre IdVendeur, e.IdAcheteur, o.PrixDepart, e.PrixAchat, e.DateDepart, e.DateFin, e.PasDePrix FROM Enchere e INNER JOIN Objet o ON o.Id = e.IdObjet WHERE o.IdCategorie = '" + idCategorie + "'";
             }
 
             SqlCommand command = new SqlCommand(request, connection);
@@ -101,7 +101,6 @@ namespace Enchere.Dal {
                 m = 0;
             }
 
-            obj.IdCategorie = "kkk";
             string request = "INSERT INTO Objet VALUES ('" + obj.Id + "',' " + obj.Nom + "', '" + obj.Description + "', '" + obj.DateInscri.ToString("yyyy-MM-dd") + "', " + obj.PrixDepart + ", '" + obj.IdCategorie + "', '" + obj.IdMembre + "', '" + obj.Piece + "', '" + obj.Photo + "', " + n + ", " + m + ")";
             SqlCommand command = new SqlCommand(request, connection);
 
@@ -270,7 +269,7 @@ namespace Enchere.Dal {
             string connectionString = ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
             SqlConnection connection = new SqlConnection(connectionString);
   
-            string request = "INSERT INTO Enchere VALUES ('" + encher.Id.Trim() + "','" + encher.IdObjet.Trim() + "', '"  + encher.PrixAchat + "', '" + encher.DateDepart.ToString("yyyy-MM-dd") + "', '" + encher.DateFin.ToString("yyyy-MM-dd") + "', '" + encher.IdMembre.Trim() + "', '" + encher.PasDePrix + "')";
+            string request = "INSERT INTO Enchere VALUES ('" + encher.Id.Trim() + "','" + encher.IdObjet.Trim() + "', '" + encher.IdVendeur.Trim() + "', '" + encher.IdAcheteur.Trim() + "', '" + encher.PrixAchat + "', '" + encher.PasDePrix + "', '" + encher.DateDepart.ToString("yyyy-MM-dd") + "', '" + encher.DateFin.ToString("yyyy-MM-dd")  + "')";
             SqlCommand command = new SqlCommand(request, connection);
 
             try {
