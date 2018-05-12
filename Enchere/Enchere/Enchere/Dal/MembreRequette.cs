@@ -216,6 +216,40 @@ namespace Enchere.Dal {
             }
         }
 
+        public static bool UpdateMDP(string courriel, string mdp)
+        {
+            string cStr = ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
+            using (SqlConnection cnx = new SqlConnection(cStr))
+            {
+                byte[] hashPassword = new UTF8Encoding().GetBytes(mdp.Trim());
+                byte[] hash = ((HashAlgorithm)CryptoConfig.CreateFromName("MD5")).ComputeHash(hashPassword);
+                string hashString = BitConverter.ToString(hash);
+
+                string requete = "UPDATE Membre SET MDP = '" + hashString
+                 + "' WHERE Courriel = '" + courriel + "'";
+
+                SqlCommand cmd = new SqlCommand(requete, cnx);
+                cmd.CommandType = System.Data.CommandType.Text;
+                try
+                {
+                    cnx.Open();
+                    cmd.ExecuteNonQuery();
+                    return true;
+
+                }
+                catch (Exception e)
+                {
+                    System.Console.WriteLine(e.Message);
+                    return false;
+                }
+                finally
+                {
+                    cnx.Close();
+                }
+
+            }
+        }
+
         public static Membre GetUserByNumero(string numero)
         {
             Membre user = null;

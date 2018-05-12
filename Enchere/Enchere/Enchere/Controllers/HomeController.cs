@@ -104,6 +104,56 @@ namespace Enchere.Controllers
             return RedirectToAction("Index", "Home");
         }
 
+        [HttpGet]
+        public ActionResult SendNewPass()
+        {
+            return View();
+        }
+
+
+       [HttpPost]
+        public ActionResult SendNewPass(string courriel)
+        {
+            try
+            {
+                string emetteur = Request.Form["monEmail"];
+                var senderemail = new MailAddress("oglindalucian@gmail.com", "Demo test");
+                var receiverEmail = new MailAddress(emetteur, "recepteur");
+
+                var password = "Aseameunita1";
+                var sub = "Réinintialisation du mot de passe";
+                var body = Utility.IdGenerator.getObjetId();
+                MembreRequette.UpdateMDP(emetteur, body);
+
+                var smtp = new SmtpClient
+                {
+                    Host = "smtp.gmail.com",
+                    Port = 587,
+                    EnableSsl = true,
+                    DeliveryMethod = SmtpDeliveryMethod.Network,
+                    UseDefaultCredentials = false,
+                    Credentials = new System.Net.NetworkCredential(senderemail.Address, password)
+                };
+                using (var mess = new MailMessage(senderemail, receiverEmail)
+                {
+                    Subject = sub,
+                    Body = body
+                })
+                {
+                    smtp.Send(mess);
+                }
+            }
+            catch (Exception ex)
+            {
+                // Status.Text = ex.Message;
+                //ViewBag.Error = "Probleme d'envoie d'email";
+                ViewBag.Error = ex.ToString();
+                return View();
+            }
+
+            return RedirectToAction("Index", "Home");
+        }
+
         public ActionResult PageRapports()
         {
             ViewBag.Rapports = "Rapports";

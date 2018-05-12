@@ -1,0 +1,17 @@
+﻿
+@{
+    ViewBag.Title = "SendNewPass";
+}
+@ViewBag.Error
+<h2>Recuperation nouveau mot de passe</h2>
+<br /><br />
+      <form action="/Home/SendNewPass" method="post">
+          <label>Saisissez votre adresse courriel: </label>
+          <br />
+          <br />
+          <input type="text" name="monEmail" />
+          <br />
+          <br />
+          <input type="submit" value="Recuperer mot de passe" />
+      </form>
+
