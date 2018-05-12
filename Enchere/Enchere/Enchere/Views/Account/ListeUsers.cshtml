@@ -7,6 +7,8 @@
 <br />
 @Html.ActionLink(@ResourceView.newuser, "Inscription", "Account")
 <br /><br /><br />
+@Html.ActionLink("Derniers membres inscrits", "ListeUsersDerniers", "Account")
+<br /><br /><br />
 <table class="table">
     <tr>
         <th>Numero</th>
@@ -21,6 +23,7 @@
         <th>@Html.ActionLink(@ResourceView.Cote, "ListeUsers", "Account", new { Order = ViewBag.CoteOrder }, null)</th>
         <th></th>
         <th></th>
+       
     </tr>
     @{ if (ViewBag.Users != null)
         {
@@ -83,4 +86,6 @@
         }
     }
 </table>
+
+
 

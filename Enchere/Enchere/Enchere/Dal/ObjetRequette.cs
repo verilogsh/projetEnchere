@@ -40,19 +40,19 @@ namespace Enchere.Dal {
             return null;
         }
 
-        public static List<ObjetEnchereAff> getObjetEnVente(int idCategorie)
+        public static List<ObjetEnchereAff> getObjetEnVente(string idCategorie)
         {
             List<ObjetEnchereAff> obj = new List<ObjetEnchereAff>();
             string connectionString = ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
             SqlConnection connection = new SqlConnection(connectionString);
             string request;
-            if (idCategorie == 0)
+            if (idCategorie == "0")
             {
-                request = "SELECT o.Id, e.Id IdEnchere, o.Nom, o.Description, o.IdCategorie, o.Photo, o.Piece, o.IdMembre IdVendeur, e.IdMembre IdAcheteur, o.PrixDepart, e.PrixAchat, e.DateDepart, e.DureeVente, e.PasDePrix FROM Enchere e INNER JOIN Objet o ON o.Id = e.IdObjet";
+                request = "SELECT o.Id, e.Id IdEnchere, o.Nom, o.Description, o.IdCategorie, o.Photo, o.Piece, o.IdMembre IdVendeur, e.IdMembre IdAcheteur, o.PrixDepart, e.PrixAchat, e.DateDepart, e.DateFin, e.PasDePrix FROM Enchere e INNER JOIN Objet o ON o.Id = e.IdObjet";
             }
             else
             {
-                request = "SELECT o.Id, e.Id IdEnchere, o.Nom, o.Description, o.IdCategorie, o.Photo, o.Piece, o.IdMembre IdVendeur, e.IdMembre IdAcheteur, o.PrixDepart, e.PrixAchat, e.DateDepart, e.DureeVente, e.PasDePrix FROM Enchere e INNER JOIN Objet o ON o.Id = e.IdObjet WHERE o.IdCategorie = " + idCategorie;
+                request = "SELECT o.Id, e.Id IdEnchere, o.Nom, o.Description, o.IdCategorie, o.Photo, o.Piece, o.IdMembre IdVendeur, e.IdMembre IdAcheteur, o.PrixDepart, e.PrixAchat, e.DateDepart, e.DateFin, e.PasDePrix FROM Enchere e INNER JOIN Objet o ON o.Id = e.IdObjet WHERE o.IdCategorie = '" + idCategorie + "'";
             }
 
             SqlCommand command = new SqlCommand(request, connection);
@@ -63,7 +63,7 @@ namespace Enchere.Dal {
                 SqlDataReader reader = command.ExecuteReader();
                 while (reader.Read())
                 {
-                    obj.Add(new ObjetEnchereAff((string)reader["Id"], (string)reader["IdEnchere"], (string)reader["Nom"], (string)reader["Description"], (string)reader["IdCategorie"], (string)reader["photo"], (string)reader["piece"], (string)reader["IdVendeur"], (string)reader["IdAcheteur"], (decimal)reader["PrixDepart"], (decimal)reader["PrixAchat"], (DateTime)reader["DateDepart"], (int)reader["DureeVente"], (decimal)reader["PasDePrix"]));
+                    obj.Add(new ObjetEnchereAff((string)reader["Id"], (string)reader["IdEnchere"], (string)reader["Nom"], (string)reader["Description"], (string)reader["IdCategorie"], (string)reader["photo"], (string)reader["piece"], (string)reader["IdVendeur"], (string)reader["IdAcheteur"], (decimal)reader["PrixDepart"], (decimal)reader["PrixAchat"], (DateTime)reader["DateDepart"], (DateTime)reader["DateFin"], (decimal)reader["PasDePrix"]));
                 }
                 reader.Close();
                 return obj;
@@ -299,6 +299,111 @@ namespace Enchere.Dal {
                 string fullPath = System.Web.Hosting.HostingEnvironment.MapPath("~/pieces/" + file.FileName);
                 file.SaveAs(fullPath);
             }
+        }
+
+        public static List<Objet> lesProduitsRecemmentInscrits(string order)
+        {
+            string chConnexion = ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
+            SqlConnection connexion = new SqlConnection(chConnexion);
+            //string idMmebre = "SELECT Id FROM Mmembre WHERE Courriel = '" + User.Identity.Name + "'";
+            //string requete = "SELECT * FROM Objet WHERE IdMembre = '" + idMmebre + "'";
+
+
+            //string requete = "select * from Objet where Id IN (select IdObjet from Enchere where IdMembre = '" + idMmebre + "')"
+            //select IdObjet from Enchere where IdMembre = '" + idMmebre + "'";
+            string requete = "SELECT * FROM Objet WHERE DateInscri>='" + DateTime.Now.AddDays(-1).ToString("yyyy-MM-dd") + "' ORDER BY " + order;
+            SqlCommand commande = new SqlCommand(requete, connexion);
+            commande.CommandType = System.Data.CommandType.Text;
+            List<Objet> maListe = new List<Objet>();
+            try
+            {
+                connexion.Open();
+                SqlDataReader dr = commande.ExecuteReader();
+                while (dr.Read())
+                {
+                    Objet o = new Objet
+                    {
+                        Id = (string)dr["Id"],
+                        Nom = (string)dr["Nom"],
+                        Description = (string)dr["Description"],
+                        DateInscri = (DateTime)dr["DateInscri"],
+                        IdCategorie = (string)dr["IdCategorie"],
+                        Photo = (string)dr["Photo"],
+                        Piece = (string)dr["Piece"],
+                        IdMembre = (string)dr["IdMembre"],
+                        Nouveau = (bool)dr["Nouveau"],
+                        EnVent = (bool)dr["EnVente"],
+                        PrixDepart = (decimal)dr["PrixDepart"]
+
+                    };
+                    maListe.Add(o);
+                }
+
+                dr.Close();
+                return maListe;
+            }
+            catch (Exception e)
+            {
+                System.Console.WriteLine(e.Message);
+            }
+            finally
+            {
+                connexion.Close();
+            }
+            return null;
+        }
+
+        public static List<Objet> lesProduitsInteressants(string user)
+        {
+            string chConnexion = ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
+            SqlConnection connexion = new SqlConnection(chConnexion);
+            //user = @User.Identity.Name
+            string idMmebre = "SELECT Id FROM Membre WHERE Courriel = '" + user + "'";
+            //string requete = "SELECT * FROM Objet WHERE IdMembre = '" + idMmebre + "'";
+
+
+            string requete = "select * from Objet where Id IN (select IdObjet from Enchere where IdMembre = '" + 1 + "')";
+            //select IdObjet from Enchere where IdMembre = '" + idMmebre + "'";
+// string requete = "SELECT * FROM Objet WHERE DateInscri>='" + DateTime.Now.AddDays(-1).ToString("yyyy-MM-dd") + "' ORDER BY " + order;
+            SqlCommand commande = new SqlCommand(requete, connexion);
+            commande.CommandType = System.Data.CommandType.Text;
+            List<Objet> maListe = new List<Objet>();
+            try
+            {
+                connexion.Open();
+                SqlDataReader dr = commande.ExecuteReader();
+                while (dr.Read())
+                {
+                    Objet o = new Objet
+                    {
+                        Id = (string)dr["Id"],
+                        Nom = (string)dr["Nom"],
+                        Description = (string)dr["Description"],
+                        DateInscri = (DateTime)dr["DateInscri"],
+                        IdCategorie = (string)dr["IdCategorie"],
+                        Photo = (string)dr["Photo"],
+                        Piece = (string)dr["Piece"],
+                        IdMembre = (string)dr["IdMembre"],
+                        Nouveau = (bool)dr["Nouveau"],
+                        EnVent = (bool)dr["EnVente"],
+                        PrixDepart = (decimal)dr["PrixDepart"]
+
+                    };
+                    maListe.Add(o);
+                }
+
+                dr.Close();
+                return maListe;
+            }
+            catch (Exception e)
+            {
+                System.Console.WriteLine(e.Message);
+            }
+            finally
+            {
+                connexion.Close();
+            }
+            return null;
         }
     }
 }

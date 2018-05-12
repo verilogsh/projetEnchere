@@ -7,6 +7,8 @@ using Enchere.Models;
 using Enchere.Models.ViewModel;
 using Enchere.Dal;
 using Enchere.Utility;
+using System.Threading;
+using System.Globalization;
 
 namespace Enchere.Controllers
 {
@@ -22,12 +24,14 @@ namespace Enchere.Controllers
         }
 
         [HttpGet]
-        public ActionResult lireObjetEnVente(int idCategorie)
+        public ActionResult lireObjetEnVente(string idCategorie)
         {
             List<ObjetEnchereAff> list = new List<ObjetEnchereAff>();
             list = ObjetRequette.getObjetEnVente(idCategorie);
             return Json(ObjetRequette.getObjetEnVente(idCategorie), JsonRequestBehavior.AllowGet);
         }
+
+       
 
         [HttpGet]
         public ActionResult gestionObjetMembre(string ordre = "none")
@@ -106,6 +110,64 @@ namespace Enchere.Controllers
         public ActionResult MettreEnVente(Encher encher) {
             ObjetRequette.insertEncher(encher);
             return RedirectToAction("gestionObjetMembre", "Objet");
+        }
+
+        public ActionResult DerniersProduits(string order)
+        {
+            CreateCulture(getLangue());
+            ViewBag.Numero = "Id";
+            ViewBag.NomOrder = "Nom";
+            ViewBag.NomOrder = String.IsNullOrEmpty(order) ? "Nom" : "";
+            ViewBag.Description = "Description";
+            ViewBag.Date = "DateInscri";
+            ViewBag.Categorie = "IdCategorie";
+            ViewBag.Photo = "Photo";
+            ViewBag.Piece = "Piece";
+            ViewBag.Idmembre = "IdMembre";
+            ViewBag.Nouveau = "Nouveau";
+            ViewBag.EnVente = "EnVente";
+                ViewBag.PrixDepart = "PrixDepart";
+            if (order == null) order = "Nom";
+            ViewBag.Objets = ObjetRequette.lesProduitsRecemmentInscrits(order);
+            return View();
+
+        }
+
+        [HttpGet]
+        public ActionResult lireObjetIntersse(int idCategorie = 1)
+        {
+            var list = ObjetRequette.getObjetEnVente("2");
+            ViewBag.list = list;
+            return View();
+        }
+
+        public static void CreateCulture(string str)
+        {
+            if (str.IndexOf("fr") != -1)
+            {
+                Thread.CurrentThread.CurrentUICulture = CultureInfo.CreateSpecificCulture("fr");
+
+            }
+            else if (str.IndexOf("en") != -1)
+            {
+                Thread.CurrentThread.CurrentUICulture = CultureInfo.CreateSpecificCulture("en");
+
+            }
+        }
+
+        public string getLangue()
+        {
+            string str = "fr";
+            str = Request.ServerVariables["HTTP_ACCEPT_LANGUAGE"];
+            string cookie = "";
+            if (this.ControllerContext.HttpContext.Request.Cookies.AllKeys.Contains("Cookie"))
+            {
+                cookie = this.ControllerContext.HttpContext.Request.Cookies["Cookie"].Value;
+                return cookie;
+
+            }
+            else
+                return str;
         }
     }
 }

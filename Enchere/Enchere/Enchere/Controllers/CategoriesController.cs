@@ -81,7 +81,7 @@ namespace Enchere.Controllers
             CreateCulture(getLangue());
             // string nr = Request.QueryString["Id"];
             string nr = Request.Url.AbsolutePath.Split('/').Last();
-            Categorie c = CategoriesRequette.GetCategorieById(nr);
+            Categorie c = CategoriesRequette.GetCategorieById(nr.Trim());
             return View(c);
         }
 
