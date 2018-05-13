@@ -33,8 +33,6 @@ namespace Enchere.Controllers
             return Json(ObjetRequette.getObjetEnVente(idCategorie), JsonRequestBehavior.AllowGet);
         }
 
-       
-
         [HttpGet]
         public ActionResult gestionObjetMembre(string ordre = "none")
         {
@@ -111,20 +109,29 @@ namespace Enchere.Controllers
         [HttpPost]
         public ActionResult MettreEnVente(Encher encher) {
             encher.Id = Utility.IdGenerator.getEncherenId();
-            encher.Etat = 1;
+            encher.Etat = 0;
             ObjetRequette.insertEncher(encher);
+            ObjetRequette.setObjetEnVente(encher.IdObjet);
             return RedirectToAction("gestionObjetMembre", "Objet");
         }
 
         [HttpGet]
-        public ActionResult getEnchereMembre(int etat) {
+        public ActionResult getEnchereAcheteur(int etat) {
             if (ModelState.IsValid) {
                 string currentUser = @User.Identity.Name;
                 Membre mb = MembreRequette.GetUserByEmail(currentUser);
-                List<string> list = ObjetRequette.getEncheresMembre(mb.Numero, etat);
-                List<Objet> listObj = new List<Objet>();
-                foreach(string id in list) {
-                    listObj.Add(ObjetRequette.getObjetById(id));
+                List<Encher> list = ObjetRequette.getEncheresAcheteur(mb.Numero, etat);
+                List<EnchereViewModel> listObj = new List<EnchereViewModel>();
+                foreach (Encher en in list) {
+                    Objet obj = ObjetRequette.getObjetById(en.IdObjet);
+                    EnchereViewModel model = new EnchereViewModel(obj.Id, obj.Nom, obj.Description, obj.DateInscri, obj.IdCategorie, obj.Photo, obj.Piece, obj.IdMembre, obj.Nouveau, obj.EnVent, obj.PrixDepart, en.Id, en.Etat);
+                    listObj.Add(model);
+                }
+
+                if (etat == 1) {
+                    ViewBag.option = "Les objets achetes:";
+                } else if(etat == 0) {
+                    ViewBag.option = "Les encheres participes:";
                 }
                 return View(listObj);
             }
@@ -132,15 +139,26 @@ namespace Enchere.Controllers
         }
 
         [HttpGet]
-        public ActionResult gestionEnchereMembre(int etat) {
+        public ActionResult getEnchereVendeur(int etat) {
             if (ModelState.IsValid) {
                 string currentUser = @User.Identity.Name;
                 Membre mb = MembreRequette.GetUserByEmail(currentUser);
-                List<string> list = ObjetRequette.gestionEncheresMembre(mb.Numero, etat);
-                List<Objet> listObj = new List<Objet>();
-                foreach (string id in list) {
-                    listObj.Add(ObjetRequette.getObjetById(id));
+                List<Encher> list = ObjetRequette.getEncheresVendeur(mb.Numero, etat);
+                List<EnchereViewModel> listObj = new List<EnchereViewModel>();
+                foreach (Encher en in list) {
+                    Objet obj = ObjetRequette.getObjetById(en.IdObjet);
+                    EnchereViewModel model = new EnchereViewModel(obj.Id, obj.Nom, obj.Description, obj.DateInscri, obj.IdCategorie, obj.Photo, obj.Piece, obj.IdMembre, obj.Nouveau, obj.EnVent, obj.PrixDepart, en.Id, en.Etat);
+                    listObj.Add(model);
                 }
+                if (etat == 0) {
+                    ViewBag.option = "Les encheres en cours:";
+                } else if (etat == 1) {
+                    ViewBag.option = "Les encheres remportes:";
+                } else if (etat == 2) {
+                    ViewBag.option = "Les encheres perdues:";
+                }
+
+                //if ()
                 return View(listObj);
             }
             return View();

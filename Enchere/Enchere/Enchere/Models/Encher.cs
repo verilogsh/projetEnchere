@@ -22,6 +22,14 @@ namespace Enchere.Models {
         public DateTime DateFin { get; set; }
         [Required]
         public int Etat { get; set; }
+        ///
+        /// 0: EnCours; 1: Remporte; 2: Perdu; 3: EvalueAcheteur; 4: EvalueVendeur; 5: EvalueFinit
+        /// 
+        /// Lister tous les objets encherits:       EnCours(0)       Acheteur
+        /// Lister tous les objets achetes:         Remporte(1)      Acheteur
+        /// Lister tous les encheres vendus:        Remporte(1)      Vendeur
+        /// Lister tous les encheres perdus:        Perdu(2)         Vendeur
+        /// Lister tous les encheres en cours:      EnCours(0)       Vendeur
 
 
 

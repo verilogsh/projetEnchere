@@ -120,11 +120,16 @@ namespace Enchere.Dal {
 
         }
 
-        public static List<string> getEncheresMembre(string numero, int etat) {
+        public static List<Encher> getEncheresAcheteur(string numero, int etat) {
             string connectionString = ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
             SqlConnection connection = new SqlConnection(connectionString);
-            string request = "SELECT * FROM  Enchere WHERE IdAcheteur = '" + numero.Trim() + "' AND Etat = " + etat;
-            List<string> list = new List<string>();
+            string request = "";
+            if (etat == 1) {
+                request = "SELECT * FROM  Enchere WHERE IdAcheteur = '" + numero.Trim() + "' AND Etat != 0 AND Etat != 2";
+            } else {
+                request = "SELECT * FROM  Enchere WHERE IdAcheteur = '" + numero.Trim() + "' AND Etat = " + etat;
+            }
+            List<Encher> list = new List<Encher>();
 
 
             SqlCommand command = new SqlCommand(request, connection);
@@ -132,8 +137,8 @@ namespace Enchere.Dal {
             try {
                 connection.Open();
                 SqlDataReader reader = command.ExecuteReader();
-                if (reader.Read()) {
-                     list.Add((string)reader["IdObjet"]);
+                while (reader.Read()) {
+                     list.Add(new Encher((string)reader["Id"], (string)reader["IdObjet"], (string)reader["IdVendeur"], (string)reader["IdAcheteur"], (decimal)reader["PrixAchat"], (decimal)reader["PasDePrix"], (DateTime)reader["DateDepart"], (DateTime)reader["DateFin"], (int)reader["Etat"]));
                 }
                 reader.Close();
                 return list;
@@ -145,11 +150,17 @@ namespace Enchere.Dal {
             return null;
         }
 
-        public static List<string> gestionEncheresMembre(string numero, int etat) {
+        public static List<Encher> getEncheresVendeur(string numero, int etat) {
             string connectionString = ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
             SqlConnection connection = new SqlConnection(connectionString);
-            string request = "SELECT * FROM  Enchere WHERE IdVendeur = '" + numero.Trim() + "' AND Etat = " + etat;
-            List<string> list = new List<string>();
+            string request = "";
+            if (etat == 1) {
+                request = "SELECT * FROM  Enchere WHERE IdVendeur = '" + numero.Trim() + "' AND Etat != 0 AND Etat != 2";
+            } else {
+                request = "SELECT * FROM  Enchere WHERE IdVendeur = '" + numero.Trim() + "' AND Etat = " + etat;
+            }
+
+            List<Encher> list = new List<Encher>();
 
 
             SqlCommand command = new SqlCommand(request, connection);
@@ -157,8 +168,8 @@ namespace Enchere.Dal {
             try {
                 connection.Open();
                 SqlDataReader reader = command.ExecuteReader();
-                if (reader.Read()) {
-                    list.Add((string)reader["IdObjet"]);
+                while (reader.Read()) {
+                    list.Add(new Encher((string)reader["Id"], (string)reader["IdObjet"], (string)reader["IdVendeur"], (string)reader["IdAcheteur"], (decimal)reader["PrixAchat"], (decimal)reader["PasDePrix"], (DateTime)reader["DateDepart"], (DateTime)reader["DateFin"], (int)reader["Etat"]));
                 }
                 reader.Close();
                 return list;
@@ -361,6 +372,24 @@ namespace Enchere.Dal {
             string connectionString = ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
             SqlConnection connection = new SqlConnection(connectionString);
             string request = "UPDATE Enchere SET IdAcheteur = '" + en.IdAcheteur + "', PrixAchat = '" + en.PrixAchat + "' WHERE id = '" + en.Id + "'";
+
+            SqlCommand command = new SqlCommand(request, connection);
+
+            try {
+                connection.Open();
+                command.ExecuteNonQuery();
+            } catch (Exception e) {
+                System.Console.WriteLine(e.Message);
+            } finally {
+                connection.Close();
+            }
+
+        }
+
+        public static void setObjetEnVente(string id) {
+            string connectionString = ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
+            SqlConnection connection = new SqlConnection(connectionString);
+            string request = "UPDATE objet SET EnVente = 1 WHERE Id ='" + id + "'";
 
             SqlCommand command = new SqlCommand(request, connection);
 
