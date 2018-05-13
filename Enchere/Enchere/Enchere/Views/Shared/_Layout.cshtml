@@ -118,18 +118,18 @@
                                 <li class="divider"></li>
                                 <li>@Html.ActionLink(@ResourceView.gestobj, "gestionObjetMembre", "Objet")</li>
                                 <li class="divider"></li>
-                                <li>@Html.ActionLink("Lister encheres encherits", "getEnchereAcheteur", "Objet", new { etat = 0 }, null)</li>
+                                <li>@Html.ActionLink("Lister encheres encherits", "getEnchereAcheteur", "Enchere", new { etat = 0 }, null)</li>
                                 <li class="divider"></li>
                                 <li class="dropdown-submenu">
                                     <a class="test" href="#">Gestion Encheres <span class="caret"></span></a>
                                     <ul class="dropdown-menu pull-right">
-                                        <li>@Html.ActionLink("Lister objets achetes", "getEnchereAcheteur", "Objet", new { etat = 1 }, null)</li>
+                                        <li>@Html.ActionLink("Lister objets achetes", "getEnchereAcheteur", "Enchere", new { etat = 1 }, null)</li>
                                         <li class="divider"></li>
-                                        <li>@Html.ActionLink("Lister objets vendus", "getEnchereVendeur", "Objet", new { etat = 1 }, null)</li>
+                                        <li>@Html.ActionLink("Lister objets vendus", "getEnchereVendeur", "Enchere", new { etat = 1 }, null)</li>
                                         <li class="divider"></li>
-                                        <li>@Html.ActionLink("Listet echeres perdus", "getEnchereVendeur", "Objet", new { etat = 2 }, null)</li>
+                                        <li>@Html.ActionLink("Listet echeres perdus", "getEnchereVendeur", "Enchere", new { etat = 2 }, null)</li>
                                         <li class="divider"></li>
-                                        <li>@Html.ActionLink("Listet encheres en cours", "getEnchereVendeur", "Objet", new { etat = 0 }, null)</li>
+                                        <li>@Html.ActionLink("Listet encheres en cours", "getEnchereVendeur", "Enchere", new { etat = 0 }, null)</li>
                                      </ul>
                                 </li>
                                 <li class="divider"></li>

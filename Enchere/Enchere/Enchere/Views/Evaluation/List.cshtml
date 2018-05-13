@@ -1,0 +1,62 @@
+﻿@model Enchere.Models.Evaluation
+
+@{
+    ViewBag.Title = "List";
+}
+
+<h2>List</h2>
+
+<div>
+    <h4>Evaluation</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.IdEnchere)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IdEnchere)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Date)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Date)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Cote)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Cote)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.IdMembreDe)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IdMembreDe)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.IdMembreA)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IdMembreA)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Commentaire)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Commentaire)
+        </dd>
+
+    </dl>
+</div>
