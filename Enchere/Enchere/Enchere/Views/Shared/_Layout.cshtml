@@ -93,7 +93,8 @@
                     }
                     else if (User.Identity.IsAuthenticated)
                     {
-                        <li>@Html.ActionLink(@ResourceView.gestobj, "gestionObjetMembre", "Objet")</li>
+
+
                     }
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
@@ -106,8 +107,7 @@
                     {
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown"
-                               role="button" ariaexpanded="
-                               false">
+                               role="button" ariaexpanded="false">
                                 Bonjour : @User.Identity.Name
                                 <span class="caret"></span>
                             </a>
@@ -115,6 +115,23 @@
                                 <li>@Html.ActionLink(@ResourceView.mdfprofil, "Modifier", "Account")</li>
                                 <li class="divider"></li>
                                 <li>@Html.ActionLink(@ResourceView.ModifierMDP, "ModifierMDP", "Account")</li>
+                                <li class="divider"></li>
+                                <li>@Html.ActionLink(@ResourceView.gestobj, "gestionObjetMembre", "Objet")</li>
+                                <li class="divider"></li>
+                                <li>@Html.ActionLink("Lister encheres encherits", "getEnchereAcheteur", "Objet", new { etat = 0 }, null)</li>
+                                <li class="divider"></li>
+                                <li class="dropdown-submenu">
+                                    <a class="test" href="#">Gestion Encheres <span class="caret"></span></a>
+                                    <ul class="dropdown-menu pull-right">
+                                        <li>@Html.ActionLink("Lister objets achetes", "getEnchereAcheteur", "Objet", new { etat = 1 }, null)</li>
+                                        <li class="divider"></li>
+                                        <li>@Html.ActionLink("Lister objets vendus", "getEnchereVendeur", "Objet", new { etat = 1 }, null)</li>
+                                        <li class="divider"></li>
+                                        <li>@Html.ActionLink("Listet echeres perdus", "getEnchereVendeur", "Objet", new { etat = 2 }, null)</li>
+                                        <li class="divider"></li>
+                                        <li>@Html.ActionLink("Listet encheres en cours", "getEnchereVendeur", "Objet", new { etat = 0 }, null)</li>
+                                     </ul>
+                                </li>
                                 <li class="divider"></li>
                                 <li>@Html.ActionLink(@ResourceView.Deconnexion, "Logout", "Account")</li>
                             </ul>
@@ -125,10 +142,10 @@
         </div>
     </div>
     <div class="container body-content">
-        @if (User.Identity.IsAuthenticated)
+        <!--@if (User.Identity.IsAuthenticated)
         {
             <h2>Bonjour @User.Identity.Name!</h2>
-        }
+        }  -->
         @RenderBody()
         <hr />
         <footer>
@@ -139,5 +156,14 @@
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)
     @RenderSection("MyOtherJavascript", required: false)
+    <script>
+        $(document).ready(function(){
+        $('.dropdown-submenu a.test').on("click", function(e){
+             $(this).next('ul').toggle();
+             e.stopPropagation();
+             e.preventDefault();
+           });
+        });
+    </script>
 </body>
 </html>

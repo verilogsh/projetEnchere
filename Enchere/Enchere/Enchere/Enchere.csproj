@@ -169,6 +169,7 @@
     <Compile Include="Models\Objet.cs" />
     <Compile Include="Models\ObjetEnchereAff.cs" />
     <Compile Include="Models\ViewModel\MembreMDP.cs" />
+    <Compile Include="Models\ViewModel\EnchereViewModel.cs" />
     <Compile Include="Models\ViewModel\ObjetViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Ressource\ResourceView.fr.Designer.cs">
@@ -302,6 +303,9 @@
     <Content Include="Views\Objet\DerniersProduits.cshtml" />
     <Content Include="Views\Objet\lireObjetIntersse.cshtml" />
     <Content Include="Views\Home\SendNewPass.cshtml" />
+    <Content Include="Views\Objet\getEnchereAcheteur.cshtml" />
+    <Content Include="Views\Objet\getEnchereVendeur.cshtml" />
+    <Content Include="Views\Objet\UpdateEnchere.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Ressource\ResourceView.fr.resx">
