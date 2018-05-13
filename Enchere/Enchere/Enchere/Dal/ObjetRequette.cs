@@ -120,6 +120,56 @@ namespace Enchere.Dal {
 
         }
 
+        public static List<string> getEncheresMembre(string numero, int etat) {
+            string connectionString = ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
+            SqlConnection connection = new SqlConnection(connectionString);
+            string request = "SELECT * FROM  Enchere WHERE IdAcheteur = '" + numero.Trim() + "' AND Etat = " + etat;
+            List<string> list = new List<string>();
+
+
+            SqlCommand command = new SqlCommand(request, connection);
+
+            try {
+                connection.Open();
+                SqlDataReader reader = command.ExecuteReader();
+                if (reader.Read()) {
+                     list.Add((string)reader["IdObjet"]);
+                }
+                reader.Close();
+                return list;
+            } catch (Exception e) {
+                System.Console.WriteLine(e.Message);
+            } finally {
+                connection.Close();
+            }
+            return null;
+        }
+
+        public static List<string> gestionEncheresMembre(string numero, int etat) {
+            string connectionString = ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
+            SqlConnection connection = new SqlConnection(connectionString);
+            string request = "SELECT * FROM  Enchere WHERE IdVendeur = '" + numero.Trim() + "' AND Etat = " + etat;
+            List<string> list = new List<string>();
+
+
+            SqlCommand command = new SqlCommand(request, connection);
+
+            try {
+                connection.Open();
+                SqlDataReader reader = command.ExecuteReader();
+                if (reader.Read()) {
+                    list.Add((string)reader["IdObjet"]);
+                }
+                reader.Close();
+                return list;
+            } catch (Exception e) {
+                System.Console.WriteLine(e.Message);
+            } finally {
+                connection.Close();
+            }
+            return null;
+        }
+
         public static void updateObjet(ObjetViewModel model)
         {
             string connectionString = ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
@@ -239,6 +289,31 @@ namespace Enchere.Dal {
             return null;
         }
 
+        public static Encher getEnchereById(string Id) {
+
+            string connectionString = ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
+            SqlConnection connection = new SqlConnection(connectionString);
+            string request = "SELECT * FROM Enchere WHERE Id = '" + Id.Trim() + "'";
+
+            SqlCommand command = new SqlCommand(request, connection);
+
+            try {
+                connection.Open();
+                SqlDataReader reader = command.ExecuteReader();
+                Encher en = null;
+                if (reader.Read()) {
+                    en = new Encher((string)reader["Id"], (string)reader["IdObjet"], (string)reader["IdVendeur"], (string)reader["IdAcheteur"], (decimal)reader["PrixAchat"], (decimal)reader["PasDePrix"], (DateTime)reader["DateDepart"], (DateTime)reader["DateFin"], (int)reader["Etat"]);
+                }
+                reader.Close();
+                return en;
+            } catch (Exception e) {
+                System.Console.WriteLine(e.Message);
+            } finally {
+                connection.Close();
+            }
+            return null;
+        }
+
         public static Objet deleteObjetById(string Id)
         {
 
@@ -282,6 +357,24 @@ namespace Enchere.Dal {
             }
         }
 
+        public static void updateEnchere(Encher en) {
+            string connectionString = ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
+            SqlConnection connection = new SqlConnection(connectionString);
+            string request = "UPDATE Enchere SET IdAcheteur = '" + en.IdAcheteur + "', PrixAchat = '" + en.PrixAchat + "' WHERE id = '" + en.Id + "'";
+
+            SqlCommand command = new SqlCommand(request, connection);
+
+            try {
+                connection.Open();
+                command.ExecuteNonQuery();
+            } catch (Exception e) {
+                System.Console.WriteLine(e.Message);
+            } finally {
+                connection.Close();
+            }
+
+        }
+
         public static void SavePhoto(HttpPostedFileBase file)
         {
             if (file != null && !string.IsNullOrEmpty(file.FileName))
@@ -299,6 +392,9 @@ namespace Enchere.Dal {
                 file.SaveAs(fullPath);
             }
         }
+
+        ////////////////////////////////////////////////// End of Haiqiang XU  /////////////////////////////////////////////////////////////
+
 
         public static List<Objet> lesProduitsRecemmentInscrits(string order)
         {

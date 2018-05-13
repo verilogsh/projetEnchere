@@ -7,7 +7,7 @@ namespace Enchere.Models {
     public class ObjetEnchereAff {
         public ObjetEnchereAff(string id, string idEnchere, string nom, string description, string idCategorie, string photo, string piece, string idVendeur, string idAcheteur, decimal prixDepart, decimal prixActuel, DateTime dateDepart, DateTime dateFin, decimal pasDePrix) {
             Id = id;
-            IdEchere = idEnchere;
+            IdEnchere = idEnchere;
             Nom = nom;
             Description = description;
             IdCategorie = idCategorie;
@@ -23,7 +23,7 @@ namespace Enchere.Models {
         }
 
         public string Id { get; set; }
-        public string IdEchere { get; set; }
+        public string IdEnchere { get; set; }
         public string Nom { get; set; }
         public string Description { get; set; }
         public string IdCategorie { get; set; }

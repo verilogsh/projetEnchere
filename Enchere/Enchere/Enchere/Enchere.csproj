@@ -302,6 +302,9 @@
     <Content Include="Views\Objet\DerniersProduits.cshtml" />
     <Content Include="Views\Objet\lireObjetIntersse.cshtml" />
     <Content Include="Views\Home\SendNewPass.cshtml" />
+    <Content Include="Views\Objet\getEnchereMembre.cshtml" />
+    <Content Include="Views\Objet\gestionEnchereMembre.cshtml" />
+    <Content Include="Views\Objet\UpdateEnchere.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Ressource\ResourceView.fr.resx">

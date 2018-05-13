@@ -93,7 +93,8 @@
                     }
                     else if (User.Identity.IsAuthenticated)
                     {
-                        <li>@Html.ActionLink(@ResourceView.gestobj, "gestionObjetMembre", "Objet")</li>
+
+
                     }
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
@@ -115,6 +116,18 @@
                                 <li>@Html.ActionLink(@ResourceView.mdfprofil, "Modifier", "Account")</li>
                                 <li class="divider"></li>
                                 <li>@Html.ActionLink(@ResourceView.ModifierMDP, "ModifierMDP", "Account")</li>
+                                <li class="divider"></li>
+                                <li>@Html.ActionLink(@ResourceView.gestobj, "gestionObjetMembre", "Objet")</li>
+                                <li class="divider"></li>
+                                <li>@Html.ActionLink("Lister objets achetes", "getEnchereMembre", "Objet", new { etat = 1 }, null)</li>
+                                <li class="divider"></li>
+                                <li>@Html.ActionLink("Lister objets vendus", "gestionEnchereMembre", "Objet", new { etat = 2 }, null)</li>
+                                <li class="divider"></li>
+                                <li>@Html.ActionLink("Listet echeres perdus", "gestionEnchereMembre", "Objet", new { etat = 3 }, null)</li>
+                                <li class="divider"></li>
+                                <li>@Html.ActionLink("Listet encheres en cours", "gestionEnchereMembre", "Objet", new { etat = 4 }, null)</li>
+                                <li class="divider"></li>
+                                <li>@Html.ActionLink("Lister encheres encherits", "getEnchereMembre", "Objet", new { etat = 4 }, null)</li>
                                 <li class="divider"></li>
                                 <li>@Html.ActionLink(@ResourceView.Deconnexion, "Logout", "Account")</li>
                             </ul>

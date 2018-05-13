@@ -14,6 +14,8 @@ namespace Enchere.Controllers
 {
     public class ObjetController : Controller
     {
+        ///////////////////////////////// Haiqiang XU ////////////////////////////////////////////
+
         // GET: Objet
         [HttpGet]
         public ActionResult lireCategorie()
@@ -109,10 +111,57 @@ namespace Enchere.Controllers
         [HttpPost]
         public ActionResult MettreEnVente(Encher encher) {
             encher.Id = Utility.IdGenerator.getEncherenId();
-            encher.Etat = 0;
+            encher.Etat = 1;
             ObjetRequette.insertEncher(encher);
             return RedirectToAction("gestionObjetMembre", "Objet");
         }
+
+        [HttpGet]
+        public ActionResult getEnchereMembre(int etat) {
+            if (ModelState.IsValid) {
+                string currentUser = @User.Identity.Name;
+                Membre mb = MembreRequette.GetUserByEmail(currentUser);
+                List<string> list = ObjetRequette.getEncheresMembre(mb.Numero, etat);
+                List<Objet> listObj = new List<Objet>();
+                foreach(string id in list) {
+                    listObj.Add(ObjetRequette.getObjetById(id));
+                }
+                return View(listObj);
+            }
+            return View();
+        }
+
+        [HttpGet]
+        public ActionResult gestionEnchereMembre(int etat) {
+            if (ModelState.IsValid) {
+                string currentUser = @User.Identity.Name;
+                Membre mb = MembreRequette.GetUserByEmail(currentUser);
+                List<string> list = ObjetRequette.gestionEncheresMembre(mb.Numero, etat);
+                List<Objet> listObj = new List<Objet>();
+                foreach (string id in list) {
+                    listObj.Add(ObjetRequette.getObjetById(id));
+                }
+                return View(listObj);
+            }
+            return View();
+        }     
+
+        [HttpGet]
+        public ActionResult UpdateEnchere(string id) {
+            Encher en = ObjetRequette.getEnchereById(id);
+            return View(en);
+        }
+
+        [HttpPost]
+        public ActionResult UpdateEnchere(Encher en) {
+            Encher en1 = en;
+            ObjetRequette.updateEnchere(en);
+            return RedirectToAction("Index","Home");
+        }
+
+
+        ///////////////////   End of Haiqiang Xu       ////////////////////////////////////
+
 
         public ActionResult DerniersProduits(string order)
         {
