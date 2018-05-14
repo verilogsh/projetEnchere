@@ -75,9 +75,9 @@
             @Html.ActionLink("Delete", "Delete", new { id=item.Id }) |
             @{
                 if (item.EnVent) {
-                    @Html.ActionLink("Retirer de vente", "MettreEnvente", new { idObjet = item.Id, idVendeur= ViewBag.IdVendeur, vente = true })
+                    @Html.ActionLink("Retirer de vente", "MettreEnvente", "Enchere", new { idObjet = item.Id, idVendeur= ViewBag.IdVendeur, vente = true }, null)
                 } else {
-                    @Html.ActionLink("Mettre en vente", "MettreEnvente", new { idObjet = item.Id, idVendeur = ViewBag.IdVendeur, vente = false })
+                    @Html.ActionLink("Mettre en vente", "MettreEnvente", "Enchere", new { idObjet = item.Id, idVendeur = ViewBag.IdVendeur, vente = false }, null)
                 }
             }
             

@@ -23,12 +23,13 @@ namespace Enchere.Models {
         public bool EnVent { get; set; }
         [Required]
         public decimal PrixDepart { get; set; }
+        public decimal PrixActuel { get; set; }
         public string IdEnchere { get; set; }
         public int Etat { get; set; }
 
         public EnchereViewModel() {  }
 
-        public EnchereViewModel(string id, string nom, string description, DateTime dateInscri, string idCategorie, string photo, string piece, string idMembre, bool nouveau, bool enVent, decimal prixDepart, string idEnchere, int etat) {
+        public EnchereViewModel(string id, string nom, string description, DateTime dateInscri, string idCategorie, string photo, string piece, string idMembre, bool nouveau, bool enVent, decimal prixDepart, decimal prixActuel, string idEnchere, int etat) {
             Id = id;
             Nom = nom;
             Description = description;
@@ -40,6 +41,7 @@ namespace Enchere.Models {
             Nouveau = nouveau;
             EnVent = enVent;
             PrixDepart = prixDepart;
+            PrixDepart = prixActuel;
             IdEnchere = idEnchere;
             Etat = etat;
         }

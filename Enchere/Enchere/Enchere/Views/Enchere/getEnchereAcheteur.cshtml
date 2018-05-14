@@ -1,0 +1,76 @@
+﻿@model IEnumerable<Enchere.Models.EnchereViewModel>
+
+@{
+    ViewBag.Title = "gestionEnchereMembre";
+}
+
+<h2>@ViewBag.option</h2>
+
+<p>
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Nom)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Description)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DateInscri)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.IdCategorie)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Photo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Piece)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PrixDepart)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PrixActuel)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Nom)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Description)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DateInscri)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IdCategorie)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Photo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Piece)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PrixDepart)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PrixActuel)
+            </td>
+            <td>
+                @if (item.Etat == 1 || item.Etat == 4) {
+                    @Html.ActionLink("Nouvelle Evaluation", "Create", "Evaluation", new { idEnchere = item.IdEnchere, op = "acheteur", rtnUrl = HttpContext.Current.Request.RawUrl }, null)
+                } else if (item.Etat == 3 || item.Etat == 5) {
+                    @Html.ActionLink("Voir Evaluation", "List", "Evaluation", new { idEnchere = item.IdEnchere, op = "acheteur", rtnUrl = HttpContext.Current.Request.RawUrl }, null)
+                }
+            </td>
+        </tr>
+    }
+
+</table>
