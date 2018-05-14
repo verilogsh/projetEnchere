@@ -15,6 +15,8 @@ namespace Enchere.Dal
             return View(en);
         }
 
+
+
         [HttpPost]
         public ActionResult MettreEnVente(Encher encher) {
             encher.Id = Utility.IdGenerator.getEncherenId();

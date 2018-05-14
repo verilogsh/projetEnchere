@@ -72,7 +72,7 @@ namespace Enchere.Controllers
                 var senderemail = new MailAddress("hasnimed07@gmail.com", "Demo test");
                 var receiverEmail = new MailAddress(emetteur, "recepteur");
 
-                var password = "younnesse92";
+                var password = "hasni1985";
                 var sub = subject;
                 var body = message;
 
@@ -117,10 +117,10 @@ namespace Enchere.Controllers
             try
             {
                 string emetteur = Request.Form["monEmail"];
-                var senderemail = new MailAddress("oglindalucian@gmail.com", "Demo test");
+                var senderemail = new MailAddress("hasnimed07@gmail.com", "demoo");
                 var receiverEmail = new MailAddress(emetteur, "recepteur");
 
-                var password = "Aseameunita1";
+                var password = "hasni1985";
                 var sub = "Réinintialisation du mot de passe";
                 var body = Utility.IdGenerator.getObjetId();
                 MembreRequette.UpdateMDP(emetteur, body);
