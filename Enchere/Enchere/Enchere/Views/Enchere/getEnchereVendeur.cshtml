@@ -4,6 +4,8 @@
     ViewBag.Title = "gestionEnchereMembre";
 }
 
+@Html.ActionLink("Imprimer rapport", "PrintObjetvendu", "Enchere")
+
 <h2>@ViewBag.option</h2>
 
 <p>
@@ -37,40 +39,44 @@
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Nom)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Description)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.DateInscri)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.IdCategorie)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Photo)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Piece)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.PrixDepart)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.PrixActuel)
-        </td>
-        <td>
-            @if (item.Etat == 1 || item.Etat == 3) {
-                @Html.ActionLink("Nouvelle Evaluation", "Create", "Evaluation", new { id = item.IdEnchere, op = "vendeur", rtnUrl = HttpContext.Current.Request.RawUrl }, null)
-            } else if (item.Etat == 4 || item.Etat == 5) {
-                @Html.ActionLink("Voir Evaluation", "List", "Evaluation", new { id = item.IdEnchere, op = "vendeur", rtnUrl = HttpContext.Current.Request.RawUrl }, null)
-            }
-        </td>
-    </tr>
-}
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Nom)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Description)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DateInscri)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IdCategorie)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Photo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Piece)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PrixDepart)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PrixActuel)
+            </td>
+            <td>
+                @if (item.Etat == 1 || item.Etat == 3)
+                {
+                    @Html.ActionLink("Nouvelle Evaluation", "Create", "Evaluation", new { id = item.IdEnchere, op = "vendeur", rtnUrl = HttpContext.Current.Request.RawUrl }, null)
+                }
+                else if (item.Etat == 4 || item.Etat == 5)
+                {
+                    @Html.ActionLink("Voir Evaluation", "List", "Evaluation", new { id = item.IdEnchere, op = "vendeur", rtnUrl = HttpContext.Current.Request.RawUrl }, null)
+                }
+            </td>
+        </tr>
+    }
 
 </table>

@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using Rotativa;
 
 namespace Enchere.Dal
 {
@@ -89,6 +90,37 @@ namespace Enchere.Dal
             }
             return View();
         }
+
+        public ActionResult ListObjetVenduSouPeu()
+        {
+            List<Encher> list = EnchereRequette.getEncheresRapport3();
+            List<EnchereViewModel> listObj = new List<EnchereViewModel>();
+            foreach (Encher en in list)
+            {
+                Objet obj = ObjetRequette.getObjetById(en.IdObjet);
+                EnchereViewModel model = new EnchereViewModel(obj.Id, obj.Nom, obj.Description, en.DateFin, obj.IdCategorie, obj.Photo, obj.Piece, obj.IdMembre, obj.Nouveau, obj.EnVent, obj.PrixDepart, en.PrixAchat, en.Id, en.Etat);
+                listObj.Add(model);
+            }
+
+           
+            return View(listObj);
+        
+            
+         }
+
+
+        public ActionResult PrintObjetvendu()
+        {
+            var list = new ActionAsPdf("getEnchereVendeur", new { etat = 1});
+            return list;
+        }
+
+        public ActionResult PrintRapprt3()
+        {
+            var list = new ActionAsPdf("ListObjetVenduSouPeu");
+            return list;
+        }
+
 
         [HttpGet]
         public ActionResult UpdateEnchere(string id) {

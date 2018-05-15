@@ -144,5 +144,41 @@ namespace Enchere.Dal {
             }
 
         }
+
+
+        public static List<Encher> getEncheresRapport3()
+        {
+            string connectionString = ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
+            SqlConnection connection = new SqlConnection(connectionString);
+            string request = "";
+           
+                request = "SELECT * FROM  Enchere WHERE Etat != 0 OR ( Etat = 0 AND DateFin = '" + DateTime.Now.AddDays(1) +"')";
+            
+            List<Encher> list = new List<Encher>();
+
+
+            SqlCommand command = new SqlCommand(request, connection);
+
+            try
+            {
+                connection.Open();
+                SqlDataReader reader = command.ExecuteReader();
+                while (reader.Read())
+                {
+                    list.Add(new Encher((string)reader["Id"], (string)reader["IdObjet"], (string)reader["IdVendeur"], (string)reader["IdAcheteur"], (decimal)reader["PrixAchat"], (decimal)reader["PasDePrix"], (DateTime)reader["DateDepart"], (DateTime)reader["DateFin"], (int)reader["Etat"]));
+                }
+                reader.Close();
+                return list;
+            }
+            catch (Exception e)
+            {
+                System.Console.WriteLine(e.Message);
+            }
+            finally
+            {
+                connection.Close();
+            }
+            return null;
+        }
     }
 }

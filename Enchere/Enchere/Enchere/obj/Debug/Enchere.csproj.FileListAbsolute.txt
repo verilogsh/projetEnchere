@@ -399,3 +399,13 @@ C:\Users\e1695852\Desktop\git3\Enchere\Enchere\Enchere\obj\Debug\fr\Enchere.reso
 C:\Users\e1695852\Desktop\git3\Enchere\Enchere\Enchere\obj\Debug\en\Enchere.resources.dll
 C:\Users\e1695852\Desktop\git3\Enchere\Enchere\Enchere\obj\Debug\Enchere.dll
 C:\Users\e1695852\Desktop\git3\Enchere\Enchere\Enchere\obj\Debug\Enchere.pdb
+C:\toshiba\college de maisonneuve etudes\PROJET FINAL\git3\Enchere\Enchere\Enchere\bin\Common.Logging.Core.dll
+C:\toshiba\college de maisonneuve etudes\PROJET FINAL\git3\Enchere\Enchere\Enchere\bin\Common.Logging.dll
+C:\toshiba\college de maisonneuve etudes\PROJET FINAL\git3\Enchere\Enchere\Enchere\bin\Quartz.dll
+C:\toshiba\college de maisonneuve etudes\PROJET FINAL\git3\Enchere\Enchere\Enchere\bin\Common.Logging.pdb
+C:\toshiba\college de maisonneuve etudes\PROJET FINAL\git3\Enchere\Enchere\Enchere\bin\Common.Logging.xml
+C:\toshiba\college de maisonneuve etudes\PROJET FINAL\git3\Enchere\Enchere\Enchere\bin\Common.Logging.Core.pdb
+C:\toshiba\college de maisonneuve etudes\PROJET FINAL\git3\Enchere\Enchere\Enchere\bin\Common.Logging.Core.xml
+C:\toshiba\college de maisonneuve etudes\PROJET FINAL\git3\Enchere\Enchere\Enchere\bin\Quartz.pdb
+C:\toshiba\college de maisonneuve etudes\PROJET FINAL\git3\Enchere\Enchere\Enchere\bin\Quartz.xml
+C:\toshiba\college de maisonneuve etudes\PROJET FINAL\git3\Enchere\Enchere\Enchere\bin\Rotativa.dll
