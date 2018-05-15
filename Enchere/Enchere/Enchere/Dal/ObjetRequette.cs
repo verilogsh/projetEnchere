@@ -271,10 +271,10 @@ namespace Enchere.Dal {
 
  
 
-        public static void setObjetEnVente(string id) {
+        public static void setObjetEnVente(string id, int op) {
             string connectionString = ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
             SqlConnection connection = new SqlConnection(connectionString);
-            string request = "UPDATE objet SET EnVente = 1 WHERE Id ='" + id + "'";
+            string request = "UPDATE objet SET EnVente = " + op + " WHERE Id ='" + id + "'";
 
             SqlCommand command = new SqlCommand(request, connection);
 
@@ -286,7 +286,23 @@ namespace Enchere.Dal {
             } finally {
                 connection.Close();
             }
+        }
 
+        public static void setObjetOwner(string id, string IdMembre) {
+            string connectionString = ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
+            SqlConnection connection = new SqlConnection(connectionString);
+            string request = "UPDATE objet SET IdMembre = " + IdMembre + " WHERE Id ='" + id + "'";
+
+            SqlCommand command = new SqlCommand(request, connection);
+
+            try {
+                connection.Open();
+                command.ExecuteNonQuery();
+            } catch (Exception e) {
+                System.Console.WriteLine(e.Message);
+            } finally {
+                connection.Close();
+            }
         }
 
         public static void SavePhoto(HttpPostedFileBase file)

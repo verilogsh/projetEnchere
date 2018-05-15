@@ -399,7 +399,3 @@ C:\Users\e1695852\Desktop\git3\Enchere\Enchere\Enchere\obj\Debug\fr\Enchere.reso
 C:\Users\e1695852\Desktop\git3\Enchere\Enchere\Enchere\obj\Debug\en\Enchere.resources.dll
 C:\Users\e1695852\Desktop\git3\Enchere\Enchere\Enchere\obj\Debug\Enchere.dll
 C:\Users\e1695852\Desktop\git3\Enchere\Enchere\Enchere\obj\Debug\Enchere.pdb
-D:\Project\ASP\FinEtude\Enchere\Enchere\Enchere\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
-D:\Project\ASP\FinEtude\Enchere\Enchere\Enchere\bin\roslyn\Microsoft.CodeAnalysis.dll
-D:\Project\ASP\FinEtude\Enchere\Enchere\Enchere\bin\roslyn\System.Reflection.Metadata.dll
-D:\Project\ASP\FinEtude\Enchere\Enchere\Enchere\bin\roslyn\VBCSCompiler.exe

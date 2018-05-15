@@ -1,4 +1,5 @@
 ﻿using Enchere.Models;
+using Enchere.Utility;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,9 +21,23 @@ namespace Enchere.Dal
         [HttpPost]
         public ActionResult MettreEnVente(Encher encher) {
             encher.Id = Utility.IdGenerator.getEncherenId();
-            encher.Etat = 0;
+            encher.Etat = -1;
             EnchereRequette.insertEncher(encher);
-            ObjetRequette.setObjetEnVente(encher.IdObjet);
+
+            string formatString = "yyyyMMddHHmmss";
+            string sample1 = "20180514222630";
+            string sample2 = "20180514223010";
+            DateTime dt1 = DateTime.ParseExact(sample1, formatString, null);
+            DateTime dt2 = DateTime.ParseExact(sample2, formatString, null);
+
+            StartScheduler sch1 = new StartScheduler();
+            //sch1.Start(encher.DateDepart, encher.IdObjet, encher.Id);
+            sch1.Start(dt1, encher.IdObjet, encher.Id);
+
+            FinishScheduler sch2 = new FinishScheduler();
+            //sch2.Start(encher.DateFin, encher.IdObjet, encher.Id);
+            sch2.Start(dt2, encher.IdObjet, encher.Id);
+
             return RedirectToAction("gestionObjetMembre", "Objet");
         }
 

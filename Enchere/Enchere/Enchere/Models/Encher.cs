@@ -23,7 +23,7 @@ namespace Enchere.Models {
         [Required]
         public int Etat { get; set; }
         ///
-        /// 0: EnCours; 1: Remporte; 2: Perdu; 3: EvalueAcheteur; 4: EvalueVendeur; 5: EvalueFinit
+        /// -1: prete a commecer; 0: EnCours; 1: Remporte; 2: Perdu; 3: EvalueAcheteur; 4: EvalueVendeur; 5: EvalueFinit
         /// 
         /// Lister tous les objets encherits:       EnCours(0)       Acheteur
         /// Lister tous les objets achetes:         Remporte(1)      Acheteur
