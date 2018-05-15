@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using Rotativa;
 
 namespace Enchere.Controllers
 {
@@ -67,6 +68,18 @@ namespace Enchere.Controllers
 
             ViewBag.rtn = rtnUrl;
             return View(ev);
+        }
+
+        public ActionResult ListeEvaluationsMembres()
+        {
+            List<EvaluationMembre> listObj = EvaluationRequette.getEvaluationMembre();
+            return View(listObj);
+        }
+
+        public ActionResult PrintEvaluaionMembre()
+        {
+            var list = new ActionAsPdf("ListeEvaluationsMembres");
+            return list;
         }
     }
 }

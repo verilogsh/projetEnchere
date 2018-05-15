@@ -378,47 +378,48 @@ namespace Enchere.Dal {
             return null;
         }
 
-        public static List<Objet> lesProduitsInteressants(string user)
+        public static List<HistoEncheObjet> lesProduitsInteressants(string idMembre,string courriel)
         {
             string chConnexion = ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
             SqlConnection connexion = new SqlConnection(chConnexion);
-            //user = @User.Identity.Name
-            string idMmebre = "SELECT Id FROM Membre WHERE Courriel = '" + user + "'";
-            //string requete = "SELECT * FROM Objet WHERE IdMembre = '" + idMmebre + "'";
+        
+            string requete = "SELECT   IdEnchere FROM Historique WHERE IdMembre = '" + idMembre + "'";
+           
 
 
-            string requete = "select * from Objet where Id IN (select IdObjet from Enchere where IdMembre = '" + 1 + "')";
-            //select IdObjet from Enchere where IdMembre = '" + idMmebre + "'";
-// string requete = "SELECT * FROM Objet WHERE DateInscri>='" + DateTime.Now.AddDays(-1).ToString("yyyy-MM-dd") + "' ORDER BY " + order;
             SqlCommand commande = new SqlCommand(requete, connexion);
             commande.CommandType = System.Data.CommandType.Text;
-            List<Objet> maListe = new List<Objet>();
+            List<Historique> maListe = new List<Historique>();
             try
             {
                 connexion.Open();
                 SqlDataReader dr = commande.ExecuteReader();
                 while (dr.Read())
                 {
-                    Objet o = new Objet
-                    {
-                        Id = (string)dr["Id"],
-                        Nom = (string)dr["Nom"],
-                        Description = (string)dr["Description"],
-                        DateInscri = (DateTime)dr["DateInscri"],
-                        IdCategorie = (string)dr["IdCategorie"],
-                        Photo = (string)dr["Photo"],
-                        Piece = (string)dr["Piece"],
-                        IdMembre = (string)dr["IdMembre"],
-                        Nouveau = (bool)dr["Nouveau"],
-                        EnVent = (bool)dr["EnVente"],
-                        PrixDepart = (decimal)dr["PrixDepart"]
-
-                    };
+                    Historique o = new Historique(
+                    
+                      // (int)dr["Id"],
+                        (string)dr["IdMembre"],
+                         (string)dr["IdEnchere"],
+                        (float)dr["Prix"],
+                        (DateTime)dr["Date"]
+                 
+                    );
                     maListe.Add(o);
                 }
 
                 dr.Close();
-                return maListe;
+                List < HistoEncheObjet > listHisto= new List<HistoEncheObjet>();
+                foreach (Historique en in maListe)
+                {
+                    listHisto.Add(getHistoEncherObjet(en.IdEnchere)); 
+                  
+                }
+
+
+
+
+                return listHisto;
             }
             catch (Exception e)
             {
@@ -427,6 +428,42 @@ namespace Enchere.Dal {
             finally
             {
                 connexion.Close();
+            }
+            return null;
+        }
+
+
+        public static HistoEncheObjet getHistoEncherObjet(string idEnchere)
+        {
+            List<HistoEncheObjet> obj = new List<HistoEncheObjet>();
+            string connectionString = ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
+            SqlConnection connection = new SqlConnection(connectionString);
+            string request;
+            
+                request = "SELECT o.Id, e.Id IdEnchere, o.Nom, o.Description, o.IdCategorie, o.Photo, o.Piece, o.IdMembre IdVendeur, e.IdAcheteur, o.PrixDepart, e.PrixAchat, e.DateDepart, e.DateFin, e.Etat FROM Enchere e INNER JOIN Objet o ON o.Id = e.IdObjet WHERE e.Id= '"+idEnchere+"'";
+            
+            
+
+            SqlCommand command = new SqlCommand(request, connection);
+
+            try
+            {
+                connection.Open();
+                SqlDataReader reader = command.ExecuteReader();
+               if (reader.Read())
+                {
+                    return new HistoEncheObjet((string)reader["Id"], (string)reader["IdEnchere"], (string)reader["Nom"], (string)reader["Description"], (string)reader["IdCategorie"], (string)reader["photo"], (string)reader["piece"], (string)reader["IdVendeur"], (string)reader["IdAcheteur"], (decimal)reader["PrixDepart"], (decimal)reader["PrixAchat"], (DateTime)reader["DateDepart"], (DateTime)reader["DateFin"], (decimal)reader["PasDePrix"], (int)reader["Etat"]);
+                }
+                reader.Close();
+              
+            }
+            catch (Exception e)
+            {
+                System.Console.WriteLine(e.Message);
+            }
+            finally
+            {
+                connection.Close();
             }
             return null;
         }

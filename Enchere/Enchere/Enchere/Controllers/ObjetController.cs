@@ -163,5 +163,12 @@ namespace Enchere.Controllers
             else
                 return str;
         }
+
+        public ActionResult ObjetIntressemembre()
+        {
+            string currentUser = @User.Identity.Name;
+            Membre mb = MembreRequette.GetUserByEmail(currentUser);
+            return View( ObjetRequette.lesProduitsInteressants(mb.Numero,mb.Courriel));
+        }
     }
 }

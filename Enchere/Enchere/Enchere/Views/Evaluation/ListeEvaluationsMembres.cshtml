@@ -1,0 +1,47 @@
+﻿@model IEnumerable<Enchere.Models.EvaluationMembre>
+
+@{
+    ViewBag.Title = "ListeEvaluationsMembres";
+}
+
+<h2>ListeEvaluationsMembres</h2>
+
+<p>
+    @Html.ActionLink("Imprimer Rapport4", "PrintEvaluaionMembre","Evaluation")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Nom)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.NumMembre)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Cote)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.NbrEvaluation)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Nom)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.NumMembre)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Cote)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.NbrEvaluation)
+        </td>
+       
+    </tr>
+}
+
+</table>

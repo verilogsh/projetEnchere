@@ -90,7 +90,7 @@ namespace Enchere.Dal {
             try {
                 connection.Open();
                 SqlDataReader dr = command.ExecuteReader();
-                while (dr.Read()) {
+                if (dr.Read()) {
                     user = new Membre {
                         Numero = (string)dr["Numero"],
                         Civilite = (string)dr["Civilite"],

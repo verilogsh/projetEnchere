@@ -1,0 +1,107 @@
+﻿@model IEnumerable<Enchere.Models.HistoEncheObjet>
+
+@{
+    ViewBag.Title = "ObjetIntressemembre";
+}
+
+<h2>ObjetIntressemembre</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.IdEnchere)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Nom)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Description)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.IdCategorie)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Photo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Piece)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.IdVendeur)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.IdAcheteur)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PrixDepart)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PrixActuel)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DateDepart)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DateFin)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PasDePrix)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Etat)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.IdEnchere)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Nom)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Description)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.IdCategorie)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Photo)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Piece)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.IdVendeur)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.IdAcheteur)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PrixDepart)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PrixActuel)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DateDepart)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DateFin)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PasDePrix)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Etat)
+        </td>
+       
+    </tr>
+}
+
+</table>
