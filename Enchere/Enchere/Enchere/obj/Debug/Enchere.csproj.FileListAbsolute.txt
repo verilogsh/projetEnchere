@@ -408,3 +408,4 @@ C:\toshiba\college de maisonneuve etudes\PROJET FINAL\git3\Enchere\Enchere\Enche
 C:\toshiba\college de maisonneuve etudes\PROJET FINAL\git3\Enchere\Enchere\Enchere\obj\Debug\Enchere.csproj.CopyComplete
 C:\toshiba\college de maisonneuve etudes\PROJET FINAL\git3\Enchere\Enchere\Enchere\obj\Debug\Enchere.dll
 C:\toshiba\college de maisonneuve etudes\PROJET FINAL\git3\Enchere\Enchere\Enchere\obj\Debug\Enchere.pdb
+C:\toshiba\college de maisonneuve etudes\PROJET FINAL\git3\Enchere\Enchere\Enchere\obj\Debug\Enchere.csprojAssemblyReference.cache

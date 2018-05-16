@@ -343,6 +343,7 @@
     <Content Include="Views\Enchere\ListObjetVenduSouPeu.cshtml" />
     <Content Include="Views\Evaluation\ListeEvaluationsMembres.cshtml" />
     <Content Include="Views\Objet\ObjetIntressemembre.cshtml" />
+    <Content Include="Views\Objet\MesObjetsEnVente.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Ressource\ResourceView.fr.resx">

@@ -9,6 +9,7 @@ using Enchere.Dal;
 using Enchere.Utility;
 using System.Threading;
 using System.Globalization;
+using System.Net.Mail;
 
 namespace Enchere.Controllers
 {
@@ -169,6 +170,37 @@ namespace Enchere.Controllers
             string currentUser = @User.Identity.Name;
             Membre mb = MembreRequette.GetUserByEmail(currentUser);
             return View( ObjetRequette.lesProduitsInteressants(mb.Numero,mb.Courriel));
+        }
+
+        [HttpGet]
+        public ActionResult gestionObjetMembreSansAuthentification(string membre = null, string ordre = "none")
+        {
+            string currentUser = membre;
+            List<Objet> list = new List<Objet>();
+            Membre mb = MembreRequette.GetUserByEmail(currentUser);
+            list = ObjetRequette.getObjetMembre(mb.Courriel, ordre);
+            ViewBag.IdVendeur = mb.Numero;
+            return View(list);
+        }
+
+        [HttpGet]
+        public ActionResult MesObjetsEnVente()
+        {
+            return View();
+        }
+
+
+        [HttpPost]
+        public ActionResult MesObjetsEnVente(string courriel)
+        {
+            string email = Request.QueryString["monEmail"];
+            List<Objet> list = new List<Objet>();
+            Membre mb = MembreRequette.GetUserByEmail(email);
+            list = ObjetRequette.getObjetMembre(courriel, "none");
+            //ViewBag.IdVendeur = mb.Numero;
+            return View(list);
+
+           
         }
     }
 }
