@@ -130,7 +130,6 @@ namespace Enchere.Dal
 
         [HttpPost]
         public ActionResult UpdateEnchere(Encher en) {
-            Encher en1 = en;
             EnchereRequette.updateEnchere(en);
             return RedirectToAction("Index", "Home");
         }
