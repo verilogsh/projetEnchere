@@ -204,7 +204,7 @@ namespace Enchere.Controllers
             }
             else
             {
-                ViewBag.Error = "Cet Email n'existe pas..! Enregistrez vous";
+                ViewBag.Error = "Ce courriel n'existe pas! Enregistrez-vous!";
                 return View();
 
             }

@@ -4,10 +4,10 @@
     ViewBag.Title = "gestionObjetMembre";
 }
 
-<h2>gestionObjetMembre</h2>
+<h2>Gestion Objet Membre</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Créér Nouveau", "Create")
 </p>
 <table class="table table-striped">
     <tr>
@@ -71,8 +71,8 @@
             @Html.DisplayFor(modelItem => item.PrixDepart)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.Id }) |
+            @Html.ActionLink("Editer", "Edit", new { id=item.Id }) |
+            @Html.ActionLink("Supprimer", "Delete", new { id=item.Id }) |
             @{
                 if (item.EnVent) {
                     @Html.ActionLink("Retirer de vente", "MettreEnvente", "Enchere", new { idObjet = item.Id, idVendeur= ViewBag.IdVendeur, vente = true }, null)

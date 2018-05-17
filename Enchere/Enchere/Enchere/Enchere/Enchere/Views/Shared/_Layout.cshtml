@@ -57,19 +57,23 @@
                     <li>@Html.ActionLink("Mes objets en vente", "MesObjetsEnVente", "Objet")</li>
                     <li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</li>
                     <li>
-                        <form action="/Home/Langue" method="post">
-                            <input type="hidden" value="en" name="choixLangue" />
-                            <input type="image" src="/flags/United_Kingdom.png" alt="Submit Form" width="30" height="20" />
-                            @*<input type="submit" value="" style="background:url(/flags/gbflag.png) no-repeat;" />*@
-                        </form>
+                        
+                            <form action="/Home/Langue" method="post">
+                                <input type="hidden" value="en" name="choixLangue" />
+                                <input type="image" src="/flags/United_Kingdom.png" alt="Submit Form" width="30" height="20" class="lang" />
+                                @*<input type="submit" value="" style="background:url(/flags/gbflag.png) no-repeat;" />*@
+                            </form>
+                       
                     </li>
                     <li>&nbsp;&nbsp;&nbsp;&nbsp;</li>
                     <li>
-                        <form action="/Home/Langue" method="post">
-                            <input type="hidden" value="fr" name="choixLangue" />
-                            <input type="image" src="/flags/franc.png" alt="Submit Form" width="30" height="20" />
-                            @*<input type="submit" value="" style="background:url(/flags/france.jpg) no-repeat;" />*@
-                        </form>
+                       
+                            <form action="/Home/Langue" method="post">
+                                <input type="hidden" value="fr" name="choixLangue" />
+                                <input type="image" src="/flags/franc.png" alt="Submit Form" width="30" height="20" class="lang" />
+                                @*<input type="submit" value="" style="background:url(/flags/france.jpg) no-repeat;" />*@
+                            </form>
+                                                    
                     </li>
                     <li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</li>
                     @if (User.Identity.IsAuthenticated && User.Identity.Name == "admin@admin.ca")
@@ -123,15 +127,17 @@
                                 <li class="divider"></li>
                                 <li class="dropdown-submenu">
                                     <a class="test" href="#">Gestion Encheres <span class="caret"></span></a>
-                                    <ul class="dropdown-menu pull-right">
-                                        <li>@Html.ActionLink("Lister objets achetes", "getEnchereAcheteur", "Enchere", new { etat = 1 }, null)</li>
-                                        <li class="divider"></li>
-                                        <li>@Html.ActionLink("Lister objets vendus", "getEnchereVendeur", "Enchere", new { etat = 1 }, null)</li>
-                                        <li class="divider"></li>
-                                        <li>@Html.ActionLink("Listet echeres perdus", "getEnchereVendeur", "Enchere", new { etat = 2 }, null)</li>
-                                        <li class="divider"></li>
-                                        <li>@Html.ActionLink("Listet encheres en cours", "getEnchereVendeur", "Enchere", new { etat = 0 }, null)</li>
-                                     </ul>
+                                    
+                                        <ul class="dropdown-menu pull-right">
+                                            <li class="">@Html.ActionLink("Lister objets achetes", "getEnchereAcheteur", "Enchere", new { etat = 1 }, null)</li>
+                                            <li class="divider"></li>
+                                            <li>@Html.ActionLink("Lister objets vendus", "getEnchereVendeur", "Enchere", new { etat = 1 }, null)</li>
+                                            <li class="divider"></li>
+                                            <li>@Html.ActionLink("Lister echeres perdus", "getEnchereVendeur", "Enchere", new { etat = 2 }, null)</li>
+                                            <li class="divider"></li>
+                                            <li>@Html.ActionLink("Lister encheres en cours", "getEnchereVendeur", "Enchere", new { etat = 0 }, null)</li>
+                                        </ul>
+                                   
                                 </li>
                                 <li class="divider"></li>
                                 <li>@Html.ActionLink(@ResourceView.Deconnexion, "Logout", "Account")</li>

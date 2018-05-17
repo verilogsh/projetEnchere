@@ -17,7 +17,7 @@
     @Html.AntiForgeryToken()
     
     <div class="form-horizontal">
-        <h4>Enchere</h4>
+        <h4>Enchère</h4>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         <div class="form-group">
@@ -81,9 +81,9 @@
     </div>
 }
 
-<div>
-    @Html.ActionLink("Back to List", "Index")
-</div>
+    <div>
+        @Html.ActionLink("Accueil", "Index", "Home")
+    </div>
 
 @section MyOtherJavascript {
 <script type="text/javascript">
