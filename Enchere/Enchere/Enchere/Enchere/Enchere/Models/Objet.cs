@@ -12,14 +12,16 @@ namespace Enchere.Models {
         public string Nom { get; set; }
         [Required]
         public string Description { get; set; }
-        [DisplayFormat(DataFormatString = "{0:yyyy/MM/dd}")]
+        [Display(Name ="Date Inscrit"),DisplayFormat(DataFormatString = "{0:yyyy/MM/dd}")]
         public DateTime DateInscri { get; set; }
         [Required]
+        [Display(Name ="Categorie")]
         public string IdCategorie { get; set; }
         public string Photo { get; set; }
         public string Piece { get; set; }
         public string IdMembre { get; set; }
         public bool Nouveau { get; set; }
+        [Display(Name = "En Vente")]
         public bool EnVent { get; set; }
         [Required]
         public decimal PrixDepart { get; set; }

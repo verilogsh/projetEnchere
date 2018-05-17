@@ -18,9 +18,9 @@ namespace Enchere.Controllers
             Encher en = EnchereRequette.getEnchereById(idEnchere);
             Evaluation ev = null;
             if (op == "acheteur") {
-                ev = new Evaluation("acheteur", idEnchere, DateTime.Now, 0, en.IdAcheteur, en.IdVendeur, "");
+                ev = new Evaluation("acheteur", idEnchere, DateTime.Now, 0, "", en.IdAcheteur, en.IdVendeur);
             } else if(op == "vendeur") {
-                ev = new Evaluation("vendeur", idEnchere, DateTime.Now, 0, en.IdVendeur, en.IdAcheteur, "");
+                ev = new Evaluation("vendeur", idEnchere, DateTime.Now, 0, "", en.IdVendeur, en.IdAcheteur);
             }
 
             ViewBag.rtn = rtnUrl;
@@ -29,35 +29,37 @@ namespace Enchere.Controllers
 
         [HttpPost]
         public ActionResult Create(Evaluation ev) {
-            Encher en = EnchereRequette.getEnchereById(ev.IdEnchere);
-            int etat = en.Etat;
-            string id = "";
-
             if (ModelState.IsValid) {
-                if (ev.Id == "acheteur") {
-                    if (etat == 1) {
-                        EnchereRequette.setEnchereEtat(ev.IdEnchere, 3);
-                    } else if (etat == 4) {
-                        EnchereRequette.setEnchereEtat(ev.IdEnchere, 5);
+                Encher en = EnchereRequette.getEnchereById(ev.IdEnchere);
+                int etat = en.Etat;
+                string id = "";
+
+                if (ModelState.IsValid) {
+                    if (ev.Id == "acheteur") {
+                        if (etat == 1) {
+                            EnchereRequette.setEnchereEtat(ev.IdEnchere, 3);
+                        } else if (etat == 4) {
+                            EnchereRequette.setEnchereEtat(ev.IdEnchere, 5);
+                        }
+                        id = en.IdVendeur;
+                    } else if (ev.Id == "vendeur") {
+                        if (etat == 1) {
+                            EnchereRequette.setEnchereEtat(ev.IdEnchere, 4);
+                        } else if (etat == 3) {
+                            EnchereRequette.setEnchereEtat(ev.IdEnchere, 5);
+                        }
+                        id = en.IdAcheteur;
                     }
-                    id = en.IdVendeur;                  
-                } else if (ev.Id == "vendeur") {
-                    if (etat == 1) {
-                        EnchereRequette.setEnchereEtat(ev.IdEnchere, 4);
-                    } else if (etat == 3) {
-                        EnchereRequette.setEnchereEtat(ev.IdEnchere, 5);
-                    }
-                    id = en.IdAcheteur;
+                    ev.Id = Utility.IdGenerator.getEvaluationId();
+                    EvaluationRequette.insertEvaluation(ev);
+                    Membre mb = MembreRequette.GetUserByNumero(id);
+                    mb.Cote += ev.Cote;
+                    MembreRequette.UpdateCote(mb);
+                    ////// update cote d'utilisateur  /////////////////
+                    return RedirectToAction("Index", "Home");
                 }
-                ev.Id = Utility.IdGenerator.getEvaluationId();
-                EvaluationRequette.insertEvaluation(ev);
-                Membre mb = MembreRequette.GetUserByNumero(id);
-                mb.Cote += ev.Cote;
-                MembreRequette.Update(mb);
-                ////// update cote d'utilisateur  /////////////////
-                return RedirectToAction("Index","Home");
             }
-            return null;
+            return View(ev);
         }
 
         [HttpGet]
