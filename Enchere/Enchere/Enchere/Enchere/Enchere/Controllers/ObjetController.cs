@@ -36,12 +36,14 @@ namespace Enchere.Controllers
         }
 
         [HttpGet]
-        public ActionResult gestionObjetMembre(string ordre = "none")
-        {
+        public ActionResult gestionObjetMembre(string idCateg = "0", string ordre = "Nom") {
+            List<Categorie> list1 = ObjetRequette.getCategorie();
+            ViewBag.listCateg = list1;
+            ViewBag.Selected = idCateg;
             string currentUser = @User.Identity.Name;
-            List<Objet> list = new List<Objet>();            
+            List<Objet> list = new List<Objet>();
             Membre mb = MembreRequette.GetUserByEmail(currentUser);
-            list = ObjetRequette.getObjetMembre(mb.Courriel, ordre);
+            list = ObjetRequette.getObjetMembre(mb.Courriel, idCateg, ordre);
             ViewBag.IdVendeur = mb.Numero;
             return View(list);
         }
@@ -57,6 +59,8 @@ namespace Enchere.Controllers
         [HttpPost]
         public ActionResult Create(ObjetViewModel model)
         {
+            List<Categorie> list = ObjetRequette.getCategorie();
+            ViewBag.listCateg = list;
             if (ModelState.IsValid)
             {
                 string currentUser = @User.Identity.Name;
@@ -215,7 +219,7 @@ namespace Enchere.Controllers
         {
             List<Objet> list = new List<Objet>();
 
-            list = ObjetRequette.getObjetMembre(email, "none");
+            list = ObjetRequette.getObjetMembre(email, "0", "none");
             return View(list);
         }
 

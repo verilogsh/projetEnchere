@@ -15,7 +15,7 @@
 
     }
 }
-<h2>Modifier objet</h2>
+<h2>Edit</h2>
 
 @using (Html.BeginForm("Edit", "Objet", FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
@@ -81,6 +81,6 @@
     </div>
 }
 
-    <div>
-        @Html.ActionLink("Accueil", "Index", "Home")
-    </div>
+<div>
+    @Html.ActionLink("Back to List", "gestionObjetMembre", "Objet")
+</div>

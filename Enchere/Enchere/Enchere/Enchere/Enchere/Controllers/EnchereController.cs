@@ -6,6 +6,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using Rotativa;
+using Enchere.Models.ViewModel;
 
 namespace Enchere.Dal
 {
@@ -21,25 +22,28 @@ namespace Enchere.Dal
 
         [HttpPost]
         public ActionResult MettreEnVente(Encher encher) {
-            encher.Id = Utility.IdGenerator.getEncherenId();
-            encher.Etat = -1;
-            EnchereRequette.insertEncher(encher);
+            if (ModelState.IsValid) {
+                encher.Id = Utility.IdGenerator.getEncherenId();
+                encher.Etat = -1;
+                EnchereRequette.insertEncher(encher);
 
-            string formatString = "yyyyMMddHHmmss";
-            string sample1 = "20180514222630";
-            string sample2 = "20180514223010";
-            DateTime dt1 = DateTime.ParseExact(sample1, formatString, null);
-            DateTime dt2 = DateTime.ParseExact(sample2, formatString, null);
+                string formatString = "yyyyMMddHHmmss";
+                string sample1 = "20180514222630";
+                string sample2 = "20180514223010";
+                DateTime dt1 = DateTime.ParseExact(sample1, formatString, null);
+                DateTime dt2 = DateTime.ParseExact(sample2, formatString, null);
 
-            StartScheduler sch1 = new StartScheduler();
-            //sch1.Start(encher.DateDepart, encher.IdObjet, encher.Id);
-            sch1.Start(dt1, encher.IdObjet, encher.Id);
+                StartScheduler sch1 = new StartScheduler();
+                //sch1.Start(encher.DateDepart, encher.IdObjet, encher.Id);
+                sch1.Start(dt1, encher.IdObjet, encher.Id);
 
-            FinishScheduler sch2 = new FinishScheduler();
-            //sch2.Start(encher.DateFin, encher.IdObjet, encher.Id);
-            sch2.Start(dt2, encher.IdObjet, encher.Id);
+                FinishScheduler sch2 = new FinishScheduler();
+                //sch2.Start(encher.DateFin, encher.IdObjet, encher.Id);
+                sch2.Start(dt2, encher.IdObjet, encher.Id);
 
-            return RedirectToAction("gestionObjetMembre", "Objet");
+                return RedirectToAction("gestionObjetMembre", "Objet");
+            }
+            return View(encher);
         }
 
         [HttpGet]
@@ -125,14 +129,47 @@ namespace Enchere.Dal
         [HttpGet]
         public ActionResult UpdateEnchere(string id) {
             Encher en = EnchereRequette.getEnchereById(id);
-            return View(en);
+            UpdateEnchereViewModel model = new UpdateEnchereViewModel();
+            model.Id = en.Id;
+            model.IdObjet = en.IdObjet;
+            model.IdAcheteur = en.IdAcheteur;
+            model.IdVendeur = en.IdVendeur;
+            model.PrixAchat = en.PrixAchat;
+            model.PasDePrix = en.PasDePrix;
+            model.DateDepart = en.DateDepart;
+            model.DateFin = en.DateFin;
+            model.Etat = en.Etat;
+            return View(model);
         }
 
         [HttpPost]
-        public ActionResult UpdateEnchere(Encher en) {
-            Encher en1 = en;
-            EnchereRequette.updateEnchere(en);
-            return RedirectToAction("Index", "Home");
+        public ActionResult UpdateEnchere(UpdateEnchereViewModel en) {
+            if (ModelState.IsValid) {
+                Encher enOld = EnchereRequette.getEnchereById(en.Id);
+                if ((enOld.PrixAchat + enOld.PasDePrix) > en.Prix) {
+                    ViewBag.err = "Au moins augmenter le prix par " + enOld.PasDePrix + "$!";
+                    return View(en);
+                }
+
+                Encher model = new Encher();
+                model.Id = en.Id;
+                model.IdObjet = en.IdObjet;
+                model.IdAcheteur = en.IdAcheteur;
+                model.IdVendeur = en.IdVendeur;
+                model.PrixAchat = en.Prix;
+                model.PasDePrix = en.PasDePrix;
+                model.DateDepart = en.DateDepart;
+                model.DateFin = en.DateFin;
+                model.Etat = en.Etat;
+
+                EnchereRequette.updateEnchere(model);
+                Historique his = new Historique(0, model.IdAcheteur, model.Id, model.PrixAchat, DateTime.Now);
+                EnchereRequette.insertHistorique(his);
+                ////// send E_mail  to add //////
+                return RedirectToAction("Index", "Home");
+
+            }
+            return View(en);
         }
     }
 }

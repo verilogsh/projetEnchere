@@ -52,10 +52,18 @@
                 @Html.DisplayFor(modelItem => item.IdCategorie)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Photo)
+                @if (item.Photo != null) {
+                    <img class="card-img-top float-left" src="~/images/@Html.DisplayFor(modelItem => item.Photo)" alt="Card image cap" width=50 height=30>
+                } else {
+                    <p>Non</p>
+                }
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Piece)
+                @if (item.Piece != null) {
+                    <a href="@Url.Content("~/pieces/@Html.DisplayFor(modelItem => item.Piece)")" title="telecharger la piece jointe">@Html.DisplayFor(modelItem => item.Piece)</a>
+                } else {
+                    <p>Non</p>
+                }
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.PrixDepart)

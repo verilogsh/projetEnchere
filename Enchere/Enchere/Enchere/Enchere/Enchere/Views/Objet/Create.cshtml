@@ -11,9 +11,9 @@
     }
 }
 
-<h2>Créér objet</h2>
+<h2>Create</h2>
 
-@using (Html.BeginForm("Créér", "Objet", FormMethod.Post, new { enctype = "multipart/form-data" })) 
+@using (Html.BeginForm("Create", "Objet", FormMethod.Post, new { enctype = "multipart/form-data" })) 
 {
                 @Html.AntiForgeryToken()
 
@@ -76,6 +76,6 @@
     </div>
 }
 
-                <div>
-                    @Html.ActionLink("Accueil", "Index", "Home")
-                </div>
+<div>
+    @Html.ActionLink("Back to List", "gestionObjetMembre", "Objet")
+</div>

@@ -4,14 +4,27 @@
     ViewBag.Title = "gestionObjetMembre";
 }
 
-<h2>Gestion Objet Membre</h2>
+@{
+    List<SelectListItem> list = new List<SelectListItem>();
+    list.Add(new SelectListItem { Text = "Tous les categories", Value = "none" });
+    foreach (var item in ViewBag.listCateg) {
+        if (item.Id == ViewBag.Selected) {
+            list.Add(new SelectListItem { Text = item.Nom, Value = item.Id, Selected = true });
+        } else {
+            list.Add(new SelectListItem { Text = item.Nom, Value = item.Id });
+        }
+    }
+}
+
+<h2>gestionObjetMembre</h2>
 
 <p>
-    @Html.ActionLink("Créér Nouveau", "Create")
+    @Html.ActionLink("Create New", "Create")
 </p>
 <table class="table table-striped">
     <tr>
         <th>
+            <!--a href="#" onclick="orderBy('@Html.DisplayNameFor(model => model.Nom)')">@Html.DisplayNameFor(model => model.Nom)</a>    -->
             @Html.DisplayNameFor(model => model.Nom)
         </th>
         <th>
@@ -21,7 +34,7 @@
             @Html.DisplayNameFor(model => model.DateInscri)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.IdCategorie)
+            @Html.DropDownList("Categorie", list, new { @onchange = "objetCategorie(this.value)" })
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Photo)
@@ -30,59 +43,69 @@
             @Html.DisplayNameFor(model => model.Piece)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Nouveau)
-        </th>
-        <th>
             @Html.DisplayNameFor(model => model.EnVent)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.PrixDepart)
+            @Html.DisplayNameFor(model => model.PrixDepart)$
         </th>
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Nom)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Description)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.DateInscri)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.IdCategorie)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Photo)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Piece)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Nouveau)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.EnVent)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.PrixDepart)
-        </td>
-        <td>
-            @Html.ActionLink("Editer", "Edit", new { id=item.Id }) |
-            @Html.ActionLink("Supprimer", "Delete", new { id=item.Id }) |
-            @{
-                if (item.EnVent) {
-                    @Html.ActionLink("Retirer de vente", "MettreEnvente", "Enchere", new { idObjet = item.Id, idVendeur= ViewBag.IdVendeur, vente = true }, null)
+    @foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Nom)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Description)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DateInscri)
+            </td>
+            <td>
+                @Html.DisplayFor(model => item.IdCategorie)
+            </td>
+            <td>
+                @if (item.Photo != null) {
+                    <img class="card-img-top float-left" src="~/images/@Html.DisplayFor(modelItem => item.Photo)" alt="Card image cap" width=50 height=30>
                 } else {
-                    @Html.ActionLink("Mettre en vente", "MettreEnvente", "Enchere", new { idObjet = item.Id, idVendeur = ViewBag.IdVendeur, vente = false }, null)
+                    <p>Non</p>
                 }
-            }
-            
-        </td>
-    </tr>
-}
+            </td>
+            <td>
+                @if (item.Piece != null) {
+                    <a href="@Url.Content("~/pieces/@Html.DisplayFor(modelItem => item.Piece)")" title="telecharger la piece jointe">@Html.DisplayFor(modelItem => item.Piece)</a>
+                } else {
+                    <p>Non</p>
+                }
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.EnVent)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PrixDepart)
+            </td>
+            <td>
+                @{
+                    if (!item.EnVent) {
+                        @Html.ActionLink("Nouvel enchere", "MettreEnvente", "Enchere", new { idObjet = item.Id, idVendeur = ViewBag.IdVendeur, vente = true }, null)
+                    }
+                }
+
+            </td>
+        </tr>
+                    }
 
 </table>
+
+@section MyOtherJavascript {
+    <script type="text/javascript">
+        function objetCategorie(id) {
+            window.location.href = "/Objet/gestionObjetMembre?idCateg=" + id;
+        }
+
+        function orderBy(ordre) {
+            window.location.href = "/Objet/gestionObjetMembre?ordre=" + ordre;
+        }
+    </script>
+}

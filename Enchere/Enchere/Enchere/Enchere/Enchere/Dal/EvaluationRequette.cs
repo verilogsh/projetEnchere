@@ -35,7 +35,34 @@ namespace Enchere.Dal
             }
         }
 
+        public static List<Evaluation> getEvaluationsByIdMembre(string IdMembre) {
 
+            string connectionString = ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
+            SqlConnection connection = new SqlConnection(connectionString);
+            string request = "SELECT * FROM Evaluation WHERE IdMembreDe = '" + IdMembre;
+
+            SqlCommand command = new SqlCommand(request, connection);
+
+            try {
+                connection.Open();
+                SqlDataReader reader = command.ExecuteReader();
+                List<Evaluation> ev = null;
+                while (reader.Read()) {
+                    ev.Add(new Evaluation((string)reader["Id"], (string)reader["IdEnchere"], (DateTime)reader["Date"], (int)reader["Cote"], (string)reader["Commentaire"], (string)reader["IdMembreDe"], (string)reader["IdMembreA"]));
+                }
+                reader.Close();
+                return ev;
+            } catch (Exception e) {
+                System.Console.WriteLine(e.Message);
+            } finally {
+                connection.Close();
+            }
+            return null;
+
+        }
+
+
+        ////////////////////////////  End of Haiqiang Xu   /////////////////////////////////////////////////////
         public static Evaluation getEvaluation(string id, string IdM)
         {
 
