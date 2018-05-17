@@ -28,8 +28,8 @@ namespace Enchere.Dal
                 EnchereRequette.insertEncher(encher);
 
                 string formatString = "yyyyMMddHHmmss";
-                string sample1 = "20180517000530";
-                string sample2 = "20180517000710";
+                string sample1 = "20180517101930";
+                string sample2 = "20180517102230";
                 DateTime dt1 = DateTime.ParseExact(sample1, formatString, null);
                 DateTime dt2 = DateTime.ParseExact(sample2, formatString, null);
 

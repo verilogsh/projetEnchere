@@ -128,15 +128,23 @@
                                 <li class="dropdown-submenu">
                                     <a class="test" href="#">Gestion Encheres <span class="caret"></span></a>
                                     
-                                        <ul class="dropdown-menu pull-right">
-                                            <li class="">@Html.ActionLink("Lister objets achetes", "getEnchereAcheteur", "Enchere", new { etat = 1 }, null)</li>
-                                            <li class="divider"></li>
-                                            <li>@Html.ActionLink("Lister objets vendus", "getEnchereVendeur", "Enchere", new { etat = 1 }, null)</li>
-                                            <li class="divider"></li>
-                                            <li>@Html.ActionLink("Lister echeres perdus", "getEnchereVendeur", "Enchere", new { etat = 2 }, null)</li>
-                                            <li class="divider"></li>
-                                            <li>@Html.ActionLink("Lister encheres en cours", "getEnchereVendeur", "Enchere", new { etat = 0 }, null)</li>
-                                        </ul>
+                                    <ul class="dropdown-menu pull-right">
+                                        <li class="">@Html.ActionLink("Lister objets achetes", "getEnchereAcheteur", "Enchere", new { etat = 1 }, null)</li>
+                                        <li class="divider"></li>
+                                        <li>@Html.ActionLink("Lister objets vendus", "getEnchereVendeur", "Enchere", new { etat = 1 }, null)</li>
+                                        <li class="divider"></li>
+                                        <li>@Html.ActionLink("Lister echeres perdus", "getEnchereVendeur", "Enchere", new { etat = 2 }, null)</li>
+                                        <li class="divider"></li>
+
+                                        <li>@Html.ActionLink("Lister encheres en cours", "getEnchereVendeur", "Enchere", new { etat = 0 }, null)</li>
+                                        <li class="divider"></li>
+                                        <li>@Html.ActionLink("Lister produits qui m'ont interesse - pdf", "PrintObjetIntressemembre", "Objet")</li>
+                                        <li class="divider"></li>
+                                        <li>@Html.ActionLink("Lister mes objets vendus - pdf", "PrintObjetvendu", "Enchere")</li>
+                                        <li class="divider"></li>
+                                        <li>@Html.ActionLink("Ventes chus ou sous peu echus - pdf", "PrintRapprt3", "Enchere")</li>
+
+                                    </ul>
                                    
                                 </li>
                                 <li class="divider"></li>

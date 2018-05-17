@@ -33,7 +33,7 @@ $(function () {
 
     //////////// affichage des cartes d'objet  ///////////////////////////////////
     function lireObjet(nb) {
-        alert(nb);
+        //alert(nb);
         $('#objetList').empty();
         $.getJSON('/Objet/lireObjetEnVente', { idCategorie: nb }, function (data) {
             
