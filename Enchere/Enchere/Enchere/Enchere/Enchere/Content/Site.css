@@ -22,3 +22,16 @@ select,
 textarea {
     max-width: 280px;
 }
+
+.error {
+    color: red;
+}
+
+.lang {
+    top:13px;
+}
+
+.me-right {
+    margin-right: 200px;
+
+}
