@@ -5,6 +5,7 @@ using System.Linq;
 using System.Net.Mail;
 using System.Web;
 using System.Web.Mvc;
+using Enchere.Models;
 
 namespace Enchere.Controllers
 {
@@ -173,6 +174,16 @@ namespace Enchere.Controllers
             string commission = Request.Form["Taux"];
             CommissionRequette.ChangerCommission(commission);
             return new RedirectResult(Request.UrlReferrer.AbsoluteUri);
+        }
+
+        /////////////////////// added by Haiqiang Xu  ///////////////////////
+        [HttpGet]
+        public ActionResult ViewVendeur(string id) {
+            Membre mb = MembreRequette.GetUserByNumero(id);
+            ViewBag.Id = id;
+            ViewBag.Cote = mb.Cote;
+            List<Evaluation> list = EvaluationRequette.getEvaluationsByIdMembre(id);
+            return View(list);
         }
     }
 }

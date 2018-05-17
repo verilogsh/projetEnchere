@@ -31,6 +31,7 @@ namespace Enchere.Controllers
         public ActionResult Create(Evaluation ev) {
             Encher en = EnchereRequette.getEnchereById(ev.IdEnchere);
             int etat = en.Etat;
+            string id = "";
 
             if (ModelState.IsValid) {
                 if (ev.Id == "acheteur") {
@@ -39,16 +40,20 @@ namespace Enchere.Controllers
                     } else if (etat == 4) {
                         EnchereRequette.setEnchereEtat(ev.IdEnchere, 5);
                     }
-                    
+                    id = en.IdVendeur;                  
                 } else if (ev.Id == "vendeur") {
                     if (etat == 1) {
                         EnchereRequette.setEnchereEtat(ev.IdEnchere, 4);
                     } else if (etat == 3) {
                         EnchereRequette.setEnchereEtat(ev.IdEnchere, 5);
                     }
+                    id = en.IdAcheteur;
                 }
                 ev.Id = Utility.IdGenerator.getEvaluationId();
                 EvaluationRequette.insertEvaluation(ev);
+                Membre mb = MembreRequette.GetUserByNumero(id);
+                mb.Cote += ev.Cote;
+                MembreRequette.Update(mb);
                 ////// update cote d'utilisateur  /////////////////
                 return RedirectToAction("Index","Home");
             }

@@ -11,14 +11,18 @@ namespace Enchere.Models {
         public string IdVendeur { get; set; }
         public string IdAcheteur { get; set; }
         [Required]
+        [GreatThan("PrixAchat")]
         public decimal PrixAchat { get; set; }
         [Required]
+        [GreatThan("PasDePrix")]
         public decimal PasDePrix { get; set; }
         [Required]
-        [DisplayFormat(DataFormatString = "{0:yyyy/MM/dd}")]
+        [LaterThan("DateDepart")]
+        [DataType(DataType.Date), DisplayFormat(DataFormatString = "{0:yyyy/MM/dd}")]
         public DateTime DateDepart { get; set; }
         [Required]
-        [DisplayFormat(DataFormatString = "{0:yyyy/MM/dd}")]
+        [LaterThanOther("DateFin")]
+        [DataType(DataType.Date), DisplayFormat(DataFormatString = "{0:yyyy/MM/dd}")]
         public DateTime DateFin { get; set; }
         [Required]
         public int Etat { get; set; }
@@ -33,7 +37,7 @@ namespace Enchere.Models {
 
 
 
-        public Encher() {}
+        public Encher() { }
 
         public Encher(string id, string idObjet, string idVendeur, string idAcheteur, decimal prixAchat, decimal pasDePrix, DateTime dateDepart, DateTime dateFin, int etat) {
             Id = id;
@@ -52,6 +56,79 @@ namespace Enchere.Models {
                 yield return
                   new ValidationResult(errorMessage: "EndDate must be greater than StartDate",
                                        memberNames: new[] { "EndDate" });
+            }
+        }
+
+        public class GreatThanAttribute : ValidationAttribute {
+            string attri { get; set; }
+            public GreatThanAttribute(string attri) {
+                this.attri = attri;
+            }
+
+            protected override ValidationResult IsValid(object value, ValidationContext validationContext) {
+                var property = validationContext.ObjectType.GetProperty(attri);
+                if (property == null) {
+                    return new ValidationResult(
+                        string.Format("Unknown property: {0}", attri)
+                    );
+                }
+
+                if (attri == "PrixAchat" && (decimal)value <= 0 || attri == "PasDePrix" && (decimal)value <= 0) {
+                    return new ValidationResult(validationContext.DisplayName + " ne peut pas equal ou moins que zero!");
+                }
+
+                return null;
+            }
+        }
+
+        public class LaterThanAttribute : ValidationAttribute {
+            string attri { get; set; }
+            public LaterThanAttribute(string attri) {
+                this.attri = attri;
+            }
+
+            protected override ValidationResult IsValid(object value, ValidationContext validationContext) {
+                var property = validationContext.ObjectType.GetProperty(attri);
+                if (property == null) {
+                    return new ValidationResult(
+                        string.Format("Unknown property: {0}", attri)
+                    );
+                }
+
+                DateTime dt = Convert.ToDateTime(value);
+
+                if (attri == "DateDepart" && dt.CompareTo(DateTime.Now) <= 0) {
+                    return new ValidationResult("Date depart ne peut pas etre plus tot qu'aujourd'hui!");
+                }
+
+                var por = validationContext.ObjectInstance.GetType().GetProperty("DateFin");
+                DateTime dt1 = Convert.ToDateTime(por.GetValue(validationContext.ObjectInstance, null));
+
+                return null;
+            }
+        }
+
+        public class LaterThanOtherAttribute : ValidationAttribute {
+            string attri { get; set; }
+            public LaterThanOtherAttribute(string attri) {
+                this.attri = attri;
+            }
+
+            protected override ValidationResult IsValid(object value, ValidationContext validationContext) {
+                var property = validationContext.ObjectType.GetProperty(attri);
+                if (property == null) {
+                    return new ValidationResult(
+                        string.Format("Unknown property: {0}", attri)
+                    );
+                }
+
+                DateTime dt = Convert.ToDateTime(value);
+                var por = validationContext.ObjectInstance.GetType().GetProperty("DateDepart");
+                DateTime dt1 = Convert.ToDateTime(por.GetValue(validationContext.ObjectInstance, null));
+                if (attri == "DateFin" && dt.CompareTo(dt1) <= 0) {
+                    return new ValidationResult("Date de fin ne peut pas etre plus tot que la date depart!");
+                }
+                return null;
             }
         }
     }

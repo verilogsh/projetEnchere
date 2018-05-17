@@ -90,6 +90,8 @@ namespace Enchere.Utility {
             } else {
                 ObjetRequette.setObjetOwner(idObjet, en.IdAcheteur);
                 EnchereRequette.setEnchereEtat(idEnchere, 1);
+                int commission = Convert.ToInt16(CommissionRequette.ChercherCommission());
+                CommissionRequette.insererCommissions(new Commissions(0, commission, en.PrixAchat, idEnchere, DateTime.Now));
             }
             ObjetRequette.setObjetEnVente(idObjet, 0);
         }

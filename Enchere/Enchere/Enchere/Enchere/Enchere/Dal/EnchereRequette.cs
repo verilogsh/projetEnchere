@@ -145,6 +145,23 @@ namespace Enchere.Dal {
 
         }
 
+        public static void insertHistorique(Historique his) {
+            string connectionString = ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
+            SqlConnection connection = new SqlConnection(connectionString);
+
+            string request = "INSERT INTO Historique (IdMembre, IdEnchere, Prix, Date) VALUES ('" + his.IdMembre + "', '" + his.IdEnchere + "', '" + his.Prix + "', '" + his.Date.ToString("yyyy-MM-dd") + "')";
+            SqlCommand command = new SqlCommand(request, connection);
+
+            try {
+                connection.Open();
+                command.ExecuteNonQuery();
+            } catch (Exception e) {
+                System.Console.WriteLine(e.Message);
+            } finally {
+                connection.Close();
+            }
+        }
+
 
         public static List<Encher> getEncheresRapport3()
         {

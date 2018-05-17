@@ -196,6 +196,7 @@
     <Compile Include="Models\ViewModel\MembreMDP.cs" />
     <Compile Include="Models\ViewModel\EnchereViewModel.cs" />
     <Compile Include="Models\ViewModel\ObjetViewModel.cs" />
+    <Compile Include="Models\ViewModel\UpdateEnchereViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Ressource\ResourceView.fr.Designer.cs">
       <DependentUpon>ResourceView.fr.resx</DependentUpon>
@@ -348,6 +349,7 @@
     <Content Include="Views\Objet\MesObjetsEnVente.cshtml" />
     <Content Include="Views\Evaluation\SyntheseVenteAnnuel.cshtml" />
     <Content Include="Views\Objet\ObjetsEnVenteSansAuth.cshtml" />
+    <Content Include="Views\Home\ViewVendeur.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Ressource\ResourceView.fr.resx">
