@@ -40,7 +40,7 @@ namespace Enchere.Utility {
             string idObjet = (string)dataMap["idObjet"];
 
             ///// Taches pour commencer une enchere ///////////////
-            ObjetRequette.setObjetEnVente(idObjet, 1);
+            //ObjetRequette.setObjetEnVente(idObjet, 1);
             Encher en = EnchereRequette.getEnchereById(idEnchere);
             en.Etat = 0;
             EnchereRequette.updateEnchere(en);

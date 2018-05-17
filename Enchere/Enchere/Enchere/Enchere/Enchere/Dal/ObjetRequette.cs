@@ -48,11 +48,11 @@ namespace Enchere.Dal {
             string request;
             if (idCategorie == "0")
             {
-                request = "SELECT o.Id, e.Id IdEnchere, o.Nom, o.Description, o.IdCategorie, o.Photo, o.Piece, o.IdMembre IdVendeur, e.IdAcheteur, o.PrixDepart, e.PrixAchat, e.DateDepart, e.DateFin, e.PasDePrix FROM Enchere e INNER JOIN Objet o ON o.Id = e.IdObjet";
+                request = "SELECT o.Id, e.Id IdEnchere, o.Nom, o.Description, o.IdCategorie, o.Photo, o.Piece, o.IdMembre IdVendeur, e.IdAcheteur, o.PrixDepart, e.PrixAchat, e.DateDepart, e.DateFin, e.PasDePrix FROM Enchere e INNER JOIN Objet o ON o.Id = e.IdObjet WHERE e.Etat = 0";
             }
             else
             {
-                request = "SELECT o.Id, e.Id IdEnchere, o.Nom, o.Description, o.IdCategorie, o.Photo, o.Piece, o.IdMembre IdVendeur, e.IdAcheteur, o.PrixDepart, e.PrixAchat, e.DateDepart, e.DateFin, e.PasDePrix FROM Enchere e INNER JOIN Objet o ON o.Id = e.IdObjet WHERE o.IdCategorie = '" + idCategorie + "'";
+                request = "SELECT o.Id, e.Id IdEnchere, o.Nom, o.Description, o.IdCategorie, o.Photo, o.Piece, o.IdMembre IdVendeur, e.IdAcheteur, o.PrixDepart, e.PrixAchat, e.DateDepart, e.DateFin, e.PasDePrix FROM Enchere e INNER JOIN Objet o ON o.Id = e.IdObjet WHERE o.IdCategorie = '" + idCategorie + "' WHERE e.Etat = 0";
             }
 
             SqlCommand command = new SqlCommand(request, connection);

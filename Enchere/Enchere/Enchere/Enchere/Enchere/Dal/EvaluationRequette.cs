@@ -17,7 +17,7 @@ namespace Enchere.Dal
             string connectionString = ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
             SqlConnection connection = new SqlConnection(connectionString);
 
-            string request = "INSERT INTO Evaluation VALUES ('" + ev.Id.Trim() + "','" + ev.IdEnchere.Trim() + "', '" + ev.Date.ToString("yyyy-MM-dd") + "', " + ev.Cote + ", '" + "', '" + ev.Commentaire + ev.IdMembreDe + "', '" + ev.IdMembreA + "')";
+            string request = "INSERT INTO Evaluation VALUES ('" + ev.Id.Trim() + "','" + ev.IdEnchere.Trim() + "', '" + ev.Date.ToString("yyyy-MM-dd") + "', " + ev.Cote  + ", '" + ev.Commentaire + "', '" + ev.IdMembreDe + "', '" + ev.IdMembreA + "')";
             SqlCommand command = new SqlCommand(request, connection);
 
             try
@@ -39,14 +39,14 @@ namespace Enchere.Dal
 
             string connectionString = ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
             SqlConnection connection = new SqlConnection(connectionString);
-            string request = "SELECT * FROM Evaluation WHERE IdMembreDe = '" + IdMembre;
+            string request = "SELECT * FROM Evaluation WHERE IdMembreA = '" + IdMembre + "'";
 
             SqlCommand command = new SqlCommand(request, connection);
 
             try {
                 connection.Open();
                 SqlDataReader reader = command.ExecuteReader();
-                List<Evaluation> ev = null;
+                List<Evaluation> ev = new List<Evaluation>();
                 while (reader.Read()) {
                     ev.Add(new Evaluation((string)reader["Id"], (string)reader["IdEnchere"], (DateTime)reader["Date"], (int)reader["Cote"], (string)reader["Commentaire"], (string)reader["IdMembreDe"], (string)reader["IdMembreA"]));
                 }

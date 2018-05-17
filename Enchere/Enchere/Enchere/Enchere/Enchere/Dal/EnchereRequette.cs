@@ -130,7 +130,7 @@ namespace Enchere.Dal {
         public static void updateEnchere(Encher en) {
             string connectionString = ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
             SqlConnection connection = new SqlConnection(connectionString);
-            string request = "UPDATE Enchere SET IdAcheteur = '" + en.IdAcheteur + "', PrixAchat = '" + en.PrixAchat + "' WHERE id = '" + en.Id + "'";
+            string request = "UPDATE Enchere SET IdAcheteur = '" + en.IdAcheteur + "', PrixAchat = '" + en.PrixAchat + "', Etat = " + en.Etat + " WHERE id = '" + en.Id + "'";
 
             SqlCommand command = new SqlCommand(request, connection);
 
