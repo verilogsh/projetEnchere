@@ -1,19 +1,20 @@
-﻿@{
+﻿@using Enchere.Ressource
+@{
     ViewBag.Title = "Contactez nous";
 }
-@if(ViewBag.Error != null)
+@if (ViewBag.Error != null)
 {
     <h2>@ViewBag.Error</h2>
 }
 <h2>Contactez nous</h2>
-<div  class="container">
+<div class="container">
     <form method="post" action="SendEmail">
-        <span class="form-control-static">Courriel:</span>
+        <span class="form-control-static">@ResourceView.Courriel:</span>
         <input class="form-control" type="Email" name="emetteur" />
-        <span class="form-control-static">Sujet:</span>
+        <span class="form-control-static">@ResourceView.Sujet:</span>
         <input class="form-control" type="text" name="subject" />
         <span class="form-control-static">Message:</span>
-        <textarea class="form-control" type="text" name="message" ></textarea><br />
-        <button class="btn btn-primary" type="submit">Envoyer</button>
+        <textarea class="form-control" type="text" name="message"></textarea><br />
+        <button class="btn btn-primary" type="submit">@ResourceView.Envoyer</button>
     </form>
 </div>

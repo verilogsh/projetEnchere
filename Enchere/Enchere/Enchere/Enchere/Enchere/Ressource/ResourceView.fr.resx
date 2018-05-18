@@ -205,7 +205,7 @@
     <value>Connection</value>
   </data>
   <data name="Deconnexion" xml:space="preserve">
-    <value>Deconnexion</value>
+    <value>Déconnexion</value>
   </data>
   <data name="gestobj" xml:space="preserve">
     <value>Gestion des objets</value>
@@ -221,5 +221,113 @@
   </data>
   <data name="nom2" xml:space="preserve">
     <value>Nom</value>
+  </data>
+  <data name="Acheter" xml:space="preserve">
+    <value>Acheter</value>
+  </data>
+  <data name="Bonjour" xml:space="preserve">
+    <value>Bonjour</value>
+  </data>
+  <data name="Changer" xml:space="preserve">
+    <value>Changer</value>
+  </data>
+  <data name="Changercommission" xml:space="preserve">
+    <value>Changer commission</value>
+  </data>
+  <data name="Commissionactuel" xml:space="preserve">
+    <value>Commission actuel</value>
+  </data>
+  <data name="Créérobjet" xml:space="preserve">
+    <value>Créér objet</value>
+  </data>
+  <data name="Derniersproduits" xml:space="preserve">
+    <value>Derniers produits</value>
+  </data>
+  <data name="Editerdonnéesobjet" xml:space="preserve">
+    <value>Editer données objet</value>
+  </data>
+  <data name="Encherir" xml:space="preserve">
+    <value>Encherir</value>
+  </data>
+  <data name="Envoyer" xml:space="preserve">
+    <value>Envoyer</value>
+  </data>
+  <data name="Fin" xml:space="preserve">
+    <value>Fin</value>
+  </data>
+  <data name="GestionEncheres" xml:space="preserve">
+    <value>Gestion Enchères</value>
+  </data>
+  <data name="Inscriptionsite" xml:space="preserve">
+    <value>Inscription</value>
+  </data>
+  <data name="Listedesobjets" xml:space="preserve">
+    <value>Liste des objets</value>
+  </data>
+  <data name="Listerecheresperdus" xml:space="preserve">
+    <value>Lister echères perdus</value>
+  </data>
+  <data name="Listerencheresencherits" xml:space="preserve">
+    <value>Lister enchères encherits</value>
+  </data>
+  <data name="Listerencheresencours" xml:space="preserve">
+    <value>Lister enchères en cours</value>
+  </data>
+  <data name="Listermesobjetsvenduspdf" xml:space="preserve">
+    <value>Lister mes objets vendus - pdf</value>
+  </data>
+  <data name="Listerobjetsachetes" xml:space="preserve">
+    <value>Lister objets achetés</value>
+  </data>
+  <data name="Listerobjetsvendus" xml:space="preserve">
+    <value>Lister objets vendus</value>
+  </data>
+  <data name="Listerproduitsinteressepdf" xml:space="preserve">
+    <value>Lister produits qui m'ont intéressés - pdf</value>
+  </data>
+  <data name="Mesobjetsenvente" xml:space="preserve">
+    <value>Mes objets en vente</value>
+  </data>
+  <data name="PageCommission" xml:space="preserve">
+    <value>Page Commission</value>
+  </data>
+  <data name="PageRapports" xml:space="preserve">
+    <value>Page Rapports</value>
+  </data>
+  <data name="PrixActuel" xml:space="preserve">
+    <value>Prix Actuel</value>
+  </data>
+  <data name="PrixDepart" xml:space="preserve">
+    <value>Prix Départ</value>
+  </data>
+  <data name="Rapports" xml:space="preserve">
+    <value>Rapports</value>
+  </data>
+  <data name="Rapportsurlacotedesmembres" xml:space="preserve">
+    <value>Rapport sur la cote des membres</value>
+  </data>
+  <data name="Rapportsursynthesevente" xml:space="preserve">
+    <value>Rapport sur la synthese de vente annuelle</value>
+  </data>
+  <data name="Récuperationmot" xml:space="preserve">
+    <value>Récuperation du nouveau mot de passe</value>
+  </data>
+  <data name="Sujet" xml:space="preserve">
+    <value>Sujet</value>
+  </data>
+  <data name="Telechager" xml:space="preserve">
+    <value>Téléchager</value>
+  </data>
+  <data name="Vendeur" xml:space="preserve">
+    <value>Vendeur</value>
+  </data>
+  <data name="Ventesechusousouspeuechuspdf" xml:space="preserve">
+    <value>Ventes echus ou sous peu echus - pdf</value>
+  </data>
+  <data name="Zoneadministration" xml:space="preserve">
+    <value>Zone administration</value>
+  </data>
+  <data name="telechargerlapiecejointe" xml:space="preserve">
+    <value>télécharger la pièce jointe</value>
   </data>
 </root>

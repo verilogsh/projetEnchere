@@ -1,5 +1,5 @@
 ﻿@using Enchere.Models
-
+@using Enchere.Ressource
 @{
     ViewBag.Title = "lireObjetIntersse";
 }
@@ -13,10 +13,10 @@
 
 
         <ul>
-            @foreach(ObjetEnchereAff m in ViewBag.list)
+            @foreach (ObjetEnchereAff m in ViewBag.list)
             {
-            <li>@m.Nom</li>
+                <li>@m.Nom</li>
             }
         </ul>
-        }
     }
+}

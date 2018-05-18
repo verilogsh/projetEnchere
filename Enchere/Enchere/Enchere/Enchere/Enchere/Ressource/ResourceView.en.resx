@@ -204,4 +204,127 @@
   <data name="nom2" xml:space="preserve">
     <value>Name</value>
   </data>
+  <data name="Acheter" xml:space="preserve">
+    <value>Buy</value>
+  </data>
+  <data name="Bonjour" xml:space="preserve">
+    <value>Hello</value>
+  </data>
+  <data name="Changer" xml:space="preserve">
+    <value>Change</value>
+  </data>
+  <data name="Changercommission" xml:space="preserve">
+    <value>Change commission</value>
+  </data>
+  <data name="Commissionactuel" xml:space="preserve">
+    <value>Commission Rate Now</value>
+  </data>
+  <data name="Créérobjet" xml:space="preserve">
+    <value>Create object</value>
+  </data>
+  <data name="Deconnexion" xml:space="preserve">
+    <value>Log out</value>
+  </data>
+  <data name="Derniersproduits" xml:space="preserve">
+    <value>Recent products</value>
+  </data>
+  <data name="Editerdonnéesobjet" xml:space="preserve">
+    <value>Edit object information</value>
+  </data>
+  <data name="Encherir" xml:space="preserve">
+    <value>Bid</value>
+  </data>
+  <data name="Envoyer" xml:space="preserve">
+    <value>Send</value>
+  </data>
+  <data name="Fin" xml:space="preserve">
+    <value>End</value>
+  </data>
+  <data name="GestionEncheres" xml:space="preserve">
+    <value>Bid management</value>
+  </data>
+  <data name="gestobj" xml:space="preserve">
+    <value>Object Management</value>
+  </data>
+  <data name="Inscriptionsite" xml:space="preserve">
+    <value>Sign up</value>
+  </data>
+  <data name="Listedesobjets" xml:space="preserve">
+    <value>Object list</value>
+  </data>
+  <data name="Listerecheresperdus" xml:space="preserve">
+    <value>List of lost bids</value>
+  </data>
+  <data name="Listerencheresencherits" xml:space="preserve">
+    <value>List of gained bids</value>
+  </data>
+  <data name="Listerencheresencours" xml:space="preserve">
+    <value>Ongoing Bids</value>
+  </data>
+  <data name="Listermesobjetsvenduspdf" xml:space="preserve">
+    <value>Sold objects - pdf</value>
+  </data>
+  <data name="Listerobjetsachetes" xml:space="preserve">
+    <value>Bought objects</value>
+  </data>
+  <data name="Listerobjetsvendus" xml:space="preserve">
+    <value>Sold objects</value>
+  </data>
+  <data name="Listerproduitsinteressepdf" xml:space="preserve">
+    <value>Interested-me-products - pdf</value>
+  </data>
+  <data name="ListeUsers" xml:space="preserve">
+    <value>Users list</value>
+  </data>
+  <data name="mdfprofil" xml:space="preserve">
+    <value>Modify profile</value>
+  </data>
+  <data name="Mesobjetsenvente" xml:space="preserve">
+    <value>Selling list</value>
+  </data>
+  <data name="ModifierMDP" xml:space="preserve">
+    <value>Modify password</value>
+  </data>
+  <data name="PageCommission" xml:space="preserve">
+    <value>Commission Page</value>
+  </data>
+  <data name="PageRapports" xml:space="preserve">
+    <value>Reports Page</value>
+  </data>
+  <data name="PrixActuel" xml:space="preserve">
+    <value>Current Price</value>
+  </data>
+  <data name="PrixDepart" xml:space="preserve">
+    <value>Starting price</value>
+  </data>
+  <data name="Rapports" xml:space="preserve">
+    <value>Reports</value>
+  </data>
+  <data name="Rapportsurlacotedesmembres" xml:space="preserve">
+    <value>Report on member quotation</value>
+  </data>
+  <data name="Rapportsursynthesevente" xml:space="preserve">
+    <value>Report on the annual sales summary</value>
+  </data>
+  <data name="Récuperationmot" xml:space="preserve">
+    <value>Recover the new password</value>
+  </data>
+  <data name="Sujet" xml:space="preserve">
+    <value>Subject</value>
+  </data>
+  <data name="Telechager" xml:space="preserve">
+    <value>Download</value>
+  </data>
+  <data name="telechargerlapiecejointe" xml:space="preserve">
+    <value>Download attached file</value>
+  </data>
+  <data name="Vendeur" xml:space="preserve">
+    <value>Seller</value>
+  </data>
+  <data name="Ventesechusousouspeuechuspdf" xml:space="preserve">
+    <value>Finished or finishing bids - pdf</value>
+  </data>
+  <data name="Zoneadministration" xml:space="preserve">
+    <value>Administration zone</value>
+  </data>
 </root>

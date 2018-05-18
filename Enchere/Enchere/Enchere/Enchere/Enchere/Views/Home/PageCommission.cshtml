@@ -1,15 +1,16 @@
-﻿
+﻿@using Enchere.Ressource
+
 @{
     ViewBag.Title = "PageCommission";
 }
 
-<h2>Page Commission</h2>
+<h2>@ResourceView.PageCommission</h2>
 <br />
 <hr />
 <br />
-<p><b>Commission actuel:</b> @ViewBag.Commission %</p>
+<p><b>@ResourceView.Commissionactuel:</b> @ViewBag.Commission %</p>
 <br />
-<p><b>Changer commission:</b></p>
+<p><b>@ResourceView.Changercommission:</b></p>
 <br />
 <form action="/Home/ModifierCommission" method="post">
     @{
@@ -21,6 +22,6 @@
 
         @Html.DropDownList("Taux", lesTauxCommissions)
     }
-    <input type="submit" value="Changer" />
-    
+    <input type="submit" value="@ResourceView.Changer" />
+
 </form>

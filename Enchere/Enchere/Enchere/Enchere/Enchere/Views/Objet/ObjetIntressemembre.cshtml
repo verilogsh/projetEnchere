@@ -1,5 +1,5 @@
 ﻿@model IEnumerable<Enchere.Models.HistoEncheObjet>
-
+@using Enchere.Ressource
 @{
     ViewBag.Title = "ObjetIntressemembre";
 }
@@ -7,7 +7,7 @@
 <h2>Objets qui m'ont intéressés</h2>
 
 <p>
-    @Html.ActionLink("Imprimer le rapport", "PrintObjetIntressemembre","Objet")
+    @Html.ActionLink("Imprimer le rapport", "PrintObjetIntressemembre", "Objet")
 </p>
 <table class="table">
     <tr>
@@ -47,57 +47,58 @@
         <th>
             @Html.DisplayNameFor(model => model.DateFin)
         </th>
-    
+
         <th>
             @Html.DisplayNameFor(model => model.Etat)
         </th>
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.IdEnchere)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Nom)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Description)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.IdCategorie)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Photo)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Piece)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.IdVendeur)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.IdAcheteur)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.PrixDepart)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.PrixActuel)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.DateDepart)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.DateFin)
-        </td>
-       
-        <td>
-            @Html.DisplayFor(modelItem => item.Etat)
-        </td>
-       
-    </tr>
-}
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.IdEnchere)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Nom)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Description)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IdCategorie)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Photo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Piece)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IdVendeur)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IdAcheteur)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PrixDepart)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PrixActuel)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DateDepart)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DateFin)
+            </td>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.Etat)
+            </td>
+
+        </tr>
+    }
 
 </table>

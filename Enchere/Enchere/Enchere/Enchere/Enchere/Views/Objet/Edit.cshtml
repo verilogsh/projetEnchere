@@ -1,26 +1,30 @@
 ﻿@model Enchere.Models.ViewModel.ObjetViewModel
-
+@using Enchere.Ressource
 @{
     ViewBag.Title = "Edit";
 }
 
 @{
     List<SelectListItem> list = new List<SelectListItem>();
-    foreach (var item in ViewBag.listCateg) {
-        if (item.Id == Model.Categorie) {
+    foreach (var item in ViewBag.listCateg)
+    {
+        if (item.Id == Model.Categorie)
+        {
             list.Add(new SelectListItem { Text = item.Nom, Value = item.Id, Selected = true });
-        } else {
+        }
+        else
+        {
             list.Add(new SelectListItem { Text = item.Nom, Value = item.Id });
         }
 
     }
 }
-<h2>Editer données objet</h2>
+<h2>@ResourceView.Editerdonnéesobjet</h2>
 
 @using (Html.BeginForm("Edit", "Objet", FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
     @Html.AntiForgeryToken()
-    
+
     <div class="form-horizontal">
         <h4>ObjetViewModel</h4>
         <hr />
@@ -75,12 +79,12 @@
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Sauvegarder" class="btn btn-default" />
+                <input type="submit" value="@ResourceView.Sauvegarder" class="btn btn-default" />
             </div>
         </div>
     </div>
 }
 
 <div>
-    @Html.ActionLink("Liste des objets", "gestionObjetMembre", "Objet")
+    @Html.ActionLink(@ResourceView.Listedesobjets, "gestionObjetMembre", "Objet")
 </div>

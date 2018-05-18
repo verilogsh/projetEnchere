@@ -1,5 +1,5 @@
 ﻿@model IEnumerable<Enchere.Models.EnchereViewModel>
-
+@using Enchere.Ressource
 @{
     ViewBag.Title = "gestionEnchereMembre";
 }
@@ -37,7 +37,8 @@
         <th></th>
     </tr>
 
-    @foreach (var item in Model) {
+    @foreach (var item in Model)
+    {
         <tr>
             <td>
                 @Html.DisplayFor(modelItem => item.Nom)
@@ -52,16 +53,22 @@
                 @Html.DisplayFor(modelItem => item.IdCategorie)
             </td>
             <td>
-                @if (item.Photo != null) {
+                @if (item.Photo != null)
+                {
                     <img class="card-img-top float-left" src="~/images/@Html.DisplayFor(modelItem => item.Photo)" alt="Card image cap" width=50 height=30>
-                } else {
+                }
+                else
+                {
                     <p>Non</p>
                 }
             </td>
             <td>
-                @if (item.Piece != null) {
+                @if (item.Piece != null)
+                {
                     <a href="@Url.Content("~/pieces/@Html.DisplayFor(modelItem => item.Piece)")" title="telecharger la piece jointe">@Html.DisplayFor(modelItem => item.Piece)</a>
-                } else {
+                }
+                else
+                {
                     <p>Non</p>
                 }
             </td>
@@ -72,9 +79,12 @@
                 @Html.DisplayFor(modelItem => item.PrixActuel)
             </td>
             <td>
-                @if (item.Etat == 1 || item.Etat == 4) {
+                @if (item.Etat == 1 || item.Etat == 4)
+                {
                     @Html.ActionLink("Nouvelle Evaluation", "Create", "Evaluation", new { idEnchere = item.IdEnchere, op = "acheteur", rtnUrl = HttpContext.Current.Request.RawUrl }, null)
-                } else if (item.Etat == 3 || item.Etat == 5) {
+                }
+                else if (item.Etat == 3 || item.Etat == 5)
+                {
                     @Html.ActionLink("Voir Evaluation", "List", "Evaluation", new { idEnchere = item.IdEnchere, op = "acheteur", rtnUrl = HttpContext.Current.Request.RawUrl }, null)
                 }
             </td>

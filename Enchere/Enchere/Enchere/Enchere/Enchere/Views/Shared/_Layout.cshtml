@@ -54,7 +54,7 @@
                 <ul class="nav navbar-nav">
                     <li>@Html.ActionLink(@ResourceView.Accueil, "Index", "Home")</li>
                     <li>@Html.ActionLink("Contact", "SendEmail", "Home")</li>
-                    <li>@Html.ActionLink("Mes objets en vente", "MesObjetsEnVente", "Objet")</li>
+                    <li>@Html.ActionLink(@ResourceView.Mesobjetsenvente, "MesObjetsEnVente", "Objet")</li>
                     <li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</li>
                     <li>
                         <div class="lang">
@@ -80,7 +80,7 @@
                     {
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" ariaexpanded="false">
-                                Zone administration
+                                @ResourceView.Zoneadministration
                                 <span class="caret"></span>
                             </a>
                             <ul class="dropdown-menu" role="menu">
@@ -88,32 +88,28 @@
                                 <li class="divider"></li>
                                 <li>@Html.ActionLink("Categories", "ListeCategories", "Categories")</li>
                                 <li class="divider"></li>
-                                <li>@Html.ActionLink("Rapports", "PageRapports", "Home")</li>
+                                <li>@Html.ActionLink(@ResourceView.Rapports, "PageRapports", "Home")</li>
                                 <li class="divider"></li>
                                 <li>@Html.ActionLink("Commission", "PageCommission", "Home")</li>
                                 <li class="divider"></li>
-                                <li>@Html.ActionLink("Derniers produits", "DerniersProduits", "Objet")</li>
+                                <li>@Html.ActionLink(@ResourceView.Derniersproduits, "DerniersProduits", "Objet")</li>
                             </ul>
                         </li>
                     }
-                    else if (User.Identity.IsAuthenticated)
-                    {
-
-
-                    }
+                   
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
                     @if (!User.Identity.IsAuthenticated)
                     {
-                        <li>@Html.ActionLink("Inscription", "Inscription", "Account")</li>
-                        <li>@Html.ActionLink("Connection", "Login", "Account")</li>
+                        <li>@Html.ActionLink(@ResourceView.Inscriptionsite, "Inscription", "Account")</li>
+                        <li>@Html.ActionLink(@ResourceView.Connexion, "Login", "Account")</li>
                     }
                     else if (User.Identity.IsAuthenticated)
                     {
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown"
                                role="button" ariaexpanded="false">
-                                Bonjour : @User.Identity.Name
+                                @ResourceView.Bonjour : @User.Identity.Name
                                 <span class="caret"></span>
                             </a>
                             <ul class="dropdown-menu" role="menu">
@@ -123,26 +119,26 @@
                                 <li class="divider"></li>
                                 <li>@Html.ActionLink(@ResourceView.gestobj, "gestionObjetMembre", "Objet")</li>
                                 <li class="divider"></li>
-                                <li>@Html.ActionLink("Lister encheres encherits", "getEnchereAcheteur", "Enchere", new { etat = 0 }, null)</li>
+                                <li>@Html.ActionLink(@ResourceView.Listerencheresencherits, "getEnchereAcheteur", "Enchere", new { etat = 0 }, null)</li>
                                 <li class="divider"></li>
                                 <li class="dropdown-submenu">
-                                    <a class="test" href="#">Gestion Encheres <span class="caret"></span></a>
+                                    <a class="test" href="#">@ResourceView.GestionEncheres <span class="caret"></span></a>
                                     
                                     <ul class="me-right">
-                                        <li class="">@Html.ActionLink("Lister objets achetes", "getEnchereAcheteur", "Enchere", new { etat = 1 }, null)</li>
+                                        <li class="">@Html.ActionLink(@ResourceView.Listerobjetsachetes, "getEnchereAcheteur", "Enchere", new { etat = 1 }, null)</li>
                                         <li class="divider"></li>
-                                        <li>@Html.ActionLink("Lister objets vendus", "getEnchereVendeur", "Enchere", new { etat = 1 }, null)</li>
+                                        <li>@Html.ActionLink(@ResourceView.Listerobjetsvendus, "getEnchereVendeur", "Enchere", new { etat = 1 }, null)</li>
                                         <li class="divider"></li>
-                                        <li>@Html.ActionLink("Lister echeres perdus", "getEnchereVendeur", "Enchere", new { etat = 2 }, null)</li>
+                                        <li>@Html.ActionLink(@ResourceView.Listerecheresperdus, "getEnchereVendeur", "Enchere", new { etat = 2 }, null)</li>
                                         <li class="divider"></li>
 
-                                        <li>@Html.ActionLink("Lister encheres en cours", "getEnchereVendeur", "Enchere", new { etat = 0 }, null)</li>
+                                        <li>@Html.ActionLink(@ResourceView.Listerencheresencours, "getEnchereVendeur", "Enchere", new { etat = 0 }, null)</li>
                                         <li class="divider"></li>
-                                        <li>@Html.ActionLink("Lister produits qui m'ont interesse - pdf", "PrintObjetIntressemembre", "Objet")</li>
+                                        <li>@Html.ActionLink(@ResourceView.Listerproduitsinteressepdf, "PrintObjetIntressemembre", "Objet")</li>
                                         <li class="divider"></li>
-                                        <li>@Html.ActionLink("Lister mes objets vendus - pdf", "PrintObjetvendu", "Enchere")</li>
+                                        <li>@Html.ActionLink(@ResourceView.Listermesobjetsvenduspdf, "PrintObjetvendu", "Enchere")</li>
                                         <li class="divider"></li>
-                                        <li>@Html.ActionLink("Ventes echus ou sous peu echus - pdf", "PrintRapprt3", "Enchere")</li>
+                                        <li>@Html.ActionLink(@ResourceView.Ventesechusousouspeuechuspdf, "PrintRapprt3", "Enchere")</li>
 
                                     </ul>
                                    

@@ -70,6 +70,15 @@ namespace Enchere.Ressource {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Acheter.
+        /// </summary>
+        public static string Acheter {
+            get {
+                return ResourceManager.GetString("Acheter", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Adresse.
         /// </summary>
         public static string Adresse {
@@ -97,11 +106,47 @@ namespace Enchere.Ressource {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Bonjour.
+        /// </summary>
+        public static string Bonjour {
+            get {
+                return ResourceManager.GetString("Bonjour", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Changer.
+        /// </summary>
+        public static string Changer {
+            get {
+                return ResourceManager.GetString("Changer", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Changer commission.
+        /// </summary>
+        public static string Changercommission {
+            get {
+                return ResourceManager.GetString("Changercommission", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Civilté.
         /// </summary>
         public static string Civilté {
             get {
                 return ResourceManager.GetString("Civilté", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Commission actuel.
+        /// </summary>
+        public static string Commissionactuel {
+            get {
+                return ResourceManager.GetString("Commissionactuel", resourceCulture);
             }
         }
         
@@ -169,6 +214,15 @@ namespace Enchere.Ressource {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Créér objet.
+        /// </summary>
+        public static string Créérobjet {
+            get {
+                return ResourceManager.GetString("Créérobjet", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Deconnexion.
         /// </summary>
         public static string Deconnexion {
@@ -178,11 +232,38 @@ namespace Enchere.Ressource {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Derniers produits.
+        /// </summary>
+        public static string Derniersproduits {
+            get {
+                return ResourceManager.GetString("Derniersproduits", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Editer.
         /// </summary>
         public static string Editer {
             get {
                 return ResourceManager.GetString("Editer", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Editer données objet.
+        /// </summary>
+        public static string Editerdonnéesobjet {
+            get {
+                return ResourceManager.GetString("Editerdonnéesobjet", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Encherir.
+        /// </summary>
+        public static string Encherir {
+            get {
+                return ResourceManager.GetString("Encherir", resourceCulture);
             }
         }
         
@@ -205,6 +286,33 @@ namespace Enchere.Ressource {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Envoyer.
+        /// </summary>
+        public static string Envoyer {
+            get {
+                return ResourceManager.GetString("Envoyer", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Fin.
+        /// </summary>
+        public static string Fin {
+            get {
+                return ResourceManager.GetString("Fin", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Gestion Enchères.
+        /// </summary>
+        public static string GestionEncheres {
+            get {
+                return ResourceManager.GetString("GestionEncheres", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Gestion des objets.
         /// </summary>
         public static string gestobj {
@@ -223,11 +331,92 @@ namespace Enchere.Ressource {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Inscription.
+        /// </summary>
+        public static string Inscriptionsite {
+            get {
+                return ResourceManager.GetString("Inscriptionsite", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Langue.
         /// </summary>
         public static string Langue {
             get {
                 return ResourceManager.GetString("Langue", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Liste des objets.
+        /// </summary>
+        public static string Listedesobjets {
+            get {
+                return ResourceManager.GetString("Listedesobjets", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Lister echères perdus.
+        /// </summary>
+        public static string Listerecheresperdus {
+            get {
+                return ResourceManager.GetString("Listerecheresperdus", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Lister enchères encherits.
+        /// </summary>
+        public static string Listerencheresencherits {
+            get {
+                return ResourceManager.GetString("Listerencheresencherits", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Lister enchères en cours.
+        /// </summary>
+        public static string Listerencheresencours {
+            get {
+                return ResourceManager.GetString("Listerencheresencours", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Lister mes objets vendus - pdf.
+        /// </summary>
+        public static string Listermesobjetsvenduspdf {
+            get {
+                return ResourceManager.GetString("Listermesobjetsvenduspdf", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Lister objets achetés.
+        /// </summary>
+        public static string Listerobjetsachetes {
+            get {
+                return ResourceManager.GetString("Listerobjetsachetes", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Lister objets vendus.
+        /// </summary>
+        public static string Listerobjetsvendus {
+            get {
+                return ResourceManager.GetString("Listerobjetsvendus", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Lister produits qui m&apos;ont intéressés - pdf.
+        /// </summary>
+        public static string Listerproduitsinteressepdf {
+            get {
+                return ResourceManager.GetString("Listerproduitsinteressepdf", resourceCulture);
             }
         }
         
@@ -295,6 +484,15 @@ namespace Enchere.Ressource {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Mes objets en vente.
+        /// </summary>
+        public static string Mesobjetsenvente {
+            get {
+                return ResourceManager.GetString("Mesobjetsenvente", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Modifier mot de passe.
         /// </summary>
         public static string ModifierMDP {
@@ -340,11 +538,83 @@ namespace Enchere.Ressource {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Page Commission.
+        /// </summary>
+        public static string PageCommission {
+            get {
+                return ResourceManager.GetString("PageCommission", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Page Rapports.
+        /// </summary>
+        public static string PageRapports {
+            get {
+                return ResourceManager.GetString("PageRapports", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Prenom.
         /// </summary>
         public static string Prenom {
             get {
                 return ResourceManager.GetString("Prenom", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Prix Actuel.
+        /// </summary>
+        public static string PrixActuel {
+            get {
+                return ResourceManager.GetString("PrixActuel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Prix Départ.
+        /// </summary>
+        public static string PrixDepart {
+            get {
+                return ResourceManager.GetString("PrixDepart", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Rapports.
+        /// </summary>
+        public static string Rapports {
+            get {
+                return ResourceManager.GetString("Rapports", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Rapport sur la cote des membres.
+        /// </summary>
+        public static string Rapportsurlacotedesmembres {
+            get {
+                return ResourceManager.GetString("Rapportsurlacotedesmembres", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Rapport sur la synthese de vente annuelle.
+        /// </summary>
+        public static string Rapportsursynthesevente {
+            get {
+                return ResourceManager.GetString("Rapportsursynthesevente", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Récuperation du nouveau mot de passe.
+        /// </summary>
+        public static string Récuperationmot {
+            get {
+                return ResourceManager.GetString("Récuperationmot", resourceCulture);
             }
         }
         
@@ -358,6 +628,15 @@ namespace Enchere.Ressource {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Sujet.
+        /// </summary>
+        public static string Sujet {
+            get {
+                return ResourceManager.GetString("Sujet", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Supprimer.
         /// </summary>
         public static string Supprimer {
@@ -367,11 +646,56 @@ namespace Enchere.Ressource {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Téléchager.
+        /// </summary>
+        public static string Telechager {
+            get {
+                return ResourceManager.GetString("Telechager", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to télécharger la pièce jointe.
+        /// </summary>
+        public static string telechargerlapiecejointe {
+            get {
+                return ResourceManager.GetString("telechargerlapiecejointe", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Téléphone.
         /// </summary>
         public static string Téléphone {
             get {
                 return ResourceManager.GetString("Téléphone", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Vendeur.
+        /// </summary>
+        public static string Vendeur {
+            get {
+                return ResourceManager.GetString("Vendeur", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ventes echus ou sous peu echus - pdf.
+        /// </summary>
+        public static string Ventesechusousouspeuechuspdf {
+            get {
+                return ResourceManager.GetString("Ventesechusousouspeuechuspdf", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Zone administration.
+        /// </summary>
+        public static string Zoneadministration {
+            get {
+                return ResourceManager.GetString("Zoneadministration", resourceCulture);
             }
         }
     }

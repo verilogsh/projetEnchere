@@ -1,5 +1,5 @@
 ﻿@model IEnumerable<Enchere.Models.Objet>
-
+@using Enchere.Ressource
 @{
     ViewBag.Title = "gestionObjetMembre";
 }
@@ -7,10 +7,14 @@
 @{
     List<SelectListItem> list = new List<SelectListItem>();
     list.Add(new SelectListItem { Text = "Tous les categories", Value = "none" });
-    foreach (var item in ViewBag.listCateg) {
-        if (item.Id == ViewBag.Selected) {
+    foreach (var item in ViewBag.listCateg)
+    {
+        if (item.Id == ViewBag.Selected)
+        {
             list.Add(new SelectListItem { Text = item.Nom, Value = item.Id, Selected = true });
-        } else {
+        }
+        else
+        {
             list.Add(new SelectListItem { Text = item.Nom, Value = item.Id });
         }
     }
@@ -51,7 +55,8 @@
         <th></th>
     </tr>
 
-    @foreach (var item in Model) {
+    @foreach (var item in Model)
+    {
         <tr>
             <td>
                 @Html.DisplayFor(modelItem => item.Nom)
@@ -66,16 +71,22 @@
                 @Html.DisplayFor(model => item.IdCategorie)
             </td>
             <td>
-                @if (item.Photo != null) {
+                @if (item.Photo != null)
+                {
                     <img class="card-img-top float-left" src="~/images/@Html.DisplayFor(modelItem => item.Photo)" alt="Card image cap" width=50 height=30>
-                } else {
+                }
+                else
+                {
                     <p>Non</p>
                 }
             </td>
             <td>
-                @if (item.Piece != null) {
+                @if (item.Piece != null)
+                {
                     <a href="@Url.Content("~/pieces/@Html.DisplayFor(modelItem => item.Piece)")" title="telecharger la piece jointe">@Html.DisplayFor(modelItem => item.Piece)</a>
-                } else {
+                }
+                else
+                {
                     <p>Non</p>
                 }
             </td>
@@ -87,14 +98,15 @@
             </td>
             <td>
                 @{
-                    if (!item.EnVent) {
+                    if (!item.EnVent)
+                    {
                         @Html.ActionLink("Nouvel enchere", "MettreEnvente", "Enchere", new { idObjet = item.Id, idVendeur = ViewBag.IdVendeur, vente = true }, null)
                     }
                 }
 
             </td>
         </tr>
-                    }
+    }
 
 </table>
 

@@ -1,4 +1,6 @@
-﻿@{
+﻿@using Enchere.Ressource
+
+@{
     ViewBag.Title = "Home Page";
 }
 
@@ -6,6 +8,12 @@
 {
     <script src="@Url.Content("~/Scripts/objet/objetRequette.js")"></script>
     <script src="@Url.Content("~/Scripts/mustache.js")"></script>
+    <!-- Popper JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
+
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
+
 }
 
 <div class="row">
@@ -25,20 +33,29 @@
     <div id="main" class="col-md-9 show">
         <div class="hide" id="templateCard">
             <div class="col-md-3 text-center">
-                <div class="card" style="width: 15rem;  margin:15px;">
-                    <p><a href="@Url.Content("~/pieces/{{piece}}")" title="telecharger la piece jointe"><img class="card-img-top float-left" src="~/images/{{Image}}" alt="Card image cap" width=100 height=140></a></p>
-                    <h5 class="card-title">
-                        {{Nom}}
-                    </h5>
-                    <div class="card-body">
-                        <p class="card-text text-left">Description: {{Description}}</p>
-                        <p class="card-text text-left">Vendeur: <a href="#" onclick="viewVendeur('{{IdVendeur}}')">{{IdVendeur}}</a></p>
-                        <p class="card-text text-left">Document:<a href="@Url.Content("~/pieces/{{piece}}")" title="telecharger la piece jointe">Telechager</a></p>
-                        <p class="card-text text-left">Prix Depart: {{PrixDepart}}$</p>
-                        <p class="card-text text-left">Prix Actuel: {{PrixActuel}}$</p>
-                        <p class="card-text text-left">Fin: {{Jour}}</p>
-                        @if (User.Identity.IsAuthenticated) {
-                            <a class="btn btn-primary" onclick="encherir('{{IdEnchere}}')">Encherir</a>
+                <div class="panel panel-info" style="width: 18rem; margin:15px; height:48rem;">
+                    <div class="panel-heading"><h5>{{Nom}}</h5></div>
+                    <div class="panel-body">
+                        <p><a href="@Url.Content("~/pieces/{{piece}}")" title="@ResourceView.telechargerlapiecejointe"><img class="img-thumbnail img-rounded" src="~/images/{{Image}}" alt="Card image cap" width=100 height=140></a></p>
+
+                        <p><i>Description:</i> {{Description}}</p>
+                        <p><i>@ResourceView.Vendeur:</i> <a href="#" onclick="viewVendeur('{{IdVendeur}}')">{{IdVendeur}}</a></p>
+                        <p><i>Document:</i><a href="@Url.Content("~/pieces/{{piece}}")" title="telecharger la piece jointe">@ResourceView.Telechager</a></p>
+                        <p><i>@ResourceView.PrixDepart:</i> {{PrixDepart}}$</p>
+                        <p><i>@ResourceView.PrixActuel:</i> {{PrixActuel}}$</p>
+                        <p><i>@ResourceView.Fin:</i> {{Jour}}</p>
+
+                        @if (User.Identity.IsAuthenticated)
+                        {
+                            <div class="panel-footer">
+                                <a class="btn btn-primary" onclick="encherir('{{IdEnchere}}')">@ResourceView.Encherir</a>
+                            </div>
+                        }
+                        else
+                        {
+                            <div class="panel-footer">
+                                <a class="btn btn-primary" href="../Account/Login">@ResourceView.Acheter</a>
+                            </div>
                         }
                         <!--a href="#myModal" class="btn btn-primary" data-toggle="modal" data-book-id="my_id_value">Encherir</!--a>-->
                     </div>
@@ -52,7 +69,7 @@
 @section MyOtherJavascript {
     <script type="text/javascript">
         function encherir(id) {
-                window.location.href = "/Enchere/UpdateEnchere?id=" + id;
+            window.location.href = "/Enchere/UpdateEnchere?id=" + id;
         }
 
         function viewVendeur(id) {

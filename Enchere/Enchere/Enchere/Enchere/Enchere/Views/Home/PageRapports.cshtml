@@ -1,11 +1,12 @@
 ﻿
+@using Enchere.Ressource
 @{
     ViewBag.Title = "PageRapports";
 }
 
-<h2>Page Rapports</h2>
+<h2>@ResourceView.PageRapports</h2>
 
 
-<p><a href="../Evaluation/PrintEvaluaionMembre">Rapport sur la cote des membres</a></p>
+<p><a href="../Evaluation/PrintEvaluaionMembre">@ResourceView.Rapportsurlacotedesmembres</a></p>
 <br />
-<p><a href="../Evaluation/PrintSyntheseVenteAnnuel">Rapport sur la synthese de vente annuelle</a></p>
+<p><a href="../Evaluation/PrintSyntheseVenteAnnuel">@ResourceView.Rapportsursynthesevente</a></p>
