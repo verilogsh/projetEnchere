@@ -7,14 +7,19 @@ using System.Web;
 using System.Web.Mvc;
 using Rotativa;
 using Enchere.Models.ViewModel;
+using System.Threading;
+using System.Globalization;
+using Enchere.Controllers;
 
 namespace Enchere.Dal
 {
     public class EnchereController : Controller
     {
+      
         [HttpGet]
         public ActionResult MettreEnVente(string idObjet, string idVendeur, bool vente) {
             Encher en = new Encher("0", idObjet, idVendeur, idVendeur, 0, 0, DateTime.Now, DateTime.Now, 0);
+            LangueController.CreateCulture(getLangue());
             return View(en);
         }
 
@@ -52,6 +57,7 @@ namespace Enchere.Dal
 
         [HttpGet]
         public ActionResult getEnchereAcheteur(int etat) {
+            LangueController.CreateCulture(getLangue());
             if (ModelState.IsValid) {
                 string currentUser = @User.Identity.Name;
                 Membre mb = MembreRequette.GetUserByEmail(currentUser);
@@ -75,6 +81,7 @@ namespace Enchere.Dal
 
         [HttpGet]
         public ActionResult getEnchereVendeur(int etat) {
+            LangueController.CreateCulture(getLangue());
             if (ModelState.IsValid) {
                 string currentUser = @User.Identity.Name;
                 Membre mb = MembreRequette.GetUserByEmail(currentUser);
@@ -101,6 +108,7 @@ namespace Enchere.Dal
 
         public ActionResult ListObjetVenduSouPeu()
         {
+            LangueController.CreateCulture(getLangue());
             List<Encher> list = EnchereRequette.getEncheresRapport3();
             List<EnchereViewModel> listObj = new List<EnchereViewModel>();
             foreach (Encher en in list)
@@ -119,12 +127,14 @@ namespace Enchere.Dal
 
         public ActionResult PrintObjetvendu()
         {
+            LangueController.CreateCulture(getLangue());
             var list = new ActionAsPdf("getEnchereVendeur", new { etat = 1});
             return list;
         }
 
         public ActionResult PrintRapprt3()
         {
+            LangueController.CreateCulture(getLangue());
             var list = new ActionAsPdf("ListObjetVenduSouPeu");
             return list;
         }
@@ -132,6 +142,7 @@ namespace Enchere.Dal
 
         [HttpGet]
         public ActionResult UpdateEnchere(string id) {
+            LangueController.CreateCulture(getLangue());
             Membre mb = MembreRequette.GetUserByEmail(@User.Identity.Name);
             Encher en = EnchereRequette.getEnchereById(id);
             UpdateEnchereViewModel model = new UpdateEnchereViewModel();
@@ -176,5 +187,21 @@ namespace Enchere.Dal
             }
             return View(en);
         }
+
+        public string getLangue()
+        {
+            string str = "fr";
+            str = Request.ServerVariables["HTTP_ACCEPT_LANGUAGE"];
+            string cookie = "";
+            if (this.ControllerContext.HttpContext.Request.Cookies.AllKeys.Contains("Cookie"))
+            {
+                cookie = this.ControllerContext.HttpContext.Request.Cookies["Cookie"].Value;
+                return cookie;
+
+            }
+            else
+                return str;
+        }
+
     }
 }

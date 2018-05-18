@@ -13,8 +13,10 @@ namespace Enchere.Controllers
 {
     public class EvaluationController : Controller
     {
+       
         [HttpGet]
         public ActionResult Create(string idEnchere, string op, string rtnUrl) {
+            LangueController.CreateCulture(getLangue());
             Encher en = EnchereRequette.getEnchereById(idEnchere);
             Evaluation ev = null;
             if (op == "acheteur") {
@@ -64,6 +66,7 @@ namespace Enchere.Controllers
 
         [HttpGet]
         public ActionResult List(string idEnchere, string op, string rtnUrl) {
+            LangueController.CreateCulture(getLangue());
             Encher en = EnchereRequette.getEnchereById(idEnchere);
             Evaluation ev = null;
 
@@ -79,18 +82,21 @@ namespace Enchere.Controllers
 
         public ActionResult ListeEvaluationsMembres()
         {
+            LangueController.CreateCulture(getLangue());
             List<EvaluationMembre> listObj = EvaluationRequette.getEvaluationMembre();
             return View(listObj);
         }
 
         public ActionResult PrintEvaluaionMembre()
         {
+            LangueController.CreateCulture(getLangue());
             var list = new ActionAsPdf("ListeEvaluationsMembres");
             return list;
         }
 
         public ActionResult SyntheseVenteAnnuel()
         {
+            LangueController.CreateCulture(getLangue());
             List<Commissions> listCommisions = EvaluationRequette.getCommissions();
             List<SyntheseVentes> synthese = EnchereRequette.getSynthese(listCommisions);
             SyntheseVentes v = synthese[synthese.Count - 1];
@@ -101,8 +107,24 @@ namespace Enchere.Controllers
 
         public ActionResult PrintSyntheseVenteAnnuel()
         {
+            LangueController.CreateCulture(getLangue());
             var list = new ActionAsPdf("SyntheseVenteAnnuel");
             return list;
+        }
+
+        public string getLangue()
+        {
+            string str = "fr";
+            str = Request.ServerVariables["HTTP_ACCEPT_LANGUAGE"];
+            string cookie = "";
+            if (this.ControllerContext.HttpContext.Request.Cookies.AllKeys.Contains("Cookie"))
+            {
+                cookie = this.ControllerContext.HttpContext.Request.Cookies["Cookie"].Value;
+                return cookie;
+
+            }
+            else
+                return str;
         }
     }
 }

@@ -10,6 +10,7 @@ using Enchere.Models.ViewModel;
 using Enchere.Models;
 using System;
 using System.Linq;
+using Enchere.Controllers;
 
 namespace Enchere.Controllers
 {
@@ -22,41 +23,11 @@ namespace Enchere.Controllers
         {
         }
 
-        public static void CreateCulture(string str)
-        {
-            if (str.IndexOf("fr") != -1)
-            {
-                Thread.CurrentThread.CurrentUICulture = CultureInfo.CreateSpecificCulture("fr");
-
-            }
-            else if (str.IndexOf("en") != -1)
-            {
-                Thread.CurrentThread.CurrentUICulture = CultureInfo.CreateSpecificCulture("en");
-
-            }
-        }
-
-        public string getLangue()
-        {
-            string str = "fr";
-            str = Request.ServerVariables["HTTP_ACCEPT_LANGUAGE"];
-            string cookie = "";
-            if (this.ControllerContext.HttpContext.Request.Cookies.AllKeys.Contains("Cookie"))
-            {
-                cookie = this.ControllerContext.HttpContext.Request.Cookies["Cookie"].Value;
-                return cookie;
-
-            }
-            else
-                return str;
-        }
-
-
-
+     
         public ActionResult Login()
         {  
             ViewBag.error = "";
-            CreateCulture(getLangue());
+            LangueController.CreateCulture(getLangue());
             return View();
         }
 
@@ -98,7 +69,7 @@ namespace Enchere.Controllers
         [HttpGet]
         public ActionResult Inscription()
         {
-            CreateCulture(getLangue());
+            LangueController.CreateCulture(getLangue());
 
             return View();
         }
@@ -120,7 +91,7 @@ namespace Enchere.Controllers
         public ActionResult Modifier()
         {
             Membre u = MembreRequette.GetUserByEmail(User.Identity.Name);
-            CreateCulture(getLangue());
+            LangueController.CreateCulture(getLangue());
 
             return View(u);
         }
@@ -145,7 +116,7 @@ namespace Enchere.Controllers
             Membre u = MembreRequette.GetUserByEmail(User.Identity.Name);
             MembreMDP mmdp = new MembreMDP(u);
             ViewBag.Nom = u.Nom;
-            CreateCulture(getLangue());
+            LangueController.CreateCulture(getLangue());
             return View(mmdp);
         }
 
@@ -165,7 +136,7 @@ namespace Enchere.Controllers
 
         public ActionResult ListeUsers(string order)
         {
-            CreateCulture(getLangue());
+            LangueController.CreateCulture(getLangue());
             ViewBag.NomOrder = "nom";
             ViewBag.NomOrder = String.IsNullOrEmpty(order) ? "nom" : "";
             ViewBag.CiviliteOrder = "civilite";
@@ -183,7 +154,7 @@ namespace Enchere.Controllers
 
         public ActionResult ListeUsersDerniers(string order)
         {
-            CreateCulture(getLangue());
+            LangueController.CreateCulture(getLangue());
             ViewBag.NomOrder = "nom";
             ViewBag.NomOrder = String.IsNullOrEmpty(order) ? "nom" : "";
             ViewBag.CiviliteOrder = "civilite";
@@ -201,7 +172,7 @@ namespace Enchere.Controllers
         [HttpGet]
         public ActionResult DeleteUser()
         {
-            CreateCulture(getLangue());
+            LangueController.CreateCulture(getLangue());
             string nr = Request.QueryString["Numero"];
 
             Membre m = MembreRequette.GetUserByNumero(nr);
@@ -222,7 +193,7 @@ namespace Enchere.Controllers
         {
             string nr = Request.QueryString["Numero"];
             Membre u = MembreRequette.GetUserByNumero(nr);
-            CreateCulture(getLangue());
+            LangueController.CreateCulture(getLangue());
             return View(u);
         }
 
@@ -238,5 +209,21 @@ namespace Enchere.Controllers
 
             return View();
         }
+
+        public string getLangue()
+        {
+            string str = "fr";
+            str = Request.ServerVariables["HTTP_ACCEPT_LANGUAGE"];
+            string cookie = "";
+            if (this.ControllerContext.HttpContext.Request.Cookies.AllKeys.Contains("Cookie"))
+            {
+                cookie = this.ControllerContext.HttpContext.Request.Cookies["Cookie"].Value;
+                return cookie;
+
+            }
+            else
+                return str;
+        }
+
     }
 }

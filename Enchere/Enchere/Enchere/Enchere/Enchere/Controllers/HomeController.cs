@@ -6,11 +6,15 @@ using System.Net.Mail;
 using System.Web;
 using System.Web.Mvc;
 using Enchere.Models;
+using System.Threading;
+using System.Globalization;
+using Enchere.Controllers;
 
 namespace Enchere.Controllers
 {
     public class HomeController : Controller
     {
+       
         public ActionResult Index()
         {
             return View();
@@ -42,26 +46,13 @@ namespace Enchere.Controllers
             return new RedirectResult(Request.UrlReferrer.AbsoluteUri);
         }
 
-        public string getLangue()
-        {
-            string str = "fr";
-            str = Request.ServerVariables["HTTP_ACCEPT_LANGUAGE"];
-            string cookie = "";
-            if (this.ControllerContext.HttpContext.Request.Cookies.AllKeys.Contains("Cookie"))
-            {
-                cookie = this.ControllerContext.HttpContext.Request.Cookies["Cookie"].Value;
-                return cookie;
-
-            }
-            else
-                return str;
-        }
+       
 
         [HttpGet]
         public ActionResult SendEmail()
         {
             ViewBag.Message = "Your contact page.";
-
+            LangueController.CreateCulture(getLangue());
             return View();
         }
 
@@ -108,6 +99,7 @@ namespace Enchere.Controllers
         [HttpGet]
         public ActionResult SendNewPass()
         {
+            LangueController.CreateCulture(getLangue());
             return View();
         }
 
@@ -157,6 +149,7 @@ namespace Enchere.Controllers
 
         public ActionResult PageRapports()
         {
+            LangueController.CreateCulture(getLangue());
             ViewBag.Rapports = "Rapports";
 
             return View();
@@ -164,6 +157,7 @@ namespace Enchere.Controllers
 
         public ActionResult PageCommission()
         {
+            LangueController.CreateCulture(getLangue());
             ViewBag.Commission = CommissionRequette.ChercherCommission();
             return View();
         }
@@ -179,11 +173,29 @@ namespace Enchere.Controllers
         /////////////////////// added by Haiqiang Xu  ///////////////////////
         [HttpGet]
         public ActionResult ViewVendeur(string id) {
+            LangueController.CreateCulture(getLangue());
             Membre mb = MembreRequette.GetUserByNumero(id);
             ViewBag.Id = id;
             ViewBag.Cote = mb.Cote;
             List<Evaluation> list = EvaluationRequette.getEvaluationsByIdMembre(id);
             return View(list);
         }
+
+        public string getLangue()
+        {
+            string str = "fr";
+            str = Request.ServerVariables["HTTP_ACCEPT_LANGUAGE"];
+            string cookie = "";
+            if (this.ControllerContext.HttpContext.Request.Cookies.AllKeys.Contains("Cookie"))
+            {
+                cookie = this.ControllerContext.HttpContext.Request.Cookies["Cookie"].Value;
+                return cookie;
+
+            }
+            else
+                return str;
+        }
+
+
     }
 }

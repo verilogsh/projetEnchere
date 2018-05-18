@@ -10,43 +10,16 @@ using Enchere.Models.ViewModel;
 using Enchere.Models;
 using System;
 using System.Linq;
+using Enchere.Controllers;
 
 namespace Enchere.Controllers
 {
     public class CategoriesController : Controller
     {
-        public static void CreateCulture(string str)
-        {
-            if (str.IndexOf("fr") != -1)
-            {
-                Thread.CurrentThread.CurrentUICulture = CultureInfo.CreateSpecificCulture("fr");
-
-            }
-            else if (str.IndexOf("en") != -1)
-            {
-                Thread.CurrentThread.CurrentUICulture = CultureInfo.CreateSpecificCulture("en");
-
-            }
-        }
-
-        public string getLangue()
-        {
-            string str = "fr";
-            str = Request.ServerVariables["HTTP_ACCEPT_LANGUAGE"];
-            string cookie = "";
-            if (this.ControllerContext.HttpContext.Request.Cookies.AllKeys.Contains("Cookie"))
-            {
-                cookie = this.ControllerContext.HttpContext.Request.Cookies["Cookie"].Value;
-                return cookie;
-
-            }
-            else
-                return str;
-        }
         // GET: Categories
         public ActionResult ListeCategories(string order)
         {
-            CreateCulture(getLangue());
+            LangueController.CreateCulture(getLangue());
             ViewBag.IdOrder = "Id";
             ViewBag.NomOrder = "Nom";
             ViewBag.NomOrder = String.IsNullOrEmpty(order) ? "Nom" : "";
@@ -58,7 +31,7 @@ namespace Enchere.Controllers
         [HttpGet]
         public ActionResult AjouterCateg()
         {
-            CreateCulture(getLangue());
+            LangueController.CreateCulture(getLangue());
 
             return View();
         }
@@ -78,7 +51,7 @@ namespace Enchere.Controllers
         [HttpGet]
         public ActionResult ModifierCateg()
         {
-            CreateCulture(getLangue());
+            LangueController.CreateCulture(getLangue());
             // string nr = Request.QueryString["Id"];
             string nr = Request.Url.AbsolutePath.Split('/').Last();
             Categorie c = CategoriesRequette.GetCategorieById(nr.Trim());
@@ -102,7 +75,7 @@ namespace Enchere.Controllers
         [HttpGet]
         public ActionResult DeleteCateg()
         {
-            CreateCulture(getLangue());
+            LangueController.CreateCulture(getLangue());
             //string nr = Request.QueryString["Id"];
             string nr = Request.Url.AbsolutePath.Split('/').Last();
             Categorie c = CategoriesRequette.GetCategorieById(nr);
@@ -114,6 +87,21 @@ namespace Enchere.Controllers
         {
             CategoriesRequette.Supprimer(c);
             return RedirectToAction("Index", "Home");
+        }
+
+        public string getLangue()
+        {
+            string str = "fr";
+            str = Request.ServerVariables["HTTP_ACCEPT_LANGUAGE"];
+            string cookie = "";
+            if (this.ControllerContext.HttpContext.Request.Cookies.AllKeys.Contains("Cookie"))
+            {
+                cookie = this.ControllerContext.HttpContext.Request.Cookies["Cookie"].Value;
+                return cookie;
+
+            }
+            else
+                return str;
         }
     }
 }
