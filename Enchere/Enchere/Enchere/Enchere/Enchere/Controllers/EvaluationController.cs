@@ -8,6 +8,8 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using Rotativa;
+using System.Threading;
+using System.Globalization;
 
 namespace Enchere.Controllers
 {
@@ -16,7 +18,8 @@ namespace Enchere.Controllers
        
         [HttpGet]
         public ActionResult Create(string idEnchere, string op, string rtnUrl) {
-            LangueController.CreateCulture(getLangue());
+            //  LangueController.CreateCulture(getLangue());
+            CreateCulture(getLangue());
             Encher en = EnchereRequette.getEnchereById(idEnchere);
             Evaluation ev = null;
             if (op == "acheteur") {
@@ -66,7 +69,8 @@ namespace Enchere.Controllers
 
         [HttpGet]
         public ActionResult List(string idEnchere, string op, string rtnUrl) {
-            LangueController.CreateCulture(getLangue());
+            // LangueController.CreateCulture(getLangue());
+            CreateCulture(getLangue());
             Encher en = EnchereRequette.getEnchereById(idEnchere);
             Evaluation ev = null;
 
@@ -89,14 +93,16 @@ namespace Enchere.Controllers
 
         public ActionResult PrintEvaluaionMembre()
         {
-            LangueController.CreateCulture(getLangue());
+            //  LangueController.CreateCulture(getLangue());
+            CreateCulture(getLangue());
             var list = new ActionAsPdf("ListeEvaluationsMembres");
             return list;
         }
 
         public ActionResult SyntheseVenteAnnuel()
         {
-            LangueController.CreateCulture(getLangue());
+            //  LangueController.CreateCulture(getLangue());
+            CreateCulture(getLangue());
             List<Commissions> listCommisions = EvaluationRequette.getCommissions();
             List<SyntheseVentes> synthese = EnchereRequette.getSynthese(listCommisions);
             SyntheseVentes v = synthese[synthese.Count - 1];
@@ -107,7 +113,8 @@ namespace Enchere.Controllers
 
         public ActionResult PrintSyntheseVenteAnnuel()
         {
-            LangueController.CreateCulture(getLangue());
+            //   LangueController.CreateCulture(getLangue());
+            CreateCulture(getLangue());
             var list = new ActionAsPdf("SyntheseVenteAnnuel");
             return list;
         }
@@ -125,6 +132,20 @@ namespace Enchere.Controllers
             }
             else
                 return str;
+        }
+
+        public static void CreateCulture(string str)
+        {
+            if (str.IndexOf("fr") != -1)
+            {
+                Thread.CurrentThread.CurrentUICulture = CultureInfo.CreateSpecificCulture("fr");
+
+            }
+            else if (str.IndexOf("en") != -1)
+            {
+                Thread.CurrentThread.CurrentUICulture = CultureInfo.CreateSpecificCulture("en");
+
+            }
         }
     }
 }

@@ -52,7 +52,8 @@ namespace Enchere.Controllers
         public ActionResult SendEmail()
         {
             ViewBag.Message = "Your contact page.";
-            LangueController.CreateCulture(getLangue());
+            //  LangueController.CreateCulture(getLangue());
+            CreateCulture(getLangue());
             return View();
         }
 
@@ -99,7 +100,8 @@ namespace Enchere.Controllers
         [HttpGet]
         public ActionResult SendNewPass()
         {
-            LangueController.CreateCulture(getLangue());
+            // LangueController.CreateCulture(getLangue());
+            CreateCulture(getLangue());
             return View();
         }
 
@@ -149,7 +151,8 @@ namespace Enchere.Controllers
 
         public ActionResult PageRapports()
         {
-            LangueController.CreateCulture(getLangue());
+            //   LangueController.CreateCulture(getLangue());
+            CreateCulture(getLangue());
             ViewBag.Rapports = "Rapports";
 
             return View();
@@ -157,7 +160,8 @@ namespace Enchere.Controllers
 
         public ActionResult PageCommission()
         {
-            LangueController.CreateCulture(getLangue());
+            //  LangueController.CreateCulture(getLangue());
+            CreateCulture(getLangue());
             ViewBag.Commission = CommissionRequette.ChercherCommission();
             return View();
         }
@@ -173,7 +177,8 @@ namespace Enchere.Controllers
         /////////////////////// added by Haiqiang Xu  ///////////////////////
         [HttpGet]
         public ActionResult ViewVendeur(string id) {
-            LangueController.CreateCulture(getLangue());
+            //  LangueController.CreateCulture(getLangue());
+            CreateCulture(getLangue());
             Membre mb = MembreRequette.GetUserByNumero(id);
             ViewBag.Id = id;
             ViewBag.Cote = mb.Cote;
@@ -194,6 +199,20 @@ namespace Enchere.Controllers
             }
             else
                 return str;
+        }
+
+        public static void CreateCulture(string str)
+        {
+            if (str.IndexOf("fr") != -1)
+            {
+                Thread.CurrentThread.CurrentUICulture = CultureInfo.CreateSpecificCulture("fr");
+
+            }
+            else if (str.IndexOf("en") != -1)
+            {
+                Thread.CurrentThread.CurrentUICulture = CultureInfo.CreateSpecificCulture("en");
+
+            }
         }
 
 

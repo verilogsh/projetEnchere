@@ -4,14 +4,14 @@
     ViewBag.Title = "ListeCategories";
 }
 
-<h2>Liste Categories</h2>
+<h2>Liste @ResourceView.Catégorie</h2><h2>s</h2>
 <br />
 @Html.ActionLink("Nouvelle categorie", "AjouterCateg", "Categories")
 <br /><br /><br />
 <table class="table">
     <tr>
         <th>@Html.ActionLink(@ResourceView.Numéro, "ListeCategories", "Categories", new { Order = ViewBag.IdOrder }, null)</th>
-        <th>@Html.ActionLink("Nom", "ListeCategories", "Categories", new { Order = ViewBag.NomOrder }, null)</th>
+        <th>@Html.ActionLink(@ResourceView.nom2, "ListeCategories", "Categories", new { Order = ViewBag.NomOrder }, null)</th>
         <th>Description</th>
        
     </tr>

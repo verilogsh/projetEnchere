@@ -330,4 +330,10 @@
   <data name="telechargerlapiecejointe" xml:space="preserve">
     <value>télécharger la pièce jointe</value>
   </data>
+  <data name="Catégorie" xml:space="preserve">
+    <value>Catégorie</value>
+  </data>
+  <data name="Contacteznous" xml:space="preserve">
+    <value>Contactez nous</value>
+  </data>
 </root>

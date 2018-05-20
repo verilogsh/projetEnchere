@@ -27,7 +27,8 @@ namespace Enchere.Controllers
         public ActionResult Login()
         {  
             ViewBag.error = "";
-            LangueController.CreateCulture(getLangue());
+            //  LangueController.CreateCulture(getLangue());
+            CreateCulture(getLangue());
             return View();
         }
 
@@ -69,8 +70,8 @@ namespace Enchere.Controllers
         [HttpGet]
         public ActionResult Inscription()
         {
-            LangueController.CreateCulture(getLangue());
-
+            //  LangueController.CreateCulture(getLangue());
+            CreateCulture(getLangue());
             return View();
         }
 
@@ -91,8 +92,8 @@ namespace Enchere.Controllers
         public ActionResult Modifier()
         {
             Membre u = MembreRequette.GetUserByEmail(User.Identity.Name);
-            LangueController.CreateCulture(getLangue());
-
+            //  LangueController.CreateCulture(getLangue());
+            CreateCulture(getLangue());
             return View(u);
         }
 
@@ -116,7 +117,8 @@ namespace Enchere.Controllers
             Membre u = MembreRequette.GetUserByEmail(User.Identity.Name);
             MembreMDP mmdp = new MembreMDP(u);
             ViewBag.Nom = u.Nom;
-            LangueController.CreateCulture(getLangue());
+            //  LangueController.CreateCulture(getLangue());
+            CreateCulture(getLangue());
             return View(mmdp);
         }
 
@@ -136,7 +138,8 @@ namespace Enchere.Controllers
 
         public ActionResult ListeUsers(string order)
         {
-            LangueController.CreateCulture(getLangue());
+            // LangueController.CreateCulture(getLangue());
+            CreateCulture(getLangue());
             ViewBag.NomOrder = "nom";
             ViewBag.NomOrder = String.IsNullOrEmpty(order) ? "nom" : "";
             ViewBag.CiviliteOrder = "civilite";
@@ -154,7 +157,8 @@ namespace Enchere.Controllers
 
         public ActionResult ListeUsersDerniers(string order)
         {
-            LangueController.CreateCulture(getLangue());
+            //   LangueController.CreateCulture(getLangue());
+            CreateCulture(getLangue());
             ViewBag.NomOrder = "nom";
             ViewBag.NomOrder = String.IsNullOrEmpty(order) ? "nom" : "";
             ViewBag.CiviliteOrder = "civilite";
@@ -172,7 +176,8 @@ namespace Enchere.Controllers
         [HttpGet]
         public ActionResult DeleteUser()
         {
-            LangueController.CreateCulture(getLangue());
+            //  LangueController.CreateCulture(getLangue());
+            CreateCulture(getLangue());
             string nr = Request.QueryString["Numero"];
 
             Membre m = MembreRequette.GetUserByNumero(nr);
@@ -193,7 +198,8 @@ namespace Enchere.Controllers
         {
             string nr = Request.QueryString["Numero"];
             Membre u = MembreRequette.GetUserByNumero(nr);
-            LangueController.CreateCulture(getLangue());
+            //  LangueController.CreateCulture(getLangue());
+            CreateCulture(getLangue());
             return View(u);
         }
 
@@ -223,6 +229,20 @@ namespace Enchere.Controllers
             }
             else
                 return str;
+        }
+
+        public static void CreateCulture(string str)
+        {
+            if (str.IndexOf("fr") != -1)
+            {
+                Thread.CurrentThread.CurrentUICulture = CultureInfo.CreateSpecificCulture("fr");
+
+            }
+            else if (str.IndexOf("en") != -1)
+            {
+                Thread.CurrentThread.CurrentUICulture = CultureInfo.CreateSpecificCulture("en");
+
+            }
         }
 
     }

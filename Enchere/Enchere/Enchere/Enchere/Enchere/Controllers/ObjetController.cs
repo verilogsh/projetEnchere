@@ -25,14 +25,16 @@ namespace Enchere.Controllers
         {
             // List<Categorie> list = new List<Categorie>();
             // list = ObjetRequtte.getCategorie();
-            LangueController.CreateCulture(getLangue());
+            //    LangueController.CreateCulture(getLangue());
+            CreateCulture(getLangue());
             return Json(ObjetRequette.getCategorie(), JsonRequestBehavior.AllowGet);
         }
 
         [HttpGet]
         public ActionResult lireObjetEnVente(string idCategorie)
         {
-            LangueController.CreateCulture(getLangue());
+            // LangueController.CreateCulture(getLangue());
+            CreateCulture(getLangue());
             List<ObjetEnchereAff> list = new List<ObjetEnchereAff>();
             list = ObjetRequette.getObjetEnVente(idCategorie);
             return Json(ObjetRequette.getObjetEnVente(idCategorie), JsonRequestBehavior.AllowGet);
@@ -40,7 +42,8 @@ namespace Enchere.Controllers
 
         [HttpGet]
         public ActionResult gestionObjetMembre(string idCateg = "0", string ordre = "Nom") {
-            LangueController.CreateCulture(getLangue());
+            //  LangueController.CreateCulture(getLangue());
+            CreateCulture(getLangue());
             List<Categorie> list1 = ObjetRequette.getCategorie();
             ViewBag.listCateg = list1;
             ViewBag.Selected = idCateg;
@@ -55,7 +58,8 @@ namespace Enchere.Controllers
         [HttpGet]
         public ActionResult Create()
         {
-            LangueController.CreateCulture(getLangue());
+            //    LangueController.CreateCulture(getLangue());
+            CreateCulture(getLangue());
             List<Categorie> list = ObjetRequette.getCategorie();
             ViewBag.listCateg = list;
             return View();
@@ -82,7 +86,8 @@ namespace Enchere.Controllers
         [HttpGet]
         public ActionResult Edit(string id)
         {
-            LangueController.CreateCulture(getLangue());
+            //   LangueController.CreateCulture(getLangue());
+            CreateCulture(getLangue());
             List<Categorie> list = ObjetRequette.getCategorie();
             ViewBag.listCateg = list;
             Objet obj = ObjetRequette.getObjetById(id);
@@ -107,7 +112,8 @@ namespace Enchere.Controllers
         [HttpGet]
         public ActionResult Delete(string id)
         {
-            LangueController.CreateCulture(getLangue());
+            // LangueController.CreateCulture(getLangue());
+            CreateCulture(getLangue());
             Objet obj = ObjetRequette.deleteObjetById(id);
             List<Categorie> list = ObjetRequette.getCategorie();
             ViewBag.listCateg = list;
@@ -122,7 +128,8 @@ namespace Enchere.Controllers
 
         public ActionResult DerniersProduits(string order)
         {
-            LangueController.CreateCulture(getLangue());
+            //   LangueController.CreateCulture(getLangue());
+            CreateCulture(getLangue());
             ViewBag.Numero = "Id";
             ViewBag.NomOrder = "Nom";
             ViewBag.NomOrder = String.IsNullOrEmpty(order) ? "Nom" : "";
@@ -144,7 +151,8 @@ namespace Enchere.Controllers
         [HttpGet]
         public ActionResult lireObjetIntersse(int idCategorie = 1)
         {
-            LangueController.CreateCulture(getLangue());
+            //    LangueController.CreateCulture(getLangue());
+            CreateCulture(getLangue());
             var list = ObjetRequette.getObjetEnVente("2");
             ViewBag.list = list;
             return View();
@@ -157,7 +165,8 @@ namespace Enchere.Controllers
         public ActionResult ObjetIntressemembre()
         {
             //string currentUser = @User.Identity.Name;
-            LangueController.CreateCulture(getLangue());
+            //  LangueController.CreateCulture(getLangue());
+            CreateCulture(getLangue());
             string currentUser = "bb@bb.com";
             Membre mb = MembreRequette.GetUserByEmail(currentUser);
             return View( ObjetRequette.lesProduitsInteressants(mb.Numero,mb.Courriel));
@@ -165,7 +174,8 @@ namespace Enchere.Controllers
 
         public ActionResult PrintObjetIntressemembre()
         {
-            LangueController.CreateCulture(getLangue());
+            // LangueController.CreateCulture(getLangue());
+            CreateCulture(getLangue());
             var list = new ActionAsPdf("ObjetIntressemembre");
             return list;
         }
@@ -175,7 +185,8 @@ namespace Enchere.Controllers
         [HttpGet]
         public ActionResult MesObjetsEnVente()
         {
-            LangueController.CreateCulture(getLangue());
+            //  LangueController.CreateCulture(getLangue());
+            CreateCulture(getLangue());
             return View();
         }
 
@@ -204,7 +215,8 @@ namespace Enchere.Controllers
 
         public ActionResult ObjetsEnVenteSansAuth(string email)
         {
-            LangueController.CreateCulture(getLangue());
+            //  LangueController.CreateCulture(getLangue());
+            CreateCulture(getLangue());
             List<Objet> list = new List<Objet>();
             list = ObjetRequette.getObjetMembre(email, "0", "none");
             return View(list);
@@ -224,6 +236,20 @@ namespace Enchere.Controllers
             }
             else
                 return str;
+        }
+
+        public static void CreateCulture(string str)
+        {
+            if (str.IndexOf("fr") != -1)
+            {
+                Thread.CurrentThread.CurrentUICulture = CultureInfo.CreateSpecificCulture("fr");
+
+            }
+            else if (str.IndexOf("en") != -1)
+            {
+                Thread.CurrentThread.CurrentUICulture = CultureInfo.CreateSpecificCulture("en");
+
+            }
         }
 
     }

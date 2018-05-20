@@ -327,4 +327,10 @@
   <data name="Zoneadministration" xml:space="preserve">
     <value>Administration zone</value>
   </data>
+  <data name="Catégorie" xml:space="preserve">
+    <value>Category</value>
+  </data>
+  <data name="Contacteznous" xml:space="preserve">
+    <value>Contact us</value>
+  </data>
 </root>

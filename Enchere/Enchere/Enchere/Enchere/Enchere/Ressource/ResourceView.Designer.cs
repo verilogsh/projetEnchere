@@ -115,6 +115,15 @@ namespace Enchere.Ressource {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Catégorie.
+        /// </summary>
+        public static string Catégorie {
+            get {
+                return ResourceManager.GetString("Catégorie", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Changer.
         /// </summary>
         public static string Changer {
@@ -183,6 +192,15 @@ namespace Enchere.Ressource {
         public static string Connexion {
             get {
                 return ResourceManager.GetString("Connexion", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Contactez nous.
+        /// </summary>
+        public static string Contacteznous {
+            get {
+                return ResourceManager.GetString("Contacteznous", resourceCulture);
             }
         }
         

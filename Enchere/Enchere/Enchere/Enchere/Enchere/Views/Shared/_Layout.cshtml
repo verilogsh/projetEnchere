@@ -8,18 +8,24 @@
     string str;
     try
     {
-        str = Request.ServerVariables["HTTP_ACCEPT_LANGUAGE"];
-        Membre u = MembreRequette.GetUserByEmail(User.Identity.Name);
-        if (User.Identity.IsAuthenticated && u != null) { str = u.Langue; }
-        if (ViewBag.cookie != null && ViewBag.cookie != "") { str = ViewBag.cookie; }
 
+
+
+        str = Request.ServerVariables["HTTP_ACCEPT_LANGUAGE"];
+
+        if (User.Identity.IsAuthenticated) { Membre u = MembreRequette.GetUserByEmail(User.Identity.Name); str = u.Langue; }
+        //  if (ViewBag.cookie != null && ViewBag.cookie != "") { str = ViewBag.cookie; }
+        if (Request.Cookies["Cookie"] != null)
+        {
+            str = Request.Cookies["Cookie"].Value;
+        }
 
         if (str.IndexOf("fr") != -1)
         {
             Thread.CurrentThread.CurrentUICulture = CultureInfo.CreateSpecificCulture("fr");
 
         }
-        if (str.IndexOf("en") != -1)
+        else if (str.IndexOf("en") != -1)
         {
             Thread.CurrentThread.CurrentUICulture = CultureInfo.CreateSpecificCulture("en");
 

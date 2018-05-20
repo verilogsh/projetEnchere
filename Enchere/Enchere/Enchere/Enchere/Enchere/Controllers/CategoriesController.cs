@@ -19,7 +19,8 @@ namespace Enchere.Controllers
         // GET: Categories
         public ActionResult ListeCategories(string order)
         {
-            LangueController.CreateCulture(getLangue());
+            //   LangueController.CreateCulture(getLangue());
+            CreateCulture(getLangue());
             ViewBag.IdOrder = "Id";
             ViewBag.NomOrder = "Nom";
             ViewBag.NomOrder = String.IsNullOrEmpty(order) ? "Nom" : "";
@@ -31,8 +32,8 @@ namespace Enchere.Controllers
         [HttpGet]
         public ActionResult AjouterCateg()
         {
-            LangueController.CreateCulture(getLangue());
-
+            //  LangueController.CreateCulture(getLangue());
+            CreateCulture(getLangue());
             return View();
         }
 
@@ -51,7 +52,8 @@ namespace Enchere.Controllers
         [HttpGet]
         public ActionResult ModifierCateg()
         {
-            LangueController.CreateCulture(getLangue());
+            //  LangueController.CreateCulture(getLangue());
+            CreateCulture(getLangue());
             // string nr = Request.QueryString["Id"];
             string nr = Request.Url.AbsolutePath.Split('/').Last();
             Categorie c = CategoriesRequette.GetCategorieById(nr.Trim());
@@ -75,7 +77,8 @@ namespace Enchere.Controllers
         [HttpGet]
         public ActionResult DeleteCateg()
         {
-            LangueController.CreateCulture(getLangue());
+            //LangueController.CreateCulture(getLangue());
+            CreateCulture(getLangue());
             //string nr = Request.QueryString["Id"];
             string nr = Request.Url.AbsolutePath.Split('/').Last();
             Categorie c = CategoriesRequette.GetCategorieById(nr);
@@ -102,6 +105,20 @@ namespace Enchere.Controllers
             }
             else
                 return str;
+        }
+
+        public static void CreateCulture(string str)
+        {
+            if (str.IndexOf("fr") != -1)
+            {
+                Thread.CurrentThread.CurrentUICulture = CultureInfo.CreateSpecificCulture("fr");
+
+            }
+            else if (str.IndexOf("en") != -1)
+            {
+                Thread.CurrentThread.CurrentUICulture = CultureInfo.CreateSpecificCulture("en");
+
+            }
         }
     }
 }

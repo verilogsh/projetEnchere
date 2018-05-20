@@ -330,4 +330,10 @@
   <data name="Zoneadministration" xml:space="preserve">
     <value>Zone administration</value>
   </data>
+  <data name="Catégorie" xml:space="preserve">
+    <value>Catégorie</value>
+  </data>
+  <data name="Contacteznous" xml:space="preserve">
+    <value>Contactez nous</value>
+  </data>
 </root>
