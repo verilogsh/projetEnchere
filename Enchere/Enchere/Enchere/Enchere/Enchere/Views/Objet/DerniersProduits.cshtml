@@ -9,17 +9,17 @@
 
 <table class="table">
     <tr>
-        <th>@Html.ActionLink("Numero", "DerniersProduits", "Account", new { Order = ViewBag.Numero }, null)</th>
+        <th>@Html.ActionLink(@ResourceView.Numéro, "DerniersProduits", "Account", new { Order = ViewBag.Numero }, null)</th>
         <th>@Html.ActionLink(@ResourceView.nom2, "DerniersProduits", "Account", new { Order = ViewBag.NomOrder }, null)</th>
         <th>@Html.ActionLink("Description", "DerniersProduits", "Account", new { Order = ViewBag.Description }, null)</th>
-        <th>@Html.ActionLink("Date d'inscription", "DerniersProduits", "Account", new { Order = ViewBag.Date }, null)</th>
-        <th>@Html.ActionLink("Categorie", "DerniersProduits", "Account", new { Order = ViewBag.Categorie }, null)</th>
+        <th>@Html.ActionLink(@ResourceView.Inscription, "DerniersProduits", "Account", new { Order = ViewBag.Date }, null)</th>
+        <th>@Html.ActionLink(@ResourceView.Catégorie, "DerniersProduits", "Account", new { Order = ViewBag.Categorie }, null)</th>
         <th>@Html.ActionLink("Photo", "DerniersProduits", "Account", new { Order = ViewBag.Photo }, null)</th>
         <th>@Html.ActionLink("Piece", "DerniersProduits", "Account", new { Order = ViewBag.Piece }, null)</th>
-        <th>@Html.ActionLink("Id membre", "DerniersProduits", "Account", new { Order = ViewBag.Idmembre }, null)</th>
-        <th>@Html.ActionLink("Nouveau", "DerniersProduits", "Account", new { Order = ViewBag.Nouveau }, null)</th>
-        <th>@Html.ActionLink("En Vente", "DerniersProduits", "Account", new { Order = ViewBag.EnVente }, null)</th>
-        <th>@Html.ActionLink("Prix Depart", "DerniersProduits", "Account", new { Order = ViewBag.PrixDepart }, null)</th>
+        <th>@Html.ActionLink(@ResourceView.IdMembre, "DerniersProduits", "Account", new { Order = ViewBag.Idmembre }, null)</th>
+        <th>@Html.ActionLink(@ResourceView.Nouveau, "DerniersProduits", "Account", new { Order = ViewBag.Nouveau }, null)</th>
+        <th>@Html.ActionLink(@ResourceView.EnVent, "DerniersProduits", "Account", new { Order = ViewBag.EnVente }, null)</th>
+        <th>@Html.ActionLink(@ResourceView.PrixDepart, "DerniersProduits", "Account", new { Order = ViewBag.PrixDepart }, null)</th>
     </tr>
     @{ if (ViewBag.Objets != null)
         {

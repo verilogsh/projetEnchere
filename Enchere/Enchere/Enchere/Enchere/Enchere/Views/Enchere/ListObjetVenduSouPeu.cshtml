@@ -1,27 +1,28 @@
 ﻿@model IEnumerable<Enchere.Models.EnchereViewModel>
+@using Enchere.Ressource
 
 @{
     ViewBag.Title = "ListObjetVenduSouPeu";
 }
 
-<h2>ListObjetVenduSouPeu</h2>
+<h2>Liste Objets Vendus Sous Peu</h2>
 
 <p>
-    @Html.ActionLink("Imprimer Rapport3", "PrintRapprt3","Enchere")
+    @Html.ActionLink(@ResourceView.Imprimerrapport, "PrintRapprt3", "Enchere")
 </p>
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.Nom)
+            @Html.Label(@ResourceView.nom2)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Description)
         </th>
         <th>
-            @Html.Label("Date Fin")
+            @Html.Label(@ResourceView.DateFin)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.IdCategorie)
+            @Html.Label(@ResourceView.Catégorie)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Photo)
@@ -30,22 +31,22 @@
             @Html.DisplayNameFor(model => model.Piece)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.IdMembre)
+            @Html.Label(@ResourceView.IdMembre)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Nouveau)
+            @Html.Label(@ResourceView.Nouveau)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.EnVent)
+            @Html.Label(@ResourceView.EnVent)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.PrixDepart)
+            @Html.Label(@ResourceView.PrixDepart)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.PrixActuel)
+            @Html.Label(@ResourceView.PrixActuel)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.IdEnchere)
+            @Html.Label(@ResourceView.Enchere)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Etat)
@@ -53,49 +54,50 @@
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Nom)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Description)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.DateInscri)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.IdCategorie)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Photo)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Piece)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.IdMembre)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Nouveau)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.EnVent)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.PrixDepart)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.PrixActuel)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.IdEnchere)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Etat)
-        </td>
-      
-    </tr>
-}
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Nom)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Description)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DateInscri)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IdCategorie)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Photo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Piece)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IdMembre)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Nouveau)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.EnVent)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PrixDepart)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PrixActuel)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IdEnchere)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Etat)
+            </td>
+
+        </tr>
+    }
 
 </table>

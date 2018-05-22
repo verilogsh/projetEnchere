@@ -23,19 +23,19 @@
 <h2>Mes objets</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink(@ResourceView.Create, "Create", "Objet")
 </p>
 <table class="table table-striped">
     <tr>
         <th>
             <!--a href="#" onclick="orderBy('@Html.DisplayNameFor(model => model.Nom)')">@Html.DisplayNameFor(model => model.Nom)</a>    -->
-            @Html.DisplayNameFor(model => model.Nom)
+            @ResourceView.nom2
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Description)
+           Description
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.DateInscri)
+            @ResourceView.Inscription
         </th>
         <th>
             @Html.DropDownList("Categorie", list, new { @onchange = "objetCategorie(this.value)" })
@@ -47,10 +47,10 @@
             @Html.DisplayNameFor(model => model.Piece)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.EnVent)
+            @ResourceView.EnVent
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.PrixDepart)$
+            @ResourceView.PrixDepart $
         </th>
         <th></th>
     </tr>
@@ -100,9 +100,9 @@
                 @{
                     if (!item.EnVent)
                     {
-                        @Html.ActionLink("Nouvel enchere", "MettreEnvente", "Enchere", new { idObjet = item.Id, idVendeur = ViewBag.IdVendeur, vente = true }, null)
+                        @Html.ActionLink(@ResourceView.Nouvelenchere, "MettreEnvente", "Enchere", new { idObjet = item.Id, idVendeur = ViewBag.IdVendeur, vente = true }, null)
                     }
-                }
+                        }
 
             </td>
         </tr>

@@ -7,7 +7,7 @@
 <h2>Objets qui m'ont intéressés</h2>
 
 <p>
-    @Html.ActionLink("Imprimer le rapport", "PrintObjetIntressemembre", "Objet")
+    @Html.ActionLink(@ResourceView.Imprimerrapport, "PrintObjetIntressemembre", "Objet")
 </p>
 <table class="table">
     <tr>
@@ -15,13 +15,13 @@
             @Html.DisplayNameFor(model => model.IdEnchere)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Nom)
+            @ResourceView.nom2
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Description)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.IdCategorie)
+            @ResourceView.Catégorie
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Photo)
@@ -30,22 +30,22 @@
             @Html.DisplayNameFor(model => model.Piece)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.IdVendeur)
+            @ResourceView.Vendeur
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.IdAcheteur)
+            @ResourceView.Acheteur
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.PrixDepart)
+            @ResourceView.PrixDepart
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.PrixActuel)
+            @ResourceView.PrixActuel
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.DateDepart)
+            @ResourceView.DateDepart
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.DateFin)
+            @ResourceView.DateFin
         </th>
 
         <th>

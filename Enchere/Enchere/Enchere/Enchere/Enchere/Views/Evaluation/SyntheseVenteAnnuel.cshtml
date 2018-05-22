@@ -1,58 +1,59 @@
 ﻿@model IEnumerable<Enchere.Models.SyntheseVentes>
-
+@using Enchere.Ressource
 @{
     ViewBag.Title = "SyntheseVenteAnnuel";
 }
 
-<h2>Synthèse Ventes Annuelles</h2>
+<h2>@ResourceView.SynthèseVentesAnnuelles</h2>
 
 <p>
-    @Html.ActionLink("Imprimer la synthese annuelle", "PrintSyntheseVenteAnnuel")
+    @Html.ActionLink(@ResourceView.Imprimerrapport, "PrintSyntheseVenteAnnuel")
 </p>
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.NomObjet)
+            @Html.Label(@ResourceView.nom2)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Prix)
+            @Html.Label(@ResourceView.Prix)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Date)
+            @Html.Label("Date")
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Commision)
+            @Html.Label("Commision")
         </th>
-      
+
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.NomObjet)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Prix)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Date)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Commision)
-        </td>
-      
-     
-    </tr>
-}
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.NomObjet)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Prix)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Date)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Commision)
+            </td>
+
+
+        </tr>
+    }
 
     <tr>
-      
+
         <td>
-           <b>Total Ventes</b>
+            <b>@ResourceView.TotalVentes</b>
         </td>
         <td>
-           @ViewBag.TotalVente
+            @ViewBag.TotalVente
         </td>
         <td>
             <b>Total Commission</b>

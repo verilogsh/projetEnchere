@@ -1,5 +1,5 @@
 ﻿@model IEnumerable<Enchere.Models.EvaluationMembre>
-
+@using Enchere.Ressource
 @{
     ViewBag.Title = "ListeEvaluationsMembres";
 }
@@ -7,41 +7,42 @@
 <h2>Liste Des Évaluations Des Membres</h2>
 
 <p>
-    @Html.ActionLink("Imprimer Rapport4", "PrintEvaluaionMembre","Evaluation")
+    @Html.ActionLink(@ResourceView.Imprimerrapport, "PrintEvaluaionMembre", "Evaluation")
 </p>
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.Nom)
+            @Html.Label(@ResourceView.nom2)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.NumMembre)
+            @Html.Label(@ResourceView.Numéro)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Cote)
+            @Html.Label(@ResourceView.Cote)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.NbrEvaluation)
+            @Html.Label("Nb Evaluation")
         </th>
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Nom)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.NumMembre)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Cote)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.NbrEvaluation)
-        </td>
-       
-    </tr>
-}
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Nom)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NumMembre)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Cote)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NbrEvaluation)
+            </td>
+
+        </tr>
+    }
 
 </table>

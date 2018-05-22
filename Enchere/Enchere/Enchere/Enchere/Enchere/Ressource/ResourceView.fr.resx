@@ -336,4 +336,61 @@
   <data name="Contacteznous" xml:space="preserve">
     <value>Contactez nous</value>
   </data>
+  <data name="A" xml:space="preserve">
+    <value>A</value>
+  </data>
+  <data name="Acheteur" xml:space="preserve">
+    <value>Acheteur</value>
+  </data>
+  <data name="Augmentationminimale" xml:space="preserve">
+    <value>Augmentation minimale</value>
+  </data>
+  <data name="Commentaire" xml:space="preserve">
+    <value>Commentaire</value>
+  </data>
+  <data name="DateDepart" xml:space="preserve">
+    <value>Date Depart</value>
+  </data>
+  <data name="DateFin" xml:space="preserve">
+    <value>Date Fin</value>
+  </data>
+  <data name="De" xml:space="preserve">
+    <value>De</value>
+  </data>
+  <data name="Enchere" xml:space="preserve">
+    <value>Enchere</value>
+  </data>
+  <data name="EnVent" xml:space="preserve">
+    <value>En Vente</value>
+  </data>
+  <data name="IdMembre" xml:space="preserve">
+    <value>Id Membre</value>
+  </data>
+  <data name="Imprimerrapport" xml:space="preserve">
+    <value>Imprimer le rapport</value>
+  </data>
+  <data name="Nouveau" xml:space="preserve">
+    <value>Nouveau</value>
+  </data>
+  <data name="Nouvelenchere" xml:space="preserve">
+    <value>Nouvel enchère</value>
+  </data>
+  <data name="Nouvellevaluation" xml:space="preserve">
+    <value>Nouvelle Evaluation</value>
+  </data>
+  <data name="Prix" xml:space="preserve">
+    <value>Prix</value>
+  </data>
+  <data name="Prixpropose" xml:space="preserve">
+    <value>Prix proposé</value>
+  </data>
+  <data name="SynthèseVentesAnnuelles" xml:space="preserve">
+    <value>Synthèse Ventes Annuelles</value>
+  </data>
+  <data name="TotalVentes" xml:space="preserve">
+    <value>Total Ventes</value>
+  </data>
+  <data name="VoirEvaluation" xml:space="preserve">
+    <value>Voir Evaluation</value>
+  </data>
 </root>

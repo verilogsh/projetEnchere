@@ -1,5 +1,5 @@
 ﻿@model Enchere.Models.Encher
-
+@using Enchere.Ressource
 @{
     ViewBag.Title = "MettreEnVente";
 }
@@ -9,14 +9,15 @@
     @Scripts.Render("~/bundles/jqueryval")
 }
 
-<h2>MettreEnVente</h2>
+<h2>Mettre En Vente</h2>
 
 
-@using (Html.BeginForm()) {
+@using (Html.BeginForm())
+{
     @Html.AntiForgeryToken()
 
     <div class="form-horizontal">
-        <h4>Enchere</h4>
+        <h4>@ResourceView.Enchere</h4>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         <div class="form-group">
@@ -41,7 +42,7 @@
         </div>
 
         <div class="form-group">
-            @Html.Label("Prix Actuel:", new { @class = "control-label col-md-2" })
+            @Html.Label(@ResourceView.PrixActuel, new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.PrixAchat, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.PrixAchat, "", new { @class = "text-danger" })
@@ -49,7 +50,7 @@
         </div>
 
         <div class="form-group">
-            @Html.Label("Augmentation minimale:", htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.Label(@ResourceView.Augmentationminimale, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.PasDePrix, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.PasDePrix, "", new { @class = "text-danger" })
@@ -57,7 +58,7 @@
         </div>
 
         <div class="form-group">
-            @Html.Label("Date depart", htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.Label(@ResourceView.DateDepart, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.DateDepart, new { htmlAttributes = new { @class = "form-control date-picker" } })
                 @Html.ValidationMessageFor(model => model.DateDepart, "", new { @class = "text-danger" })
@@ -65,7 +66,7 @@
         </div>
 
         <div class="form-group">
-            @Html.Label("Date fin", htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.Label(@ResourceView.DateFin, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.DateFin, new { htmlAttributes = new { @class = "form-control date-picker" } })
                 @Html.ValidationMessageFor(model => model.DateFin, "", new { @class = "text-danger" })
@@ -74,22 +75,22 @@
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Créér" class="btn btn-default" />
+                <input type="submit" value="@ResourceView.Create" class="btn btn-default" />
             </div>
         </div>
     </div>
 }
 
 <div>
-    @Html.ActionLink("Liste des objets", "gestionObjetMembre", "Objet")
+    @Html.ActionLink(@ResourceView.Listedesobjets, "gestionObjetMembre", "Objet")
 </div>
 
 @section MyOtherJavascript {
     <script type="text/javascript">
-    $(function () {
-        // This will make every element with the class "date-picker" into a DatePicker element
-       // $('.date-picker').datepicker();
-    })
+        $(function () {
+            // This will make every element with the class "date-picker" into a DatePicker element
+            // $('.date-picker').datepicker();
+        })
     </script>
 }
 

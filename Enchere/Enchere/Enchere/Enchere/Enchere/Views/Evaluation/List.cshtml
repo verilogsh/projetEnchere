@@ -1,5 +1,5 @@
 ﻿@model Enchere.Models.Evaluation
-
+@using Enchere.Ressource
 @{
     ViewBag.Title = "List";
 }
@@ -7,7 +7,7 @@
 <h2></h2>
 
 <div>
-    <h4>Évaluation</h4>
+    <h4>Evaluation</h4>
     <hr />
     <dl class="dl-horizontal">
 
@@ -20,7 +20,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Cote)
+            @Html.Label(@ResourceView.Cote)
         </dt>
 
         <dd>
@@ -28,7 +28,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.IdMembreDe)
+            @Html.Label(@ResourceView.IdMembre, @ResourceView.De)
         </dt>
 
         <dd>
@@ -36,7 +36,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.IdMembreA)
+            @Html.Label(@ResourceView.IdMembre, @ResourceView.A)
         </dt>
 
         <dd>
@@ -44,7 +44,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Commentaire)
+            @Html.Label(@ResourceView.Commentaire)
         </dt>
 
         <dd>
@@ -55,5 +55,5 @@
 </div>
 
 <div>
-    @Html.ActionLink("Liste des objets", "gestionObjetMembre", "Objet")
+    @Html.ActionLink(@ResourceView.Listedesobjets, "gestionObjetMembre", "Objet")
 </div>

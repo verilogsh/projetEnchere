@@ -1,12 +1,13 @@
 ﻿@model Enchere.Models.ViewModel.UpdateEnchereViewModel
-
+@using Enchere.Ressource
 @{
     ViewBag.Title = "UpdateEnchere";
 }
 
 <h2>Donner votre prix:</h2>
 
-@using (Html.BeginForm()) {
+@using (Html.BeginForm())
+{
     @Html.AntiForgeryToken()
 
     <div class="form-horizontal">
@@ -39,21 +40,21 @@
         </div>
 
         <div class="form-group">
-            <label class="control-label col-md-2">Prix actuel: </label>
+            <label class="control-label col-md-2">@ResourceView.PrixActuel: </label>
             <div class="col-md-10">
                 @Html.DisplayFor(model => model.PrixAchat, new { htmlAttributes = new { @class = "form-control" } }) $
             </div>
         </div>
 
         <div class="form-group">
-            <label class="control-label col-md-2">Minimun augmentation: </label>
+            <label class="control-label col-md-2">@ResourceView.Augmentationminimale: </label>
             <div class="col-md-10">
                 @Html.DisplayFor(model => model.PasDePrix, new { htmlAttributes = new { @class = "form-control" } }) $
             </div>
         </div>
 
         <div class="form-group">
-            <label class="control-label col-md-2">Prix propose: </label>
+            <label class="control-label col-md-2">@ResourceView.Prixpropose: </label>
             <div class="col-md-10">
                 @Html.TextBox("Prix", "", new { htmlAttributes = new { @class = "form-control" } }) $
                 @Html.ValidationMessageFor(model => model.Prix, "", new { @class = "text-danger" })
@@ -91,5 +92,5 @@
 }
 
 <div>
-    @Html.ActionLink("Liste des objets", "gestionObjetMembre", "Objet")
+    @Html.ActionLink(@ResourceView.Listedesobjets, "gestionObjetMembre", "Objet")
 </div>
