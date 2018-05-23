@@ -106,7 +106,7 @@ namespace Enchere.Dal
             {
                 int NbrTotalEv = getNbrEvaluationMembre(en.IdMembreA);
                 Membre mbr = MembreRequette.GetUserByNumero(en.IdMembreA);
-                EvaluationMembre model = new EvaluationMembre(mbr.Nom, mbr.Numero, mbr.Cote, NbrTotalEv);
+                EvaluationMembre model = new EvaluationMembre( mbr.Numero, mbr.Nom, mbr.Cote, NbrTotalEv);
                 listObj.Add(model);
             }
 
@@ -119,7 +119,7 @@ namespace Enchere.Dal
         {
             string connectionString = ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
             SqlConnection connection = new SqlConnection(connectionString);
-            string request = "SELECT DISTINCT * FROM Evaluation";
+            string request = "SELECT DISTINCT IdMembreA  FROM Evaluation";
 
             SqlCommand command = new SqlCommand(request, connection);
 
@@ -131,7 +131,8 @@ namespace Enchere.Dal
                 Evaluation ev = null;
                 while (reader.Read())
                 {
-                    ev = new Evaluation((string)reader["Id"], (string)reader["IdEnchere"], (DateTime)reader["Date"], (int)reader["Cote"], (string)reader["Commentaire"], (string)reader["IdMembreDe"], (string)reader["IdMembreA"]);
+                    // ev = new Evaluation((string)reader["Id"], (string)reader["IdEnchere"], (DateTime)reader["Date"], (int)reader["Cote"], (string)reader["Commentaire"], (string)reader["IdMembreDe"], (string)reader["IdMembreA"]);
+                    ev = new Evaluation("test", "test", DateTime.Now, 0, "test", "test", (string)reader["IdMembreA"]);
                     list.Add(ev);
                 }
                 reader.Close();

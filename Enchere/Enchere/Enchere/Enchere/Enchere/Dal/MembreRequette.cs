@@ -263,7 +263,7 @@ namespace Enchere.Dal {
             {
                 connection.Open();
                 SqlDataReader dr = command.ExecuteReader();
-                while (dr.Read())
+                if (dr.Read())
                 {
                     user = new Membre
                     {
