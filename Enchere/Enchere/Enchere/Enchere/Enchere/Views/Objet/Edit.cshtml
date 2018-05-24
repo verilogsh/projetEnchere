@@ -21,7 +21,7 @@
 }
 <h2>@ResourceView.Editerdonnéesobjet</h2>
 
-@using (Html.BeginForm(@ResourceView.Editer, "Objet", FormMethod.Post, new { enctype = "multipart/form-data" }))
+@using (Html.BeginForm("Edit", "Objet", FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
     @Html.AntiForgeryToken()
 

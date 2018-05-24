@@ -100,13 +100,14 @@
                 @{
                     if (!item.EnVent)
                     {
-                        @Html.ActionLink(@ResourceView.Nouvelenchere, "MettreEnvente", "Enchere", new { idObjet = item.Id, idVendeur = ViewBag.IdVendeur, vente = true }, null)
+                        @Html.ActionLink(@ResourceView.Nouvelenchere, "MettreEnvente", "Enchere", new { idObjet = item.Id, idVendeur = ViewBag.IdVendeur, vente = true }, null) @:|
+                        @Html.ActionLink(@ResourceView.EditObjet, "Edit", "Objet", new { id = item.Id }, null)
                     }
                         }
 
             </td>
         </tr>
-    }
+                    }
 
 </table>
 

@@ -390,4 +390,7 @@
   <data name="VoirEvaluation" xml:space="preserve">
     <value>See evaluation</value>
   </data>
+  <data name="EditObjet" xml:space="preserve">
+    <value>Modify</value>
+  </data>
 </root>
