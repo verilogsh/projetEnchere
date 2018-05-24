@@ -40,6 +40,7 @@ $(function () {
             $.each(data, function (index) {
                 //var dt1 = data[index].DateDepart;
                 //alert(dt1);
+                //alert(data[index].Piece);
                 var dt2 = data[index].DateFin;
                 //var dt3 = new Date(parseInt(dt1.substr(6)));
                 //alert(dt3);
@@ -55,7 +56,8 @@ $(function () {
                     PrixActuel: data[index].PrixActuel,
                     IdVendeur: data[index].IdVendeur,
                     Image: data[index].Photo,
-                    Jour: date
+                    Jour: date,
+                    Piece: data[index].Piece
                 };
                 var template = document.getElementById('templateCard').innerHTML;
                 var output = Mustache.render(template, view);

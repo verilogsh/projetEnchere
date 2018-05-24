@@ -162,6 +162,32 @@ namespace Enchere.Dal {
             }
         }
 
+        public static Historique getHistorique(string idEhchere) {
+            string connectionString = ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
+            SqlConnection connection = new SqlConnection(connectionString);
+
+            string request = "SELECT * FROM Historique WHERE idEnchere = '" + idEhchere + "' ORDER BY Prix DESC";
+            SqlCommand command = new SqlCommand(request, connection);
+            Historique his = null;
+
+            try {
+                connection.Open();
+                SqlDataReader reader = command.ExecuteReader();
+                if (!reader.Read()) {
+                    his = new Historique(0, "0", "0", 0, DateTime.Now);
+                } else {
+                    his = new Historique((int)reader["Id"], (string)reader["IdMembre"], (string)reader["IdEnchere"], (decimal)reader["Prix"], (DateTime)reader["Date"]);
+                }
+                reader.Close();
+                return his;
+            } catch (Exception e) {
+                System.Console.WriteLine(e.Message);
+            } finally {
+                connection.Close();
+            }
+            return null;
+        }
+
 
         public static List<Encher> getEncheresRapport3()
         {

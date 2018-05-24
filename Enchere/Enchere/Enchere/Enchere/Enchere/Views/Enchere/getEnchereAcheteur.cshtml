@@ -65,7 +65,7 @@
             <td>
                 @if (item.Piece != null)
                 {
-                    <a href="@Url.Content("~/pieces/@Html.DisplayFor(modelItem => item.Piece)")" title=@ResourceView.Telechager>@Html.DisplayFor(modelItem => item.Piece)</a>
+                    <a href="@Url.Content("~/pieces/" + @Html.DisplayFor(modelItem => item.Piece))" title=@ResourceView.Telechager>@Html.DisplayFor(modelItem => item.Piece)</a>
                 }
                 else
                 {

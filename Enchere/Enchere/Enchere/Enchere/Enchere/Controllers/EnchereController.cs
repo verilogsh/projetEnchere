@@ -34,8 +34,8 @@ namespace Enchere.Dal
                 EnchereRequette.insertEncher(encher);
 
                 string formatString = "yyyyMMddHHmmss";
-                string sample1 = "20180517101930";
-                string sample2 = "20180517102230";
+                string sample1 = "20180524121900";
+                string sample2 = "20180917102230";
                 DateTime dt1 = DateTime.ParseExact(sample1, formatString, null);
                 DateTime dt2 = DateTime.ParseExact(sample2, formatString, null);
 
@@ -168,25 +168,48 @@ namespace Enchere.Dal
         [HttpPost]
         public ActionResult UpdateEnchere(UpdateEnchereViewModel en) {
             if (ModelState.IsValid) {
+                Encher model = new Encher();
                 Encher enOld = EnchereRequette.getEnchereById(en.Id);
+                Objet obj = ObjetRequette.getObjetById(en.IdObjet);
+
                 if ((enOld.PrixAchat + enOld.PasDePrix) > en.Prix) {
                     ViewBag.err = "Au moins augmenter le prix par " + enOld.PasDePrix + "$!";
                     return View(en);
                 }
 
-                Encher model = new Encher();
+                Historique his = EnchereRequette.getHistorique(en.Id);
+
+                if (his.Prix > en.Prix + en.PasDePrix) {
+                    model.PrixAchat = en.Prix + en.PasDePrix;
+                    model.IdAcheteur = his.IdMembre;
+                    //// Send Email to en.IdAcheteur
+
+                } else if (his.Prix >= en.Prix) {
+                    model.PrixAchat = his.Prix;
+                    model.IdAcheteur = his.IdMembre;
+                    //// Send Email to en.IdAcheteur
+                } else {
+                    model.PrixAchat = his.Prix + en.PasDePrix;
+                    model.IdAcheteur = en.IdAcheteur;
+                    //// Send Email to his.IdMembre
+                }
+
+                Membre mb = MembreRequette.GetUserByNumero(model.IdAcheteur);
+                Utility.Mail.SendEmail(obj.Nom, model.PrixAchat, mb.Adresse);
+
+
                 model.Id = en.Id;
                 model.IdObjet = en.IdObjet;
-                model.IdAcheteur = en.IdAcheteur;
+                //model.IdAcheteur = en.IdAcheteur;
                 model.IdVendeur = en.IdVendeur;
-                model.PrixAchat = en.Prix;
+                //model.PrixAchat = en.Prix;
                 model.PasDePrix = en.PasDePrix;
                 model.DateDepart = en.DateDepart;
                 model.DateFin = en.DateFin;
                 model.Etat = en.Etat;
 
                 EnchereRequette.updateEnchere(model);
-                Historique his = new Historique(0, model.IdAcheteur, model.Id, model.PrixAchat, DateTime.Now);
+                his = new Historique(0, en.IdAcheteur, en.Id, en.Prix, DateTime.Now);
                 EnchereRequette.insertHistorique(his);
                 ////// send E_mail  to add //////
                 return RedirectToAction("Index", "Home");

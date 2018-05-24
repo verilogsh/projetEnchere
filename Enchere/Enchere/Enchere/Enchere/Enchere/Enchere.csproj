@@ -216,6 +216,7 @@
     </Compile>
     <Compile Include="Utility\IdGenerator.cs" />
     <Compile Include="Utility\EnchereScheduler.cs" />
+    <Compile Include="Utility\Mail.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="App_Data\encheres.mdf" />
