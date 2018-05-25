@@ -688,7 +688,6 @@ D:\Project\ASP\Data\Enchere\Enchere\Enchere\Enchere\Enchere\bin\System.Web.WebPa
 D:\Project\ASP\Data\Enchere\Enchere\Enchere\Enchere\Enchere\bin\System.Web.WebPages.Razor.xml
 D:\Project\ASP\Data\Enchere\Enchere\Enchere\Enchere\Enchere\bin\Antlr3.Runtime.pdb
 D:\Project\ASP\Data\Enchere\Enchere\Enchere\Enchere\Enchere\bin\Newtonsoft.Json.xml
-D:\Project\ASP\Data\Enchere\Enchere\Enchere\Enchere\Enchere\obj\Debug\Enchere.csprojResolveAssemblyReference.cache
 D:\Project\ASP\Data\Enchere\Enchere\Enchere\Enchere\Enchere\obj\Debug\Enchere.Ressource.ResourceView.resources
 D:\Project\ASP\Data\Enchere\Enchere\Enchere\Enchere\Enchere\obj\Debug\Enchere.Ressource.ResourceView.fr.resources
 D:\Project\ASP\Data\Enchere\Enchere\Enchere\Enchere\Enchere\obj\Debug\Enchere.Ressource.ResourceView.en.resources
