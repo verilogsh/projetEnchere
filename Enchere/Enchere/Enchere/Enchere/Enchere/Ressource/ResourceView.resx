@@ -465,4 +465,7 @@
   <data name="Êtesvousmembre" xml:space="preserve">
     <value>Êtes-vous sûr de vouloir supprimer le compte de ce membre</value>
   </data>
+  <data name="Motoublié" xml:space="preserve">
+    <value>Mot de passe oublié? Envoyer nouveau mot de passe vers mon adresse courriel</value>
+  </data>
 </root>

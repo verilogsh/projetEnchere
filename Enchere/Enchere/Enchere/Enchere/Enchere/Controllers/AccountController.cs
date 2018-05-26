@@ -37,6 +37,7 @@ namespace Enchere.Controllers
         [HttpPost]
         public ActionResult Login(string username, string password, string ReturnUrl = "")
         {
+            CreateCulture(getLangue());
             ViewBag.error = "";
             ViewBag.ReturnUrl = ReturnUrl;
             if (!MembreRequette.Authentifie(username, password))

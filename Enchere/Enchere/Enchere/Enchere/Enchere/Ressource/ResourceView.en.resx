@@ -124,7 +124,7 @@
     <value>Address</value>
   </data>
   <data name="autherror" xml:space="preserve">
-    <value>Authentification erro</value>
+    <value>Authentification error</value>
   </data>
   <data name="autherror2" xml:space="preserve">
     <value>Wrong username or password!</value>
@@ -461,5 +461,8 @@
   </data>
   <data name="Êtesvousmembre" xml:space="preserve">
     <value>Are you sure you want to delete this member</value>
+  </data>
+  <data name="Motoublié" xml:space="preserve">
+    <value>Forgot your password? Send me a new password to my email address</value>
   </data>
 </root>
