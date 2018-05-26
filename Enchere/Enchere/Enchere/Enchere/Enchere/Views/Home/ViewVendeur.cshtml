@@ -1,0 +1,56 @@
+﻿@model IEnumerable<Enchere.Models.Evaluation>
+@using Enchere.Ressource
+@{
+    ViewBag.Title = "ViewVendeur";
+}
+
+
+<p>@ResourceView.Iddumembre: @ViewBag.Id</p>
+<p>@ResourceView.Codedumembre: @ViewBag.Cote</p>
+<hr />
+
+<table class="table">
+    <capition>@ResourceView.Evaluationsdumembre</capition>
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Date)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Cote)
+        </th>
+        <th>
+            @Html.Label(@ResourceView.DeMembre,":")
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Commentaire)
+        </th>
+    </tr>
+
+
+
+    @if (Model != null)
+    {
+        foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Date)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Cote)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.IdMembreDe)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Commentaire)
+                </td>
+            </tr>
+        }
+    }
+    else
+    {
+            <caption style="color:red; font-size:1em">@ResourceView.Aucuneevaluationtrouvee</caption>
+    }
+
+</table>

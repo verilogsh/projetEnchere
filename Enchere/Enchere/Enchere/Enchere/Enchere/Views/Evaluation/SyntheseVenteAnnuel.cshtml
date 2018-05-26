@@ -1,0 +1,67 @@
+﻿@model IEnumerable<Enchere.Models.SyntheseVentes>
+@using Enchere.Ressource
+@{
+    ViewBag.Title = "SyntheseVenteAnnuel";
+}
+
+<h2>@ResourceView.SynthèseVentesAnnuelles</h2>
+
+<p>
+    @Html.ActionLink(@ResourceView.Imprimerrapport, "PrintSyntheseVenteAnnuel")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.Label(@ResourceView.nom2)
+        </th>
+        <th>
+            @Html.Label(@ResourceView.Prix)
+        </th>
+        <th>
+            @Html.Label("Date")
+        </th>
+        <th>
+            @Html.Label("Commision")
+        </th>
+
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.NomObjet)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Prix)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Date)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Commision)
+            </td>
+
+
+        </tr>
+    }
+
+    <tr>
+
+        <td>
+            <b>@ResourceView.TotalVentes</b>
+        </td>
+        <td>
+            @ViewBag.TotalVente
+        </td>
+        <td>
+            <b>Total Commission</b>
+        </td>
+        <td>
+            @ViewBag.TotalCom
+        </td>
+
+    </tr>
+
+</table>

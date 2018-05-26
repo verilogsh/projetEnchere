@@ -1,0 +1,91 @@
+﻿@model IEnumerable<Enchere.Models.EnchereViewModel>
+@using Enchere.Ressource
+@{
+    ViewBag.Title = "gestionEnchereMembre";
+}
+@Html.ActionLink(@ResourceView.Imprimerrapport, "PrintObjetvendu", "Enchere")
+<h2>@ViewBag.option</h2>
+<p>
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @ResourceView.nom2
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Description)
+        </th>
+        <th>
+            @ResourceView.Inscription
+        </th>
+        <th>
+            @ResourceView.Catégorie
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Photo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Piece)
+        </th>
+        <th>
+            @ResourceView.PrixDepart
+        </th>
+        <th>
+            @ResourceView.PrixActuel
+        </th>
+        <th></th>
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Nom)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Description)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DateInscri)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IdCategorie)
+            </td>
+            <td>
+                @if (item.Photo != null)
+                {
+                    <img class="card-img-top float-left" src="~/images/@Html.DisplayFor(modelItem => item.Photo)" alt="Card image cap" width=50 height=30>
+                }
+                else
+                {
+                    <p>Non</p>
+                }
+            </td>
+            <td>
+                @if (item.Piece != null)
+                {
+                    <a href="@Url.Content("~/pieces/" + @Html.DisplayFor(modelItem => item.Piece))" title="telecharger la piece jointe">@Html.DisplayFor(modelItem => item.Piece)</a>
+                }
+                else
+                {
+                    <p>Non</p>
+                }
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PrixDepart)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PrixActuel)
+            </td>
+            <td>
+                @if (item.Etat == 1 || item.Etat == 3)
+                {
+                    @Html.ActionLink(@ResourceView.Nouvellevaluation, "Create", "Evaluation", new { idEnchere = item.IdEnchere, op = "vendeur", rtnUrl = HttpContext.Current.Request.RawUrl }, null)
+                }
+                else if (item.Etat == 4 || item.Etat == 5)
+                {
+                    @Html.ActionLink(@ResourceView.VoirEvaluation, "List", "Evaluation", new { idEnchere = item.IdEnchere, op = "vendeur", rtnUrl = HttpContext.Current.Request.RawUrl }, null)
+                }
+            </td>
+        </tr>
+    }
+</table>

@@ -1,0 +1,186 @@
+﻿@using System.Threading;
+@using System.Globalization;
+@using Enchere.Models
+@using Enchere.Dal
+@using Enchere.Ressource
+
+@{
+    string str;
+    try
+    {
+
+
+
+        str = Request.ServerVariables["HTTP_ACCEPT_LANGUAGE"];
+
+        if (User.Identity.IsAuthenticated) { Membre u = MembreRequette.GetUserByEmail(User.Identity.Name); str = u.Langue; }
+        //  if (ViewBag.cookie != null && ViewBag.cookie != "") { str = ViewBag.cookie; }
+        if (Request.Cookies["Cookie"] != null)
+        {
+            str = Request.Cookies["Cookie"].Value;
+        }
+
+        if (str.IndexOf("fr") != -1)
+        {
+            Thread.CurrentThread.CurrentUICulture = CultureInfo.CreateSpecificCulture("fr");
+
+        }
+        else if (str.IndexOf("en") != -1)
+        {
+            Thread.CurrentThread.CurrentUICulture = CultureInfo.CreateSpecificCulture("en");
+
+        }
+    }
+    catch { str = "fr"; Thread.CurrentThread.CurrentUICulture = CultureInfo.CreateSpecificCulture("fr"); }
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - Application Enchere</title>
+    @Styles.Render("~/Content/jquery-ui.css")
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+
+</head>
+<body>
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                @Html.ActionLink("Maisonneuve", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <li>@Html.ActionLink(@ResourceView.Accueil, "Index", "Home")</li>
+                    <li>@Html.ActionLink("Contact", "SendEmail", "Home")</li>
+                    <li>@Html.ActionLink(@ResourceView.Mesobjetsenvente, "MesObjetsEnVente", "Objet")</li>
+                    <li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</li>
+                    <li>
+                        <div class="lang">
+                            <form action="/Home/Langue" method="post">
+                                <input type="hidden" value="en" name="choixLangue" />
+                                <input type="image" src="/flags/United_Kingdom.png" alt="Submit Form" width="30" height="20" class="lang" />
+                             
+                            </form>
+                        </div>
+                    </li>
+                    <li>&nbsp;&nbsp;&nbsp;&nbsp;</li>
+                    <li>
+                        <div class="lang">
+                            <form action="/Home/Langue" method="post">
+                                <input type="hidden" value="fr" name="choixLangue" />
+                                <input type="image" src="/flags/franc.png" alt="Submit Form" width="30" height="20" class="lang" />
+                             
+                            </form>
+                        </div>
+</li>
+                    <li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</li>
+                    @if (User.Identity.IsAuthenticated && User.Identity.Name == "admin@admin.ca")
+                    {
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" ariaexpanded="false">
+                                @ResourceView.Zoneadministration
+                                <span class="caret"></span>
+                            </a>
+                            <ul class="dropdown-menu" role="menu">
+                                <li>@Html.ActionLink(@ResourceView.ListeUsers, "ListeUsers", "Account")</li>
+                                <li class="divider"></li>
+                                <li>@Html.ActionLink("Categories", "ListeCategories", "Categories")</li>
+                                <li class="divider"></li>
+                                <li>@Html.ActionLink(@ResourceView.Rapports, "PageRapports", "Home")</li>
+                                <li class="divider"></li>
+                                <li>@Html.ActionLink("Commission", "PageCommission", "Home")</li>
+                                <li class="divider"></li>
+                                <li>@Html.ActionLink(@ResourceView.Derniersproduits, "DerniersProduits", "Objet")</li>
+                            </ul>
+                        </li>
+                    }
+                   
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    @if (!User.Identity.IsAuthenticated)
+                    {
+                        <li>@Html.ActionLink(@ResourceView.Inscriptionsite, "Inscription", "Account")</li>
+                        <li>@Html.ActionLink(@ResourceView.Connexion, "Login", "Account")</li>
+                    }
+                    else if (User.Identity.IsAuthenticated)
+                    {
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown"
+                               role="button" ariaexpanded="false">
+                                @ResourceView.Bonjour : @User.Identity.Name
+                                <span class="caret"></span>
+                            </a>
+                            <ul class="dropdown-menu" role="menu">
+                                <li>@Html.ActionLink(@ResourceView.mdfprofil, "Modifier", "Account")</li>
+                                <li class="divider"></li>
+                                <li>@Html.ActionLink(@ResourceView.ModifierMDP, "ModifierMDP", "Account")</li>
+                                <li class="divider"></li>
+                                <li>@Html.ActionLink(@ResourceView.gestobj, "gestionObjetMembre", "Objet")</li>
+                                <li class="divider"></li>
+                                <li>@Html.ActionLink(@ResourceView.Listerencheresencherits, "getEnchereAcheteur", "Enchere", new { etat = 0 }, null)</li>
+                                <li class="divider"></li>
+                                <li class="dropdown-submenu">
+                                    <a class="test" href="#">@ResourceView.GestionEncheres <span class="caret"></span></a>
+                                    
+                                    <ul class="me-right">
+                                        <li class="">@Html.ActionLink(@ResourceView.Listerobjetsachetes, "getEnchereAcheteur", "Enchere", new { etat = 1 }, null)</li>
+                                        <li class="divider"></li>
+                                        <li>@Html.ActionLink(@ResourceView.Listerobjetsvendus, "getEnchereVendeur", "Enchere", new { etat = 1 }, null)</li>
+                                        <li class="divider"></li>
+                                        <li>@Html.ActionLink(@ResourceView.Listerecheresperdus, "getEnchereVendeur", "Enchere", new { etat = 2 }, null)</li>
+                                        <li class="divider"></li>
+
+                                        <li>@Html.ActionLink(@ResourceView.Listerencheresencours, "getEnchereVendeur", "Enchere", new { etat = 0 }, null)</li>
+                                        <li class="divider"></li>
+                                        <li>@Html.ActionLink(@ResourceView.Listerproduitsinteressepdf, "PrintObjetIntressemembre", "Objet")</li>
+                                        <li class="divider"></li>
+                                        <li>@Html.ActionLink(@ResourceView.Listermesobjetsvenduspdf, "PrintObjetvendu", "Enchere")</li>
+                                        <li class="divider"></li>
+                                        <li>@Html.ActionLink(@ResourceView.Ventesechusousouspeuechuspdf, "PrintRapprt3", "Enchere")</li>
+
+                                    </ul>
+                                   
+                                </li>
+                                <li class="divider"></li>
+                                <li>@Html.ActionLink(@ResourceView.Deconnexion, "Logout", "Account")</li>
+                            </ul>
+                        </li>
+                    }
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="container body-content">
+        <!--@if (User.Identity.IsAuthenticated)
+        {
+            <h2>Bonjour @User.Identity.Name!</h2>
+        }  -->
+        @RenderBody()
+        <hr />
+        <footer>
+            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
+        </footer>
+    </div>
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+    @RenderSection("MyOtherJavascript", required: false)
+    <script>
+        $(document).ready(function(){
+        $('.dropdown-submenu a.test').on("click", function(e){
+             $(this).next('ul').toggle();
+             e.stopPropagation();
+             e.preventDefault();
+           });
+        });
+    </script>
+</body>
+</html>

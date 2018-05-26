@@ -1,0 +1,48 @@
+﻿@model IEnumerable<Enchere.Models.EvaluationMembre>
+@using Enchere.Ressource
+@{
+    ViewBag.Title = "ListeEvaluationsMembres";
+}
+
+<h2>@ResourceView.ListeDesÉvaluationsDesMembres</h2>
+
+<p>
+    @Html.ActionLink(@ResourceView.Imprimerrapport, "PrintEvaluaionMembre", "Evaluation")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.Label(@ResourceView.nom2)
+        </th>
+        <th>
+            @Html.Label(@ResourceView.Numéro)
+        </th>
+        <th>
+            @Html.Label(@ResourceView.Cote)
+        </th>
+        <th>
+            @Html.Label(@ResourceView.Numéro, "Evaluation")
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Nom)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NumMembre)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Cote)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NbrEvaluation)
+            </td>
+
+        </tr>
+    }
+
+</table>
