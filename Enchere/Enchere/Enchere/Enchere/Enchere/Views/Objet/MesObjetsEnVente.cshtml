@@ -1,0 +1,16 @@
+﻿@using Enchere.Ressource
+@{
+    ViewBag.Title = "MesObjetsEnVente";
+}
+
+<h2>Mes Objets En Vente</h2>
+<br /><span class="error">@ViewBag.Error</span><br />
+<form method="post" action="MesObjetsEnVente">
+    <label> @ResourceView.Courriel </label>
+    <br />
+    <br />
+    <input type="text" name="monEmail" />
+    <br />
+    <br />
+    <input type="submit" value="Mes objets en vente" />
+</form>

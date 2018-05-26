@@ -1,0 +1,59 @@
+﻿@model Enchere.Models.Evaluation
+@using Enchere.Ressource
+@{
+    ViewBag.Title = "List";
+}
+
+<h2></h2>
+
+<div>
+    <h4>Evaluation</h4>
+    <hr />
+    <dl class="dl-horizontal">
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Date)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Date)
+        </dd>
+
+        <dt>
+            @Html.Label(@ResourceView.Cote)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Cote)
+        </dd>
+
+        <dt>
+            @Html.Label(@ResourceView.IdMembre, @ResourceView.De)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IdMembreDe)
+        </dd>
+
+        <dt>
+            @Html.Label(@ResourceView.IdMembre, @ResourceView.A)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IdMembreA)
+        </dd>
+
+        <dt>
+            @Html.Label(@ResourceView.Commentaire)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Commentaire)
+        </dd>
+
+    </dl>
+</div>
+
+<div>
+    @Html.ActionLink(@ResourceView.Listedesobjets, "gestionObjetMembre", "Objet")
+</div>

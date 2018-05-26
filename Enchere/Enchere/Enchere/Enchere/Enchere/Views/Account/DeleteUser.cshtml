@@ -1,0 +1,101 @@
+﻿@model Enchere.Models.Membre
+@using Enchere.Ressource
+@{
+    ViewBag.Title = "DeleteUser";
+}
+<h2>Effacer un Membre</h2>
+<h3>Êtes-vous sûr de vouloir supprimer le compte de ce membre?</h3>
+<div>
+
+    <hr />
+    <dl class="dl-horizontal">
+        @Html.HiddenFor(model => model.Numero)
+        <dt>
+            @ResourceView.Civilté
+            @*@Html.DisplayNameFor(model => model.Civilite)*@
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Civilite)
+        </dd>
+        <dt>
+            @ResourceView.Nom
+            @*@Html.DisplayNameFor(model => model.Nom)*@
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Nom)
+        </dd>
+        <dt>
+            @ResourceView.Prenom
+            @*@Html.DisplayNameFor(model => model.Prenom)*@
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Prenom)
+        </dd>
+        <dt>
+            @ResourceView.Langue
+            @*@Html.DisplayNameFor(model => model.Langue)*@
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Langue)
+        </dd>
+        <dt>
+            @ResourceView.Téléphone
+            @*@Html.DisplayNameFor(model => model.Telephone)*@
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Telephone)
+        </dd>
+        <dt>
+            @ResourceView.Adresse
+            @Html.DisplayNameFor(model => model.Adresse)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Adresse)
+        </dd>
+        <dt>
+            @ResourceView.Courriel
+            @* @Html.DisplayNameFor(model => model.Courriel)*@
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Courriel)
+        </dd>
+        <dt>
+            @ResourceView.Inscription
+            @*@Html.DisplayNameFor(model => model.DateInscri)*@
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.DateInscri)
+        </dd>
+        <dt>
+            @ResourceView.Cote
+            @*@Html.DisplayNameFor(model => model.Cote)*@
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Cote)
+        </dd>
+        @*<dt>
+                @Html.DisplayNameFor(model => model.MotDePasse)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.MotDePasse)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Confirmation)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Confirmation)
+            </dd>*@
+    </dl>
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Supprimer" class="btn btn-default" /> |
+            @Html.ActionLink("Accueil", "Index", "Home")
+        </div>
+    }
+</div>

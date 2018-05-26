@@ -1,0 +1,17 @@
+﻿@using Enchere.Ressource
+@{
+    ViewBag.Title = "SendNewPass";
+}
+@ViewBag.Error
+<h2>@ResourceView.Récuperationmot</h2>
+<br /><br />
+<form action="/Home/SendNewPass" method="post">
+    <label>@ResourceView.Courriel: </label>
+    <br />
+    <br />
+    <input type="text" name="monEmail" />
+    <br />
+    <br />
+    <input type="submit" value="@ResourceView.Envoyer" />
+</form>
+

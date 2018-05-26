@@ -1,0 +1,63 @@
+﻿@using System.Globalization;
+@using System.Linq;
+@using System.Threading;
+@using Enchere.Ressource
+@{
+    ViewBag.Title = "Login";
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <link rel="stylesheet" type="text/css" href="~/Content/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="~/Content/Site.css">
+    <title>Login</title>
+</head>
+<body>
+
+    @if (ViewBag.error != "")
+    {
+        <div class="alert alert-danger" role="alert">
+            <b>@ResourceView.autherror</b> @ResourceView.autherror2
+        </div>
+    }
+    <br /> <br />
+    <div class="container">
+        @using (Html.BeginForm("Login", "Account"))
+        {
+            <table class="table table-hover" style="width:200px;" border="0">
+                <tr>
+                    <td>
+                        @Html.Label(@ResourceView.Courriel)
+                    </td>
+                    <td>@Html.TextBox("username")</td>
+                </tr>
+
+                <tr>
+                    <td> @Html.Label(@ResourceView.MDP) </td>
+                    <td>@Html.Password("password")</td>
+                </tr>
+
+                <tr>
+                    <td>
+                        <input type="hidden" name="ReturnUrl" value="@ViewBag.ReturnUrl" />
+                        <input type="submit" value=@ResourceView.Connexion />
+                    </td>
+                    <td></td>
+                </tr>
+
+            </table>
+        }
+
+    </div>
+    <br /><br />
+    @Html.ActionLink("Mot de passe oublié? Envoyer nouveau mot de passe vers mon adresse courriel", "SendNewPass", "Home")
+
+    <br /><br />
+    @Html.ActionLink(@ResourceView.Accueil, "Index", "Home")
+</body>
+</html>
+
+
+
+

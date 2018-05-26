@@ -1,0 +1,27 @@
+﻿@using Enchere.Ressource
+
+@{
+    ViewBag.Title = "PageCommission";
+}
+
+<h2>@ResourceView.PageCommission</h2>
+<br />
+<hr />
+<br />
+<p><b>@ResourceView.Commissionactuel:</b> @ViewBag.Commission %</p>
+<br />
+<p><b>@ResourceView.Changercommission:</b></p>
+<br />
+<form action="/Home/ModifierCommission" method="post">
+    @{
+        List<SelectListItem> lesTauxCommissions = new List<SelectListItem>();
+        for (int i = 0; i < 50; i += 10)
+        {
+            lesTauxCommissions.Add(new SelectListItem { Text = i.ToString() + " %", Value = i.ToString() });
+        }
+
+        @Html.DropDownList("Taux", lesTauxCommissions)
+    }
+    <input type="submit" value="@ResourceView.Changer" />
+
+</form>

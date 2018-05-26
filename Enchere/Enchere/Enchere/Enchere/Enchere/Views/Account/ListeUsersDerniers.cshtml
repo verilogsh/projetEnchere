@@ -1,0 +1,91 @@
+﻿@using Enchere.Models
+@using Enchere.Ressource
+@{
+    ViewBag.Title = "ListeUsersDerniers";
+}
+
+<h2>ListeUsersDerniers</h2>
+
+<h2>Liste Membres Inscrits dans les dernières 24h</h2>
+<br />
+@Html.ActionLink(@ResourceView.newuser, "Inscription", "Account")
+<br /><br /><br />
+@Html.ActionLink("Tous les membres inscrits", "ListeUsers", "Account")
+<br /><br /><br />
+<table class="table">
+    <tr>
+        <th>Numero</th>
+        <th>@Html.ActionLink(@ResourceView.Civilté, "ListeUsersDerniers", "Account", new { Order = ViewBag.CiviliteOrder }, null)</th>
+        <th>@Html.ActionLink(@ResourceView.Nom, "ListeUsersDerniers", "Account", new { Order = ViewBag.NomOrder }, null)</th>
+        <th>@Html.ActionLink(@ResourceView.Prenom, "ListeUsersDerniers", "Account", new { Order = ViewBag.PrenomOrder }, null)</th>
+        <th>@Html.ActionLink(@ResourceView.Langue, "ListeUsersDerniers", "Account", new { Order = ViewBag.LangueOrder }, null)</th>
+        <th>@ResourceView.Téléphone</th>
+        <th>@ResourceView.Adresse</th>
+        <th>@Html.ActionLink(@ResourceView.Courriel, "ListeUsersDerniers", "Account", new { Order = ViewBag.CourrielOrder }, null)</th>
+        <th>@Html.ActionLink(@ResourceView.Inscription, "ListeUsersDerniers", "Account", new { Order = ViewBag.InscriptionOrder }, null)</th>
+        <th>@Html.ActionLink(@ResourceView.Cote, "ListeUsersDerniers", "Account", new { Order = ViewBag.CoteOrder }, null)</th>
+        <th></th>
+        <th></th>
+    </tr>
+    @{ if (ViewBag.Users != null)
+        {
+
+            try
+            {
+
+                foreach (Membre m in ViewBag.Users)
+                {
+                    <tr>
+                        <td>
+                            @m.Numero
+                        </td>
+                        <td>
+                            @m.Civilite
+                        </td>
+                        <td>
+                            @m.Nom
+                        </td>
+                        <td>
+                            @m.Prenom
+                        </td>
+                        <td>
+                            @m.Langue
+                        </td>
+                        <td>
+                            @m.Telephone
+                        </td>
+                        <td>
+                            @m.Adresse
+                        </td>
+                        <td>
+                            @m.Courriel
+                        </td>
+                        <td>
+                            @String.Format("{0:d/M/yyyy}", @m.DateInscri);
+
+                        </td>
+                        <td>
+                            @m.Cote
+                        </td>
+                        @if (m.Courriel != "admin@admin.ca")
+                        {
+                            <td>
+                                @Html.ActionLink(@ResourceView.Editer, "Edit", "Account", new { Numero = m.Numero }, null)
+                            </td>
+                            <td>
+                                @Html.ActionLink(@ResourceView.Supprimer, "DeleteUser", "Account", new { Numero = m.Numero }, null)
+                            </td>
+                        }
+                        else
+                        {
+                            <td></td>
+                            <td></td>}
+                    </tr>
+                }
+
+            }
+            catch { }
+        }
+    }
+</table>
+

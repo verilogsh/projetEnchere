@@ -1,0 +1,75 @@
+﻿@model Enchere.Models.Evaluation
+@using Enchere.Ressource
+@{
+    ViewBag.Title = "Create";
+}
+
+<h2>@ResourceView.Create Evaluation</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            <div class="col-md-10">
+                @Html.HiddenFor(model => model.Id, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.HiddenFor(model => model.Date, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.HiddenFor(model => model.IdEnchere, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.HiddenFor(model => model.IdMembreDe, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.HiddenFor(model => model.IdMembreA, new { htmlAttributes = new { @class = "form-control" } })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.Label(@ResourceView.Cote, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("Cote", new List<SelectListItem> {
+                new SelectListItem {Text="-3", Value="-3", Selected=true},
+                new SelectListItem {Text="-2", Value="-2"},
+                new SelectListItem {Text="-1", Value="-1"},
+                new SelectListItem {Text="0", Value="0"},
+                new SelectListItem {Text="1", Value="1"},
+                new SelectListItem {Text="2", Value="2"},
+                new SelectListItem {Text="3", Value="3"}
+           })
+                @Html.ValidationMessageFor(model => model.Cote, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.Label(@ResourceView.IdMembre, @ResourceView.De, htmlAttributes: new { @class = "control-label col-md-2" })
+         <div class="col-md-10">
+                @Html.DisplayFor(model => model.IdMembreDe, new { htmlAttributes = new { @class = "form-control" } })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.Label(@ResourceView.IdMembre, @ResourceView.A, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DisplayFor(model => model.IdMembreA, new { htmlAttributes = new { @class = "form-control" } })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.Label(@ResourceView.Commentaire, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.TextAreaFor(model => model.Commentaire, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Commentaire, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="@ResourceView.Create" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink(@ResourceView.Listedesobjets, "gestionObjetMembre", "Objet")
+</div>

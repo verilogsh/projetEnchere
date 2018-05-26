@@ -1,0 +1,22 @@
+﻿@using Enchere.Models
+@using Enchere.Ressource
+@{
+    ViewBag.Title = "lireObjetIntersse";
+}
+
+<h2>Objets qui m'ont intéressé</h2>
+
+
+
+@{ if (ViewBag.list != null)
+    {
+
+
+        <ul>
+            @foreach (ObjetEnchereAff m in ViewBag.list)
+            {
+                <li>@m.Nom</li>
+            }
+        </ul>
+    }
+}
